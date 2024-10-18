@@ -16,5 +16,5 @@ Windows X64
 Compiled with VS2022 .Net Framework 4.8
 ## Screenshots
 
-![App Screenshot](https://omrongroup.sharepoint.com/:i:/r/sites/tms_FRA_IAB_0236/Shared%20Documents/Images%20for%20web/IFZ%20Viewer.png?csf=1&web=1&e=8XQy11)
+![App Screenshot](https://github.com/avironman/OMRON---IFZ-Viewer/blob/master/IFZ%20Viewer.png?raw=true)
 
