@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3BB1F348-1F37-48CD-A743-73C527756C92}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>OMRON_IFZ_Viewer</RootNamespace>
+    <AssemblyName>OMRON - IFZ Viewer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FZ_CustomControl, Version=1.0.8109.37020, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll_importantes\x64\FZ_CustomControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomMenu.Designer.cs">
+      <DependentUpon>CustomMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FiltLibIF.cs" />
+    <Compile Include="Form_Convert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Convert.Designer.cs">
+      <DependentUpon>Form_Convert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_EmptyFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_EmptyFolder.Designer.cs">
+      <DependentUpon>Form_EmptyFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Zoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Zoom.Designer.cs">
+      <DependentUpon>Form_Zoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Settings.Designer.cs">
+      <DependentUpon>Form_Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Confirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Confirm.Designer.cs">
+      <DependentUpon>Form_Confirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DisplayImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DisplayImage.designer.cs">
+      <DependentUpon>Form_DisplayImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FZ_ImageProcessWrapper.cs" />
+    <Compile Include="ImageFileInfo.cs" />
+    <Compile Include="IMAGE_TYPE.cs" />
+    <Compile Include="Import.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShellHelper.cs" />
+    <EmbeddedResource Include="CustomMenu.resx">
+      <DependentUpon>CustomMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Convert.resx">
+      <DependentUpon>Form_Convert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_EmptyFolder.resx">
+      <DependentUpon>Form_EmptyFolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Zoom.resx">
+      <DependentUpon>Form_Zoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Settings.resx">
+      <DependentUpon>Form_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Confirm.resx">
+      <DependentUpon>Form_Confirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DisplayImage.resx">
+      <DependentUpon>Form_DisplayImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\strings.fr.resx" />
+    <EmbeddedResource Include="Properties\strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OMRON-logo-transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2022-04-14_13-25-44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-maximize-button-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-minimize-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OMRON-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Info.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\Rename.png" />
+    <None Include="Resources\Copy.png" />
+    <None Include="Resources\Print.png" />
+    <None Include="Resources\Next.png" />
+    <None Include="Resources\Trash.png" />
+    <None Include="Resources\List.png" />
+    <None Include="Resources\Inferior.png" />
+    <None Include="Resources\Original.png" />
+    <None Include="Resources\Enlarge.png" />
+    <None Include="Resources\Settings.png" />
+    <None Include="Resources\WhiteSideDecoration.png" />
+    <None Include="Resources\SideDecoration.png" />
+    <None Include="Resources\minimize.png" />
+    <None Include="Resources\maximize.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\Ribbon.png" />
+    <None Include="Resources\ZoomOut.png" />
+    <None Include="Resources\ZoomIn.png" />
+    <None Include="Resources\Fit.png" />
+    <None Include="Resources\Scale1.png" />
+    <None Include="Resources\FullScreen.png" />
+    <None Include="Resources\icons8-zoom-out-26.png" />
+    <None Include="Resources\icons8-zoom-in-26.png" />
+    <None Include="Resources\icons8-trash-can-26.png" />
+    <None Include="Resources\icons8-take-screenshot-26.png" />
+    <None Include="Resources\icons8-subtract-26.png" />
+    <None Include="Resources\icons8-settings-26.png" />
+    <None Include="Resources\icons8-search-26.png" />
+    <None Include="Resources\icons8-save-26.png" />
+    <None Include="Resources\icons8-save-26 %282%29.png" />
+    <None Include="Resources\icons8-save-26 %281%29.png" />
+    <None Include="Resources\icons8-rotate-left-26.png" />
+    <None Include="Resources\icons8-raw-26.png" />
+    <None Include="Resources\icons8-plus-math-26.png" />
+    <None Include="Resources\icons8-picture-30.png" />
+    <None Include="Resources\icons8-photo-gallery-26.png" />
+    <None Include="Resources\icons8-open-file-26.png" />
+    <None Include="Resources\icons8-opened-folder-26.png" />
+    <None Include="Resources\icons8-one-to-one-48.png" />
+    <None Include="Resources\icons8-normal-screen-26.png" />
+    <None Include="Resources\icons8-layers-26.png" />
+    <None Include="Resources\icons8-forward-26.png" />
+    <None Include="Resources\icons8-flip-vertical-26.png" />
+    <None Include="Resources\icons8-flip-horizontal-26.png" />
+    <None Include="Resources\icons8-exit-26.png" />
+    <None Include="Resources\icons8-edit-26.png" />
+    <None Include="Resources\icons8-copy-26.png" />
+    <None Include="Resources\icons8-close-window-26.png" />
+    <None Include="Resources\icons8-close-26.png" />
+    <None Include="Resources\icons8-broom-26.png" />
+    <None Include="Resources\icons8-back-26.png" />
+    <None Include="Resources\icons8-about-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="FZ-Halcon.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FZ-ImageProcess.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FZ-Parallel.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FZ-TransCoordinate.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="IfzThumbnailHandler.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ServerRegistrationManager.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SharpShell.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\icons8-batch-20.png" />
+    <None Include="Resources\icons8-batch-16.png" />
+    <None Include="Resources\icons8-batch-26.png" />
+    <None Include="Resources\icons8-shutdown-21.png" />
+    <None Include="Resources\icons8-shutdown-24.png" />
+    <None Include="Resources\icons8-shutdown-26.png" />
+    <None Include="Resources\RedTrash.png" />
+    <None Include="Resources\CopyPath.png" />
+    <None Include="Resources\OpenFolder.png" />
+    <None Include="Resources\Grab.cur" />
+    <None Include="Resources\Hand.cur" />
+    <None Include="Resources\ZoomPref.png" />
+    <None Include="Resources\LOGO.png" />
+    <None Include="Resources\Localization.png" />
+    <None Include="Resources\Settings_2.png" />
+    <None Include="Resources\OpenWith.png" />
+    <None Include="Resources\icons8-flip-horizontal-20.png" />
+    <None Include="Resources\icons8-flip-vertical-20.png" />
+    <None Include="Resources\icons8-flip-vertical-24.png" />
+    <None Include="Resources\Rotate.png" />
+    <None Include="Resources\SaveAs.png" />
+    <None Include="Resources\Previous.png" />
+    <None Include="Resources\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

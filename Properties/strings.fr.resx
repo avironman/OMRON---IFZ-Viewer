@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CM_Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
+  <data name="CM_CopyPath" xml:space="preserve">
+    <value>Copier en tant que chemin d'accès</value>
+  </data>
+  <data name="CM_Erase" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="CM_OpenFolder" xml:space="preserve">
+    <value>Ouvrir dans l'explorateur de fichiers</value>
+  </data>
+  <data name="CM_Openwith" xml:space="preserve">
+    <value>Ouvrir avec</value>
+  </data>
+  <data name="CM_Print" xml:space="preserve">
+    <value>Imprimer</value>
+  </data>
+  <data name="CM_Saveas" xml:space="preserve">
+    <value>Enregistrer sous</value>
+  </data>
+  <data name="Confirm_cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Confirm_delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Confirm_label1" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer ce fichier?</value>
+  </data>
+  <data name="Confirm_label2" xml:space="preserve">
+    <value>Supprimer de fichier?</value>
+  </data>
+  <data name="Convert_cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Convert_convert" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="Convert_label" xml:space="preserve">
+    <value>Choisissez le format de fichier et les options avant de cliquer sur Convertir</value>
+  </data>
+  <data name="Convert_title" xml:space="preserve">
+    <value>Conversion IFZ par lot</value>
+  </data>
+  <data name="DPI_Message" xml:space="preserve">
+    <value>Le facteur d'echelle windows est de {0}%, il doit être de 100% pour que les fonction de zoom fonctionnent correctement!</value>
+  </data>
+  <data name="EmptyFolder_browse" xml:space="preserve">
+    <value>Charger un IFZ</value>
+  </data>
+  <data name="EmptyFolder_cancel" xml:space="preserve">
+    <value>Annuler &amp; Fermer</value>
+  </data>
+  <data name="EmptyFolder_label1" xml:space="preserve">
+    <value>Dossier vide!</value>
+  </data>
+  <data name="EmptyFolder_label2" xml:space="preserve">
+    <value>Ce dossier ne contient aucune image IFZ. Merci de selectionner un dossier contenant des IFZ.</value>
+  </data>
+  <data name="lblCamera" xml:space="preserve">
+    <value>Informations sur l'appareil</value>
+  </data>
+  <data name="lblColor" xml:space="preserve">
+    <value>Valeur RVB:</value>
+  </data>
+  <data name="lblFolder" xml:space="preserve">
+    <value>Chemin d'accès au fichier</value>
+  </data>
+  <data name="lblMono" xml:space="preserve">
+    <value>Valeur pixel:</value>
+  </data>
+  <data name="lblSize" xml:space="preserve">
+    <value>Informations sur la taille</value>
+  </data>
+  <data name="Settings_btnClose" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Settings_btnInstall" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="Settings_cb2_opt1" xml:space="preserve">
+    <value>Zoom pour ajuster à la fenêtre</value>
+  </data>
+  <data name="Settings_cb2_opt2" xml:space="preserve">
+    <value>Afficher à la taille réelle</value>
+  </data>
+  <data name="Settings_lbl1" xml:space="preserve">
+    <value>Personalisation</value>
+  </data>
+  <data name="Settings_lbl2" xml:space="preserve">
+    <value>Langues</value>
+  </data>
+  <data name="Settings_lbl3" xml:space="preserve">
+    <value>A propos</value>
+  </data>
+  <data name="Settings_lbl4" xml:space="preserve">
+    <value>IFZ Viewer</value>
+  </data>
+  <data name="Settings_lbl5" xml:space="preserve">
+    <value>Préférence de zoom</value>
+  </data>
+  <data name="Settings_lbl6" xml:space="preserve">
+    <value>Intégration Windows</value>
+  </data>
+  <data name="Settings_lbl7" xml:space="preserve">
+    <value>Installer l'extension de gestion des miniatures IFZ dans l'explorateur.</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="tooltip_001" xml:space="preserve">
+    <value>Plein écran (F11)</value>
+  </data>
+  <data name="tooltip_002" xml:space="preserve">
+    <value>Zoom en taille réelle (Ctrl+1)</value>
+  </data>
+  <data name="tooltip_003" xml:space="preserve">
+    <value>Faire un zoom pour ajuster (Ctrl+0)</value>
+  </data>
+  <data name="tooltip_004" xml:space="preserve">
+    <value>Pivoter (Ctrl+R)</value>
+  </data>
+  <data name="tooltip_005" xml:space="preserve">
+    <value>Supprimer (Suppr)</value>
+  </data>
+  <data name="tooltip_006" xml:space="preserve">
+    <value>Imprimer</value>
+  </data>
+  <data name="tooltip_007" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="tooltip_008" xml:space="preserve">
+    <value>Basculer l'image dans le sens horizontal</value>
+  </data>
+  <data name="tooltip_009" xml:space="preserve">
+    <value>Basculer l'image dans le sens vertical</value>
+  </data>
+  <data name="tooltip_010" xml:space="preserve">
+    <value>Zoom avant (Ctrl +)</value>
+  </data>
+  <data name="tooltip_011" xml:space="preserve">
+    <value>Zoom arrière (Ctrl -)</value>
+  </data>
+  <data name="tooltip_012" xml:space="preserve">
+    <value>Afficher la pellicule (F)</value>
+  </data>
+</root>
