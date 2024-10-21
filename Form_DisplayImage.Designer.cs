@@ -886,6 +886,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // pnlImageInfo_ClosePanel
             // 
+            this.pnlImageInfo_ClosePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlImageInfo_ClosePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.pnlImageInfo_ClosePanel.FlatAppearance.BorderSize = 0;
             this.pnlImageInfo_ClosePanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));

@@ -290,6 +290,7 @@
     <Content Include="FZ-TransCoordinate.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="IFZ Viewer.png" />
     <Content Include="IfzThumbnailHandler.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

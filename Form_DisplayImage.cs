@@ -1617,75 +1617,78 @@ namespace OMRON_IFZ_Viewer
 
         public void ZoomManagment([Optional] float ZoomValue)
         {
-            switch (zoomMode)
+            if (bmp != null)
             {
-                case ZoomMode.Fit:
-                    if (bmp.Width < pictureBox1.Width && bmp.Height < pictureBox1.Height)
-                    {
-                        if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
-                            zoomFac = (float)pictureBox1.Height / (float)bmp.Height;
-                        else
-                            zoomFac = (float)pictureBox1.Width / (float)bmp.Width;
-                    } 
-                    else
-                    {
-                        zoomFac = zoomFit;
-                    }
-
-                    break;
-                case ZoomMode.Scale:
-                    zoomFac = 1f;
-                    if (bmp != null)
-                    {
-                        translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
-                        translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
-                    }
-                    curImageX = translateX; curImageY = translateY;
-                    break;
-                case ZoomMode.Free:
-                    zoomFac = ZoomValue;
-                    translateSet = true;
-                    //zoomMode = ZoomMode.None;
-                    break;
-                case ZoomMode.In:
-                    if (zoomFac < 20f)
-                        zoomFac *= 1.25f;
-
-                    translateSet = true;
-                    if (bmp != null)
-                    {
-                        translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
-                        translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
-                    }
-                    //zoomMode = ZoomMode.None;
-                    curImageX = translateX; curImageY = translateY;
-                    break;
-                case ZoomMode.Out:
-                    if (zoomFac > 0.1f)
-                        zoomFac *= 0.8f;
-
-                    if (zoomFit > 1f) //pour les petites images, le zoom ne peut pas descendre sous 100%
-                    {
-                        if (zoomFac <= 1f)
+                switch (zoomMode)
+                {
+                    case ZoomMode.Fit:
+                        if (bmp.Width < pictureBox1.Width && bmp.Height < pictureBox1.Height)
                         {
-                            zoomFac = 1f;
+                            if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
+                                zoomFac = (float)pictureBox1.Height / (float)bmp.Height;
+                            else
+                                zoomFac = (float)pictureBox1.Width / (float)bmp.Width;
                         }
-                    }
-                    else //pour les grandes images, limitation du zoom out si l'image devient plus petite que la zone
-                    {
-                        if (zoomFac <= zoomFit + 0.01f)
+                        else
                         {
                             zoomFac = zoomFit;
                         }
-                    }
-                    translateSet = true;
-                    //zoomMode = ZoomMode.None;
-                    curImageX = translateX; curImageY = translateY;
-                    break;
-                default:
-                    if(zoomFac <zoomFit)
-                        zoomFac = zoomFit;
-                    break;
+
+                        break;
+                    case ZoomMode.Scale:
+                        zoomFac = 1f;
+                        if (bmp != null)
+                        {
+                            translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
+                            translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                        }
+                        curImageX = translateX; curImageY = translateY;
+                        break;
+                    case ZoomMode.Free:
+                        zoomFac = ZoomValue;
+                        translateSet = true;
+                        //zoomMode = ZoomMode.None;
+                        break;
+                    case ZoomMode.In:
+                        if (zoomFac < 20f)
+                            zoomFac *= 1.25f;
+
+                        translateSet = true;
+                        if (bmp != null)
+                        {
+                            translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
+                            translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                        }
+                        //zoomMode = ZoomMode.None;
+                        curImageX = translateX; curImageY = translateY;
+                        break;
+                    case ZoomMode.Out:
+                        if (zoomFac > 0.1f)
+                            zoomFac *= 0.8f;
+
+                        if (zoomFit > 1f) //pour les petites images, le zoom ne peut pas descendre sous 100%
+                        {
+                            if (zoomFac <= 1f)
+                            {
+                                zoomFac = 1f;
+                            }
+                        }
+                        else //pour les grandes images, limitation du zoom out si l'image devient plus petite que la zone
+                        {
+                            if (zoomFac <= zoomFit + 0.01f)
+                            {
+                                zoomFac = zoomFit;
+                            }
+                        }
+                        translateSet = true;
+                        //zoomMode = ZoomMode.None;
+                        curImageX = translateX; curImageY = translateY;
+                        break;
+                    default:
+                        if (zoomFac < zoomFit)
+                            zoomFac = zoomFit;
+                        break;
+                }
             }
             btnZoomToScale.Enabled = (zoomFac != 1f);
             btnZoomToFit.Enabled = (zoomFac != zoomFit);
@@ -1917,10 +1920,16 @@ namespace OMRON_IFZ_Viewer
             {
                 string folder = System.IO.Path.GetDirectoryName(FileName);
                 string newName = System.IO.Path.Combine(folder, tbIFZName.Text+".ifz");
-                System.IO.File.Move(FileName, newName);
-               // FileName = System.IO.Path.GetFileName(newName);
-                lblName.Text = System.IO.Path.GetFileName(newName);
-                FileName = newName;
+                try {
+                    System.IO.File.Move(FileName, newName);
+                    // FileName = System.IO.Path.GetFileName(newName);
+                    lblName.Text = System.IO.Path.GetFileName(newName);
+                    FileName = newName;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

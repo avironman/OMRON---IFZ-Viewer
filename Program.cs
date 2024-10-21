@@ -22,11 +22,6 @@ namespace OMRON_IFZ_Viewer
             if (Environment.OSVersion.Version.Major >= 6)
                 SetProcessDPIAware();
 
-            int scale = GetDpiScaleFactor();
-            Console.WriteLine(scale);
-            if (scale != 100)
-                MessageBox.Show(String.Format(Properties.strings.DPI_Message,scale));
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -38,13 +33,6 @@ namespace OMRON_IFZ_Viewer
             // etape 0 --> etape 1
             controller.Run(args);
 
-        }
-
-        static int GetDpiScaleFactor()
-        {
-            const int _DEFAULT_DPI = 96;
-            Graphics gr = Graphics.FromImage(new Bitmap(1, 1)); //A Graphics object is needed for native DPI detection.
-            return (int)(gr.DpiX / _DEFAULT_DPI * 100); //In percentages, as shown in Windows
         }
 
         // ***also dllimport of that function***
