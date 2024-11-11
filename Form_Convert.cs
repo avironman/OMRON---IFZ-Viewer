@@ -160,8 +160,7 @@ namespace OMRON_IFZ_Viewer
                     bayerMaster.ByrArray = null;
                     GC.KeepAlive(bayerMaster);
                     FiltLibIF.GetImageFileInfo(files[i]);
-                    string str = "";
-                    string str1 = "";
+
                     for (int j = 0; j < num1; j++)
                     {
                         FiltLibIF.ImageFiletoBitmap(files[i], out bitmap, j, -1, -1);
