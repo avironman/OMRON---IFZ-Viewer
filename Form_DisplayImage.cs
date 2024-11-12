@@ -105,6 +105,9 @@ namespace OMRON_IFZ_Viewer
             get { return bmp; }   // get method
             set { bmp = value; }  // set method
         }
+
+        private const float EPS = 0.00001f;
+
         public Form_DisplayImage()
         {
             InitializeComponent();
@@ -422,7 +425,13 @@ namespace OMRON_IFZ_Viewer
             //    ManageButtons();
             //    LoadIfzThumbnail();
             //}
+
+            //Set Windows image at the top of the screen in the middle
+            int screenWidth = Screen.PrimaryScreen.Bounds.Size.Width;
+            int formWidth = this.Width;
+            this.Location = new Point((screenWidth- formWidth)/2, 0);
         }
+
         protected void Form_DisplayImage_Shown(object sender, EventArgs e)
         {
             //Draw the image initially
@@ -471,7 +480,9 @@ namespace OMRON_IFZ_Viewer
         protected void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             //Conditions to avoid to proceed further.
-            if (bmp == null) { return; }
+            if (bmp == null) { 
+                return; 
+            }
             if (translateSet == false && zoomSet == false) { return; }
 
             Graphics g = e.Graphics;
@@ -479,7 +490,8 @@ namespace OMRON_IFZ_Viewer
             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
             //Scale transform operation on the picture box device context
             //zoomFac is global variable which can be used to get desired zoom
-            if (zoomFac!=0)
+            //if (zoomFac!=0)
+            if (Math.Abs(zoomFac) > EPS)
                 g.ScaleTransform(zoomFac, zoomFac);
 
             //move image to new position
@@ -502,9 +514,18 @@ namespace OMRON_IFZ_Viewer
                 {
                     isNextVisible = true;
 
-                    Bitmap imagette = new Bitmap(Properties.Resources.Next, new Size((int)Math.Round(Properties.Resources.Next.Width / zoomFac), (int)Math.Round(Properties.Resources.Next.Height / zoomFac)));
+                    Bitmap imagette = new Bitmap(
+                        Properties.Resources.Next, 
+                        new Size(
+                            (int)Math.Round(Properties.Resources.Next.Width / zoomFac), 
+                            (int)Math.Round(Properties.Resources.Next.Height / zoomFac)
+                            )
+                        );
 
-                    g.DrawImage(imagette, new PointF((pictureBox1.Width - 50 )/ zoomFac  - curImageX, (pictureBox1.Height-Properties.Resources.Next.Height) / 2 /zoomFac- curImageY));
+                    g.DrawImage(imagette, new PointF(
+                        (float)(pictureBox1.Width - 50 ) / zoomFac  - curImageX, 
+                        (float)(pictureBox1.Height - Properties.Resources.Next.Height) / 2.0f / zoomFac - curImageY)
+                        );
 
                 }
                 else if (!isMouseOverRight && isNextVisible)
@@ -516,9 +537,20 @@ namespace OMRON_IFZ_Viewer
                 {
                     isPreviousVisible = true;
 
-                    Bitmap imagette = new Bitmap(Properties.Resources.Previous, new Size((int)Math.Round(Properties.Resources.Previous.Width / zoomFac), (int)Math.Round(Properties.Resources.Previous.Height / zoomFac)));
+                    Bitmap imagette = new Bitmap(
+                        Properties.Resources.Previous, 
+                        new Size(
+                            (int)Math.Round(Properties.Resources.Previous.Width / zoomFac), 
+                            (int)Math.Round(Properties.Resources.Previous.Height / zoomFac)
+                            )
+                        );
 
-                    g.DrawImage(imagette, new PointF((80 -Properties.Resources.Previous.Width) / zoomFac - curImageX, (pictureBox1.Height - Properties.Resources.Next.Height) / 2 / zoomFac - curImageY));
+                    g.DrawImage(imagette, 
+                        new PointF(
+                            (80 - Properties.Resources.Previous.Width) / zoomFac - curImageX, 
+                            (pictureBox1.Height - Properties.Resources.Next.Height) / 2.0f / zoomFac - curImageY
+                            )
+                        );
 
                 }
                 else if (!isMouseOverLeft && isPreviousVisible)
@@ -1262,8 +1294,6 @@ namespace OMRON_IFZ_Viewer
             bayerMaster.ByrArray = null;
             GC.KeepAlive(bayerMaster);
             FiltLibIF.GetImageFileInfo(FileName);
-            string str = "";
-            string str1 = "";
 
             FiltLibIF.ImageFiletoBitmap(FileName, out bitmap, currentImage, -1, -1);
 
@@ -1605,11 +1635,11 @@ namespace OMRON_IFZ_Viewer
             //centrage image
             if (bmp.Width * zoomFac <= pictureBox1.Width)
             {
-                translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
+                translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2.0f / zoomFac;
             }
             if (bmp.Height * zoomFac <= pictureBox1.Height)
             {
-                translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2.0f / zoomFac;
             }
             curImageX = translateX; curImageY = translateY;
             //translateX = curImageX; translateY = curImageY;
@@ -1620,29 +1650,34 @@ namespace OMRON_IFZ_Viewer
             switch (zoomMode)
             {
                 case ZoomMode.Fit:
-                    if (bmp.Width < pictureBox1.Width && bmp.Height < pictureBox1.Height)
-                    {
-                        if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
-                            zoomFac = (float)pictureBox1.Height / (float)bmp.Height;
+                    if (bmp != null){
+                        if (bmp.Width < pictureBox1.Width && bmp.Height < pictureBox1.Height)
+                        {
+                            if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
+                                zoomFac = (float)pictureBox1.Height / (float)bmp.Height;
+                            else
+                                zoomFac = (float)pictureBox1.Width / (float)bmp.Width;
+                        }
                         else
-                            zoomFac = (float)pictureBox1.Width / (float)bmp.Width;
-                    } 
-                    else
-                    {
-                        zoomFac = zoomFit;
+                        {
+                            zoomFac = zoomFit;
+                        }
                     }
-
                     break;
                 case ZoomMode.Scale:
                     zoomFac = 1f;
                     if (bmp != null)
                     {
-                        translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
-                        translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                        translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2.0f / zoomFac;
+                        translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2.0f / zoomFac;
                     }
                     curImageX = translateX; curImageY = translateY;
                     break;
                 case ZoomMode.Free:
+                    if (ZoomValue < EPS){
+                        ZoomValue = 1f;
+                    }
+
                     zoomFac = ZoomValue;
                     translateSet = true;
                     //zoomMode = ZoomMode.None;
@@ -1687,9 +1722,13 @@ namespace OMRON_IFZ_Viewer
                         zoomFac = zoomFit;
                     break;
             }
-            btnZoomToScale.Enabled = (zoomFac != 1f);
-            btnZoomToFit.Enabled = (zoomFac != zoomFit);
-            btnZoomOut.Enabled = ((zoomFit>1 && zoomFac>1f) || (zoomFit<1 && zoomFac>zoomFit));
+
+            //btnZoomToScale.Enabled = (zoomFac != 1f);
+            //btnZoomToFit.Enabled = (zoomFac != zoomFit);
+
+            btnZoomToScale.Enabled = (Math.Abs(zoomFac - 1f) > EPS );
+            btnZoomToFit.Enabled = (Math.Abs(zoomFac - zoomFit) > EPS);
+            btnZoomOut.Enabled = ((zoomFit > 1f && zoomFac > 1f) || (zoomFit < 1 && zoomFac > zoomFit));
             btnZoomIn.Enabled = (zoomFac < 20f);
             //    PositionImage();
         }
@@ -2104,6 +2143,7 @@ namespace OMRON_IFZ_Viewer
             
         }
     }
+
     public static class MyExtensions
     {
         public static class FileSizeFormatter

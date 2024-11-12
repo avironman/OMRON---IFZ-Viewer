@@ -578,7 +578,7 @@ namespace OMRON_IFZ_Viewer
 			}
 			else
 			{
-				if (mAGETYPE == IMAGE_TYPE.BMITMAP)
+				if (mAGETYPE == IMAGE_TYPE.BITMAP)
 				{
 					imageFileInfo.cam_dispatch = 1;
 					return imageFileInfo;
@@ -627,6 +627,8 @@ namespace OMRON_IFZ_Viewer
 			{
 				FileStream fileStream1 = new FileStream(filename, FileMode.Open, FileAccess.Read);
 				fileStream = fileStream1;
+				
+				//Q: filestream1 is always not null...
 				if (fileStream1 != null)
 				{
 					fileStream.Read(numArray, 0, 4);
@@ -641,7 +643,7 @@ namespace OMRON_IFZ_Viewer
 					}
 					if ((num & 65535) == 19778)
 					{
-						return IMAGE_TYPE.BMITMAP;
+						return IMAGE_TYPE.BITMAP;
 					}
 					if ((num & 65535) == 55551)
 					{
@@ -757,7 +759,7 @@ namespace OMRON_IFZ_Viewer
 			IMAGE_TYPE mAGETYPE = imageFileInfo.type;
 			if (mAGETYPE <= IMAGE_TYPE.BYR)
 			{
-				if (mAGETYPE == IMAGE_TYPE.BMITMAP)
+				if (mAGETYPE == IMAGE_TYPE.BITMAP)
 				{
 					bitmap = new Bitmap(FileName);
 				}
@@ -864,14 +866,17 @@ namespace OMRON_IFZ_Viewer
 			int num = 0;
 			int num1 = 0;
 			int i = 0;
+
 			if (type != IMAGE_TYPE.BYR)
 			{
 				FiltLibIF.IfzGetCaptureNoMax(fStream, out num);
 			}
+			
 			if (fStream == null)
 			{
 				return false;
 			}
+
 			try
 			{
 				try
