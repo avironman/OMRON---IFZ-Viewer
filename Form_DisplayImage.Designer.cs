@@ -925,6 +925,7 @@ namespace OMRON_IFZ_Viewer
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "Form_DisplayImage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "OMRON - IFZ Viewer";
             this.Load += new System.EventHandler(this.Form_DisplayImage_Load);
             this.SizeChanged += new System.EventHandler(this.Form_DisplayImage_SizeChanged);
