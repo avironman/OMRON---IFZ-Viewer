@@ -426,7 +426,6 @@ namespace OMRON_IFZ_Viewer
             }
 
         }
-
         protected void Form_DisplayImage_Shown(object sender, EventArgs e)
         {
             //Draw the image initially
