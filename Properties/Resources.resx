@@ -130,11 +130,17 @@
   <data name="Rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-paint-roller-26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-paint-roller-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Hand" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Hand.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Rotate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rotate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlipLR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FlipLR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -144,6 +150,9 @@
   </data>
   <data name="Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-theme-26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-theme-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Enlarge" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Enlarge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -173,7 +182,7 @@
     <value>..\Resources\icons8-batch-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="favicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\favicon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\favicon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,9 +229,6 @@
   <data name="OMRON_logo_transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OMRON-logo-transparent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-flip-vertical-20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-flip-vertical-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -231,9 +237,6 @@
   </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-flip-horizontal-20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-flip-horizontal-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CopyPath" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CopyPath.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,7 +274,7 @@
   <data name="ZoomPref" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZoomPref.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="favicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\favicon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FlipUD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FlipUD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

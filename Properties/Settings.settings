@@ -32,5 +32,14 @@
     <Setting Name="ConversionFileFormat" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="ButtonBackGroundColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ThemeColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">31, 31, 31</Value>
+    </Setting>
+    <Setting Name="ThemeText" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

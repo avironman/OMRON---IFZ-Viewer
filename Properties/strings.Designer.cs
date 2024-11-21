@@ -367,7 +367,7 @@ namespace OMRON_IFZ_Viewer.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Windows integration.
+        ///   Recherche une chaîne localisée semblable à Button Background Color.
         /// </summary>
         internal static string Settings_lbl6 {
             get {

@@ -105,7 +105,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // pnlHeader
             // 
-            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.pnlHeader.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.pnlHeader.Controls.Add(this.pnlImageMgmt);
             this.pnlHeader.Controls.Add(this.lblFileNb);
             this.pnlHeader.Controls.Add(this.lblName);
@@ -139,10 +139,9 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnInfo
             // 
-            this.btnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnInfo.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnInfo.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnInfo.FlatAppearance.BorderSize = 0;
-            this.btnInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInfo.Image = ((System.Drawing.Image)(resources.GetObject("btnInfo.Image")));
             this.btnInfo.Location = new System.Drawing.Point(322, 0);
@@ -154,12 +153,11 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnFlipUD
             // 
-            this.btnFlipUD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnFlipUD.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnFlipUD.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnFlipUD.FlatAppearance.BorderSize = 0;
-            this.btnFlipUD.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnFlipUD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFlipUD.Image = ((System.Drawing.Image)(resources.GetObject("btnFlipUD.Image")));
+            this.btnFlipUD.Image = global::OMRON_IFZ_Viewer.Properties.Resources.FlipUD;
             this.btnFlipUD.Location = new System.Drawing.Point(276, 0);
             this.btnFlipUD.Name = "btnFlipUD";
             this.btnFlipUD.Size = new System.Drawing.Size(46, 46);
@@ -169,12 +167,11 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnFlipLR
             // 
-            this.btnFlipLR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnFlipLR.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnFlipLR.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnFlipLR.FlatAppearance.BorderSize = 0;
-            this.btnFlipLR.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnFlipLR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFlipLR.Image = ((System.Drawing.Image)(resources.GetObject("btnFlipLR.Image")));
+            this.btnFlipLR.Image = global::OMRON_IFZ_Viewer.Properties.Resources.FlipLR;
             this.btnFlipLR.Location = new System.Drawing.Point(230, 0);
             this.btnFlipLR.Name = "btnFlipLR";
             this.btnFlipLR.Size = new System.Drawing.Size(46, 46);
@@ -184,10 +181,9 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnSettings
             // 
-            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnSettings.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
             this.btnSettings.Location = new System.Drawing.Point(184, 0);
@@ -199,10 +195,9 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnPrint
             // 
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnPrint.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnPrint.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
             this.btnPrint.Location = new System.Drawing.Point(138, 0);
@@ -214,10 +209,9 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnTrash
             // 
-            this.btnTrash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnTrash.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnTrash.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnTrash.FlatAppearance.BorderSize = 0;
-            this.btnTrash.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnTrash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTrash.Image = ((System.Drawing.Image)(resources.GetObject("btnTrash.Image")));
             this.btnTrash.Location = new System.Drawing.Point(92, 0);
@@ -229,10 +223,9 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnRotate
             // 
-            this.btnRotate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnRotate.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnRotate.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnRotate.FlatAppearance.BorderSize = 0;
-            this.btnRotate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnRotate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRotate.Image = ((System.Drawing.Image)(resources.GetObject("btnRotate.Image")));
             this.btnRotate.Location = new System.Drawing.Point(46, 0);
@@ -244,10 +237,9 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnFolder
             // 
-            this.btnFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnFolder.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnFolder.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnFolder.FlatAppearance.BorderSize = 0;
-            this.btnFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnFolder.Image")));
             this.btnFolder.Location = new System.Drawing.Point(0, 0);
@@ -287,7 +279,6 @@ namespace OMRON_IFZ_Viewer
             this.btnMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.btnMain.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnMain.FlatAppearance.BorderSize = 0;
-            this.btnMain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMain.Image = ((System.Drawing.Image)(resources.GetObject("btnMain.Image")));
             this.btnMain.Location = new System.Drawing.Point(0, 0);
@@ -311,7 +302,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnReduce
             // 
-            this.btnReduce.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnReduce.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnReduce.FlatAppearance.BorderSize = 0;
             this.btnReduce.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.btnReduce.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -327,7 +318,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnMinimize
             // 
-            this.btnMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnMinimize.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -342,7 +333,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnClose.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -358,8 +349,9 @@ namespace OMRON_IFZ_Viewer
             // 
             // btnMaximize
             // 
-            this.btnMaximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnMaximize.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.btnMaximize.FlatAppearance.BorderSize = 0;
+            this.btnMaximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximize.Image")));
             this.btnMaximize.Location = new System.Drawing.Point(83, 0);
@@ -403,7 +395,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb8.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb8.FlatAppearance.BorderSize = 0;
-            this.cb8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -420,7 +411,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb7.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb7.FlatAppearance.BorderSize = 0;
-            this.cb7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -437,7 +427,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb6.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb6.FlatAppearance.BorderSize = 0;
-            this.cb6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -454,7 +443,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb5.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb5.FlatAppearance.BorderSize = 0;
-            this.cb5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -471,7 +459,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb4.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb4.FlatAppearance.BorderSize = 0;
-            this.cb4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -488,7 +475,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb3.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb3.FlatAppearance.BorderSize = 0;
-            this.cb3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -505,7 +491,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb2.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb2.FlatAppearance.BorderSize = 0;
-            this.cb2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -522,7 +507,6 @@ namespace OMRON_IFZ_Viewer
             // 
             this.cb1.Appearance = System.Windows.Forms.Appearance.Button;
             this.cb1.FlatAppearance.BorderSize = 0;
-            this.cb1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.cb1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cb1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -604,7 +588,6 @@ namespace OMRON_IFZ_Viewer
             this.btnRibbon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.btnRibbon.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnRibbon.FlatAppearance.BorderSize = 0;
-            this.btnRibbon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnRibbon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRibbon.Image = ((System.Drawing.Image)(resources.GetObject("btnRibbon.Image")));
             this.btnRibbon.Location = new System.Drawing.Point(0, 0);
@@ -620,7 +603,6 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.btnZoomOut.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnZoomOut.FlatAppearance.BorderSize = 0;
-            this.btnZoomOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomOut.Image")));
             this.btnZoomOut.Location = new System.Drawing.Point(1206, 0);
@@ -636,7 +618,6 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.btnZoomIn.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnZoomIn.FlatAppearance.BorderSize = 0;
-            this.btnZoomIn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.Image")));
             this.btnZoomIn.Location = new System.Drawing.Point(1244, 0);
@@ -652,7 +633,6 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomToFit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.btnZoomToFit.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnZoomToFit.FlatAppearance.BorderSize = 0;
-            this.btnZoomToFit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnZoomToFit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomToFit.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomToFit.Image")));
             this.btnZoomToFit.Location = new System.Drawing.Point(1282, 0);
@@ -668,7 +648,6 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomToScale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.btnZoomToScale.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnZoomToScale.FlatAppearance.BorderSize = 0;
-            this.btnZoomToScale.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnZoomToScale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomToScale.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomToScale.Image")));
             this.btnZoomToScale.Location = new System.Drawing.Point(1320, 0);
@@ -684,7 +663,6 @@ namespace OMRON_IFZ_Viewer
             this.btnFullScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnFullScreen.FlatAppearance.BorderSize = 0;
-            this.btnFullScreen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.btnFullScreen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
             this.btnFullScreen.Location = new System.Drawing.Point(1358, 0);
@@ -712,7 +690,7 @@ namespace OMRON_IFZ_Viewer
             // 
             this.listByrImgView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
             this.listByrImgView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.listByrImgView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.listByrImgView.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.listByrImgView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listByrImgView.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listByrImgView.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -751,6 +729,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // pnlImageInfo
             // 
+            this.pnlImageInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.pnlImageInfo.Controls.Add(this.lblCamera2);
             this.pnlImageInfo.Controls.Add(this.lblCamera);
             this.pnlImageInfo.Controls.Add(this.pictureBox5);
@@ -864,7 +843,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // tbIFZName
             // 
-            this.tbIFZName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
+            this.tbIFZName.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.tbIFZName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbIFZName.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.tbIFZName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -887,9 +866,8 @@ namespace OMRON_IFZ_Viewer
             // pnlImageInfo_ClosePanel
             // 
             this.pnlImageInfo_ClosePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlImageInfo_ClosePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.pnlImageInfo_ClosePanel.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.pnlImageInfo_ClosePanel.FlatAppearance.BorderSize = 0;
-            this.pnlImageInfo_ClosePanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(12)))), ((int)(((byte)(140)))));
             this.pnlImageInfo_ClosePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pnlImageInfo_ClosePanel.Image = ((System.Drawing.Image)(resources.GetObject("pnlImageInfo_ClosePanel.Image")));
             this.pnlImageInfo_ClosePanel.Location = new System.Drawing.Point(286, 6);
@@ -912,7 +890,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 46);
             this.pictureBox1.Name = "pictureBox1";
@@ -935,7 +913,7 @@ namespace OMRON_IFZ_Viewer
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.ClientSize = new System.Drawing.Size(1396, 815);
             this.Controls.Add(this.listByrImgView);
             this.Controls.Add(this.pictureBox1);

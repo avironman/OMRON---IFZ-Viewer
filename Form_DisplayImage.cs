@@ -12,6 +12,10 @@ using System.Threading;
 using System.Drawing.Printing;
 using System.Web;
 using System.Windows.Controls;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+// YURY
 
 
 namespace OMRON_IFZ_Viewer
@@ -105,23 +109,27 @@ namespace OMRON_IFZ_Viewer
             get { return bmp; }   // get method
             set { bmp = value; }  // set method
         }
+
+        private const float EPS = 0.00001f;
         public Form_DisplayImage()
         {
             InitializeComponent();
+            this.CenterToScreen();
 
+            Properties.Settings.Default.ThemeColor = System.Drawing.Color.FromArgb(31, 31, 31);
 
-            thumbnailsCreated=false;
+            thumbnailsCreated = false;
 
             zoomMode = (ZoomMode)Properties.Settings.Default.ZoomMode;
 
-            Chkbxes = new[]{ cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8 };
+            Chkbxes = new[] { cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8 };
 
             this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
                                                              // Properties.Settings.Default.LastDir = @"D:\TFS\a detruire\DDJ";   
             string dispImageDir = Properties.Settings.Default.LastDir;
 
             FileName = "";
-            if (!Directory.Exists(dispImageDir) || Directory.GetFiles(dispImageDir, "*.ifz").Length==0)
+            if (!Directory.Exists(dispImageDir) || Directory.GetFiles(dispImageDir, "*.ifz").Length == 0)
             {
                 Form_EmpryFolder form_EmpryFolder = new Form_EmpryFolder();
                 form_EmpryFolder.StartPosition = FormStartPosition.CenterScreen;
@@ -150,17 +158,17 @@ namespace OMRON_IFZ_Viewer
             else
             {
                 FileName = Directory.GetFiles(dispImageDir, "*.ifz")[0];
-                    currentFile = 0;
+                currentFile = 0;
             }
 
-            
+
             nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
 
             LoadImage(FileName);
             ManageButtons();
-           // LoadIfzThumbnail();
+            // LoadIfzThumbnail();
         }
-        public Form_DisplayImage(string IFZFileName) :base()
+        public Form_DisplayImage(string IFZFileName) : base()
         {
             FileName = IFZFileName;
             InitializeComponent();
@@ -170,18 +178,18 @@ namespace OMRON_IFZ_Viewer
             Chkbxes = new[] { cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8 };
 
             this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
-            
+
             dispImageDir = System.IO.Path.GetDirectoryName(FileName);
             currentFile = Array.IndexOf(Directory.GetFiles(dispImageDir, "*.ifz"), FileName);
             nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
 
- 
+
             LoadImage(FileName);
             ManageButtons();
-           // LoadIfzThumbnail();
+            // LoadIfzThumbnail();
 
         }
-       
+
         private void LoadIfzThumbnail()
         {
             if (!backgroundWorker1.IsBusy)
@@ -206,25 +214,25 @@ namespace OMRON_IFZ_Viewer
         {
             FileName = File_Name;
             isMouseOverRight = false;
-            dispImageDir = System.IO.Path.GetDirectoryName (FileName);
+            dispImageDir = System.IO.Path.GetDirectoryName(FileName);
             if (Properties.Settings.Default.LastDir != dispImageDir)
             {
                 KillBGW();
-   
-                
+
+
 
                 //System.Threading.Thread.Sleep(1000);
                 Properties.Settings.Default.LastDir = dispImageDir;
                 nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
                 ManageButtons();
-               // LoadIfzThumbnail();
+                // LoadIfzThumbnail();
             }
 
             GC.Collect();
 
 
             lblName.Text = System.IO.Path.GetFileName(FileName);
-            lblFileNb.Text = (currentFile+1) + "/" + nbIFZ;
+            lblFileNb.Text = (currentFile + 1) + "/" + nbIFZ;
             lblName.Refresh();
             lblFileNb.Refresh();
 
@@ -253,12 +261,16 @@ namespace OMRON_IFZ_Viewer
                 //    zoomFit = 1f;
                 //else
                 //{
-                    if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
-                        zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
-                    else
-                        zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
+                if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
+                    zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
+                else
+                    zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
                 //}
-               
+
+
+
+
+
 
                 ZoomManagment();
                 PositionImage();
@@ -272,13 +284,13 @@ namespace OMRON_IFZ_Viewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Invalid IFZ file; "+ex.Message);
+                MessageBox.Show("Invalid IFZ file; " + ex.Message);
             }
             GC.Collect();
             ManageButtons();
             PopulatePnlImageInfo();
         }
-     
+
         public void DispImage(int num)
         {
             if (num >= camnb) { return; }
@@ -305,7 +317,7 @@ namespace OMRON_IFZ_Viewer
         public void ManageButtons()
         {
 
-            for (int i = 0; i <8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Chkbxes[i].CheckedChanged -= new System.EventHandler(this.cb_CheckedChanged);
                 Chkbxes[i].Visible = (i < camnb);
@@ -338,7 +350,7 @@ namespace OMRON_IFZ_Viewer
         #region // Form events
         private void Form_DisplayImage_Load(object sender, EventArgs e)
         {
-            
+
             pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 
             //btnRibbon.Enabled = false;
@@ -410,18 +422,9 @@ namespace OMRON_IFZ_Viewer
                         System.Environment.Exit(1);
                     }
                 }
-               
-            }
-            //else
-            //{
-            //    string FileName = Directory.GetFiles(dispImageDir, "*.ifz")[0]; //on récupère la première image du répertoire
 
-            //    currentFile = 0;
-            //    nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
-            //    LoadImage(FileName);
-            //    ManageButtons();
-            //    LoadIfzThumbnail();
-            //}
+            }
+
         }
         protected void Form_DisplayImage_Shown(object sender, EventArgs e)
         {
@@ -454,7 +457,7 @@ namespace OMRON_IFZ_Viewer
         }
         private void Form_DisplayImage_SizeChanged(object sender, EventArgs e)
         {
-            if(bmp == null) { return; }
+            if (bmp == null) { return; }
             //on recalcule le Zoom mini lors du redimensionnement fenetre.
             if ((float)bmp.Width / (float)bmp.Height > (float)pictureBox1.Width / (float)pictureBox1.Height)
                 zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
@@ -479,14 +482,14 @@ namespace OMRON_IFZ_Viewer
             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
             //Scale transform operation on the picture box device context
             //zoomFac is global variable which can be used to get desired zoom
-            if (zoomFac!=0)
+            if (Math.Abs(zoomFac) > EPS)
                 g.ScaleTransform(zoomFac, zoomFac);
 
             //move image to new position
             if (translateSet == true)
             {
                 g.TranslateTransform(translateX, translateY);
-            } 
+            }
 
             //Drawback the bitmap to the transformed decive context
 
@@ -502,13 +505,24 @@ namespace OMRON_IFZ_Viewer
                 {
                     isNextVisible = true;
 
-                    Bitmap imagette = new Bitmap(Properties.Resources.Next, new Size((int)Math.Round(Properties.Resources.Next.Width / zoomFac), (int)Math.Round(Properties.Resources.Next.Height / zoomFac)));
+                    Bitmap imagette = new Bitmap(
+                        Properties.Resources.Next, 
+                        new Size(
+                            (int)Math.Round(Properties.Resources.Next.Width / zoomFac), 
+                            (int)Math.Round(Properties.Resources.Next.Height / zoomFac)
+                            )
+                        );
 
-                    g.DrawImage(imagette, new PointF((pictureBox1.Width - 50 )/ zoomFac  - curImageX, (pictureBox1.Height-Properties.Resources.Next.Height) / 2 /zoomFac- curImageY));
+                    g.DrawImage(
+                        imagette,
+                        new PointF(
+                            (pictureBox1.Width - 50) / zoomFac - curImageX,
+                            (pictureBox1.Height - Properties.Resources.Next.Height) / 2.0f / zoomFac - curImageY)
+                        );
 
                 }
                 else if (!isMouseOverRight && isNextVisible)
-                { 
+                {
                     isNextVisible = false;
 
                 }
@@ -516,9 +530,19 @@ namespace OMRON_IFZ_Viewer
                 {
                     isPreviousVisible = true;
 
-                    Bitmap imagette = new Bitmap(Properties.Resources.Previous, new Size((int)Math.Round(Properties.Resources.Previous.Width / zoomFac), (int)Math.Round(Properties.Resources.Previous.Height / zoomFac)));
+                    Bitmap imagette = new Bitmap(
+                        Properties.Resources.Previous,
+                        new Size(
+                            (int)Math.Round(Properties.Resources.Previous.Width / zoomFac),
+                            (int)Math.Round(Properties.Resources.Previous.Height / zoomFac)
+                            )
+                        );
 
-                    g.DrawImage(imagette, new PointF((80 -Properties.Resources.Previous.Width) / zoomFac - curImageX, (pictureBox1.Height - Properties.Resources.Next.Height) / 2 / zoomFac - curImageY));
+                    g.DrawImage(
+                        imagette,
+                        new PointF((80 - Properties.Resources.Previous.Width) / zoomFac - curImageX,
+                        (pictureBox1.Height - Properties.Resources.Next.Height) / 2.0f / zoomFac - curImageY)
+                        );
 
                 }
                 else if (!isMouseOverLeft && isPreviousVisible)
@@ -715,13 +739,13 @@ namespace OMRON_IFZ_Viewer
                     default:
                         break;
                 }
-                
+
             }
 
         }
         protected void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left && zoomMode!=ZoomMode.Fit && zoomFac > zoomFit)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left && zoomMode != ZoomMode.Fit && zoomFac > zoomFit)
             {
                 //translateSet = true;
                 //mouse down is true
@@ -730,9 +754,9 @@ namespace OMRON_IFZ_Viewer
                 transStartX = e.X;
                 transStartY = e.Y;
 
-                if(!isNextVisible && !isPreviousVisible)
+                if (!isNextVisible && !isPreviousVisible)
                     Cursor = CursorGrab;
-   
+
             }
             pictureBox1.Focus();
         }
@@ -749,7 +773,7 @@ namespace OMRON_IFZ_Viewer
                 //translateY = curImageY + ((e.Y - transStartY) / zoomFac);
                 ////call picturebox to update the image in the new position
             }
-            
+
             pictureBox1.Refresh();
             //set mouse down operation end
             translate = false;
@@ -805,9 +829,9 @@ namespace OMRON_IFZ_Viewer
                                         case 5: //GIF
                                             fmt = ImageFormat.Gif;
                                             break;
-                                        //case 6: //IFZ
-                                           
-                                        //    break;
+                                            //case 6: //IFZ
+
+                                            //    break;
                                             //case 7: //StRAW
                                             //    fmt = ImageFormat.Jpeg;
                                             //    break;
@@ -864,13 +888,13 @@ namespace OMRON_IFZ_Viewer
         {
             int rightThreshold = pictureBox1.Width - 100; // Adjust the threshold as per your requirement
 
-            isMouseOverRight = (e.X >= rightThreshold && !isNextVisible && e.Button!=MouseButtons.Left && currentFile < nbIFZ);
+            isMouseOverRight = (e.X >= rightThreshold && !isNextVisible && e.Button != MouseButtons.Left && currentFile < nbIFZ);
             isMouseLeavingRight = (e.X < rightThreshold && isNextVisible);
 
-            isMouseOverLeft = (e.X <= 100 && !isPreviousVisible && e.Button != MouseButtons.Left && currentFile>0);
+            isMouseOverLeft = (e.X <= 100 && !isPreviousVisible && e.Button != MouseButtons.Left && currentFile > 0);
             isMouseLeavingLeft = (e.X > 100 && isPreviousVisible);
-            
-            if (isMouseOverRight || isMouseLeavingRight || isMouseOverLeft  || isMouseLeavingLeft)
+
+            if (isMouseOverRight || isMouseLeavingRight || isMouseOverLeft || isMouseLeavingLeft)
             {
                 pictureBox1.Refresh();
             }
@@ -942,7 +966,7 @@ namespace OMRON_IFZ_Viewer
             // Adjust the zoom factor
             if (e.Delta > 0)
                 zoomMode = ZoomMode.In;
-            else if (e.Delta < 0) 
+            else if (e.Delta < 0)
                 zoomMode = ZoomMode.Out;
 
             ZoomManagment();
@@ -950,7 +974,7 @@ namespace OMRON_IFZ_Viewer
             //Calcul du point de zoom
             if ((float)bmp.Width * zoomFac < (float)pictureBox1.Width)
             {
-                translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
+                translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2.0f / zoomFac;
             }
             else
             {
@@ -959,7 +983,7 @@ namespace OMRON_IFZ_Viewer
             }
             if ((float)bmp.Height * zoomFac < (float)pictureBox1.Height)
             {
-                translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2.0f / zoomFac;
             }
             else
             {
@@ -1043,6 +1067,7 @@ namespace OMRON_IFZ_Viewer
                 using (SolidBrush brdim = new SolidBrush(Color.FromArgb(128, 0, 0, 0)))
                 {
                     e.Graphics.FillRectangle(brdim, e.ClipRectangle);
+
                 }
             }
         }
@@ -1069,7 +1094,7 @@ namespace OMRON_IFZ_Viewer
             pnlFooter.Visible = false;
             this.TopMost = true;
             this.WindowState = FormWindowState.Maximized;
-            
+
             ZoomManagment();
             pictureBox1.Focus();//important de donner le Focus, cela permet de capturer la touche echap pour quitter le plein ecran.
         }
@@ -1100,8 +1125,8 @@ namespace OMRON_IFZ_Viewer
 
             bayerMaster.ByrArray = null;
             Close();
-            
-                
+
+
         }
 
         private void btnClose_MouseEnter(object sender, EventArgs e)
@@ -1137,12 +1162,12 @@ namespace OMRON_IFZ_Viewer
                 {
                     if (currentFile != 0)
                         currentFile -= 1;
-                        
+
                     LoadImage(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
 
 
                     lblName.Text = System.IO.Path.GetFileName(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
-                    lblFileNb.Text = (currentFile+1).ToString() + "/" + Directory.GetFiles(dispImageDir, "*.ifz").Length.ToString();
+                    lblFileNb.Text = (currentFile + 1).ToString() + "/" + Directory.GetFiles(dispImageDir, "*.ifz").Length.ToString();
                 }
                 else
                 {
@@ -1203,22 +1228,22 @@ namespace OMRON_IFZ_Viewer
 
                 thumbnailsCreated = true;
             }
-                var tewt2 = imageList1.Images;
-                var test = listByrImgView.LargeImageList;
-                listByrImgView.Visible = !listByrImgView.Visible;
-                if (listByrImgView.Visible)
-                    pictureBox1.PreviewKeyDown -= pictureBox1_PreviewKeyDown;
-                else
-                {
-                    pictureBox1.PreviewKeyDown += pictureBox1_PreviewKeyDown;
-                    pictureBox1.Focus();
-                }
-            
+            var tewt2 = imageList1.Images;
+            var test = listByrImgView.LargeImageList;
+            listByrImgView.Visible = !listByrImgView.Visible;
+            if (listByrImgView.Visible)
+                pictureBox1.PreviewKeyDown -= pictureBox1_PreviewKeyDown;
+            else
+            {
+                pictureBox1.PreviewKeyDown += pictureBox1_PreviewKeyDown;
+                pictureBox1.Focus();
+            }
+
         }
 
         private void btnFolder_Click(object sender, EventArgs e)
         {
-            
+
             openFileDialog1.InitialDirectory = dispImageDir;
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -1262,8 +1287,6 @@ namespace OMRON_IFZ_Viewer
             bayerMaster.ByrArray = null;
             GC.KeepAlive(bayerMaster);
             FiltLibIF.GetImageFileInfo(FileName);
-            string str = "";
-            string str1 = "";
 
             FiltLibIF.ImageFiletoBitmap(FileName, out bitmap, currentImage, -1, -1);
 
@@ -1275,7 +1298,7 @@ namespace OMRON_IFZ_Viewer
             this.WindowState = FormWindowState.Minimized;
 
             ShellHelper.PrintPhotosWizard(TempFileName);
-            
+
         }
 
         private void btnRotate_Click(object sender, EventArgs e)
@@ -1305,8 +1328,36 @@ namespace OMRON_IFZ_Viewer
             pictureBox1.Focus();
 
             Translation();
+            UpdateButtonColor();
         }
+        public IEnumerable<System.Windows.Forms.Control> GetAll(System.Windows.Forms.Control control, Type type)
+        {
+            var controls = control.Controls.Cast<System.Windows.Forms.Control>();
 
+            return controls.SelectMany(ctrl => GetAll(ctrl, type))
+                                      .Concat(controls)
+                                      .Where(c => c.GetType() == type);
+        }
+        private void UpdateButtonColor()
+        {
+            this.Invalidate();
+            this.Refresh();
+            Properties.Settings.Default.Reload();
+
+            var c = GetAll(this, typeof(System.Windows.Forms.Button));
+
+            foreach (System.Windows.Forms.Button btn in c)
+            {
+                if (btn.Name != "btnClose")
+                {
+                    btn.FlatAppearance.MouseOverBackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ButtonBackGroundColor;
+                }
+            }
+
+            c = GetAll(this, typeof(System.Windows.Forms.CheckBox));
+            foreach (System.Windows.Forms.CheckBox btn in c)
+                btn.FlatAppearance.MouseOverBackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ButtonBackGroundColor;
+        }
         private void btnFlipLR_Click(object sender, EventArgs e)
         {
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
@@ -1369,7 +1420,7 @@ namespace OMRON_IFZ_Viewer
             // progressBar1.Value = 100;
             var nb = imageList1.Images.Count;
             this.listByrImgView.EndUpdate();
-            
+
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -1386,13 +1437,13 @@ namespace OMRON_IFZ_Viewer
             {
                 //Permet d'annuler la tâche du background worker et de sortir de cette boucle
                 if (worker.CancellationPending)
-                { 
+                {
                     break;
                 }
 
                 if (!(this.saveFormat != "bfz") || FiltLibIF.CheckCaptures(files[i]))
                 {
-  
+
                     bitmap = null;
                     FiltLibIF.BayerMaster bayerMaster = new FiltLibIF.BayerMaster();
                     FiltLibIF.MakeByrData(files[i], ref bayerMaster);
@@ -1448,7 +1499,7 @@ namespace OMRON_IFZ_Viewer
             {
                 progressBar1.Value = e.ProgressPercentage;
             }));
-           // progressBar1.Value = e.ProgressPercentage;
+            // progressBar1.Value = e.ProgressPercentage;
         }
         public void KillBGW()
         {
@@ -1526,7 +1577,7 @@ namespace OMRON_IFZ_Viewer
                 CurrentImage = Convert.ToInt32(this.listByrImgView.SelectedItems[0].Tag.ToString().Substring(this.listByrImgView.SelectedItems[0].Tag.ToString().Length - 7, 1)) - 1;
 
                 lblName.Text = System.IO.Path.GetFileName(str);
-                lblFileNb.Text = (currentFile+1) + "/" + nbIFZ;
+                lblFileNb.Text = (currentFile + 1) + "/" + nbIFZ;
 
                 //LoadImage(dispImageDir, str, CurrentImage);
                 LoadImage(str);
@@ -1554,22 +1605,22 @@ namespace OMRON_IFZ_Viewer
 
             if (bmp.Width * zoomFac > pictureBox1.Width)
             {
-                if(translateX > 0) 
-                { 
+                if (translateX > 0)
+                {
                     translateX = 0;
                 }
                 else if (translateX < -((bmp.Width * zoomFac) - pictureBox1.Width) / zoomFac)
-                { 
-                    translateX = -((bmp.Width * zoomFac) - pictureBox1.Width) / zoomFac; 
+                {
+                    translateX = -((bmp.Width * zoomFac) - pictureBox1.Width) / zoomFac;
                 }
             }
             else
             {
-                translateX = -((bmp.Width * zoomFac) - pictureBox1.Width) / zoomFac / 2;
+                translateX = -((bmp.Width * zoomFac) - pictureBox1.Width) / zoomFac / 2.0f;
             }
             if (bmp.Height * zoomFac > pictureBox1.Height)
             {
-                if(translateY > 0)
+                if (translateY > 0)
                 {
                     translateY = 0;
                 }
@@ -1580,7 +1631,7 @@ namespace OMRON_IFZ_Viewer
             }
             else
             {
-                translateY = -((bmp.Height * zoomFac) - pictureBox1.Height) / zoomFac / 2;
+                translateY = -((bmp.Height * zoomFac) - pictureBox1.Height) / zoomFac / 2.0f;
             }
 
         }
@@ -1595,7 +1646,7 @@ namespace OMRON_IFZ_Viewer
 
             if (bmp.Width * zoomFac > pictureBox1.Width && translateX < -((bmp.Width * zoomFac) - pictureBox1.Width) / zoomFac)
                 translateX = -((bmp.Width * zoomFac) - pictureBox1.Width) / zoomFac;
-           
+
             if (bmp.Height * zoomFac > pictureBox1.Height && translateY < -((bmp.Height * zoomFac) - pictureBox1.Height) / zoomFac)
                 translateY = -((bmp.Height * zoomFac) - pictureBox1.Height) / zoomFac;
 
@@ -1605,11 +1656,11 @@ namespace OMRON_IFZ_Viewer
             //centrage image
             if (bmp.Width * zoomFac <= pictureBox1.Width)
             {
-                translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
+                translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2.0f / zoomFac;
             }
             if (bmp.Height * zoomFac <= pictureBox1.Height)
             {
-                translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2.0f / zoomFac;
             }
             curImageX = translateX; curImageY = translateY;
             //translateX = curImageX; translateY = curImageY;
@@ -1639,12 +1690,16 @@ namespace OMRON_IFZ_Viewer
                         zoomFac = 1f;
                         if (bmp != null)
                         {
-                            translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
-                            translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                            translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2.0f / zoomFac;
+                            translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2.0f / zoomFac;
                         }
                         curImageX = translateX; curImageY = translateY;
                         break;
                     case ZoomMode.Free:
+                        if (ZoomValue < EPS)
+                        {
+                            ZoomValue = 1f;
+                        }
                         zoomFac = ZoomValue;
                         translateSet = true;
                         //zoomMode = ZoomMode.None;
@@ -1656,8 +1711,8 @@ namespace OMRON_IFZ_Viewer
                         translateSet = true;
                         if (bmp != null)
                         {
-                            translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2 / zoomFac;
-                            translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2 / zoomFac;
+                            translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2.0f / zoomFac;
+                            translateY = ((float)pictureBox1.Height - (float)bmp.Height * zoomFac) / 2.0f / zoomFac;
                         }
                         //zoomMode = ZoomMode.None;
                         curImageX = translateX; curImageY = translateY;
@@ -1690,9 +1745,9 @@ namespace OMRON_IFZ_Viewer
                         break;
                 }
             }
-            btnZoomToScale.Enabled = (zoomFac != 1f);
-            btnZoomToFit.Enabled = (zoomFac != zoomFit);
-            btnZoomOut.Enabled = ((zoomFit>1 && zoomFac>1f) || (zoomFit<1 && zoomFac>zoomFit));
+            btnZoomToScale.Enabled = (Math.Abs(zoomFac - 1f) > EPS);
+            btnZoomToFit.Enabled = (Math.Abs(zoomFac - zoomFit) > EPS);
+            btnZoomOut.Enabled = ((zoomFit > 1f && zoomFac > 1f) || (zoomFit < 1 && zoomFac > zoomFit));
             btnZoomIn.Enabled = (zoomFac < 20f);
             //    PositionImage();
         }
@@ -1704,7 +1759,7 @@ namespace OMRON_IFZ_Viewer
             Free = 2,
             In = 3,
             Out = 4,
-            None=5
+            None = 5
         }
 
 
@@ -1718,7 +1773,7 @@ namespace OMRON_IFZ_Viewer
         short borderSpace = 5;
         short borderDiameter = 5;
 
-        bool onBorderRight=false;
+        bool onBorderRight = false;
         bool onBorderLeft = false;
         bool onBorderTop = false;
         bool onBorderBottom = false;
@@ -1770,14 +1825,14 @@ namespace OMRON_IFZ_Viewer
             if (on_MinimumSize) { stopResizer(); } else { startResizer(); }
 
 
-             onBorderRight = false;
-             onBorderLeft = false;
-             onBorderTop = false;
-             onBorderBottom = false;
-             onCornerTopRight = false;
-             onCornerTopLeft = false;
-             onCornerBottomRight = false;
-             onCornerBottomLeft = false;
+            onBorderRight = false;
+            onBorderLeft = false;
+            onBorderTop = false;
+            onBorderBottom = false;
+            onCornerTopRight = false;
+            onCornerTopLeft = false;
+            onCornerBottomRight = false;
+            onCornerBottomLeft = false;
 
             if ((Cursor.Position.X > ((this.Location.X + this.Width) - borderDiameter))
                 & (Cursor.Position.Y > (this.Location.Y + borderSpace))
@@ -1871,7 +1926,7 @@ namespace OMRON_IFZ_Viewer
             else if (movingCornerBottomRight)
             {
                 this.Size = new Size(Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y);
-   
+
             }
 
             else if (movingCornerBottomLeft)
@@ -1919,219 +1974,219 @@ namespace OMRON_IFZ_Viewer
             if (e.KeyCode == Keys.Enter)
             {
                 string folder = System.IO.Path.GetDirectoryName(FileName);
-                string newName = System.IO.Path.Combine(folder, tbIFZName.Text+".ifz");
-                try {
-                    System.IO.File.Move(FileName, newName);
-                    // FileName = System.IO.Path.GetFileName(newName);
-                    lblName.Text = System.IO.Path.GetFileName(newName);
-                    FileName = newName;
-                }
+                string newName = System.IO.Path.Combine(folder, tbIFZName.Text + ".ifz");
+                try { 
+                System.IO.File.Move(FileName, newName);
+                // FileName = System.IO.Path.GetFileName(newName);
+                lblName.Text = System.IO.Path.GetFileName(newName);
+                FileName = newName;
+            }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
-                }
+                MessageBox.Show(ex.Message);
             }
-        }
-
-        private void PopulatePnlImageInfo()
-        {
-            tbIFZName.Text=System.IO.Path.GetFileNameWithoutExtension(lblName.Text);
-            //long length = new System.IO.FileInfo(FileName).Length;
-            FileInfo fi = new FileInfo(FileName);
-            string Size = MyExtensions.FileSizeFormatter.FormatSize(fi.Length);
-            lblSizeInfo.Text = Properties.strings.lblSize;
-            lblSize2.Text= bmp.Width.ToString()+" x "+ bmp.Height.ToString()+"  "+ Size;
-            lblFolder.Text = Properties.strings.lblFolder;
-            linkLabel.Text= FileName;
-            lblCamera.Text = Properties.strings.lblCamera;
-            lblCamera2.Text=CameraGuess();
-        }
-
-        private string CameraGuess()
-        {
-            string res = bmp.Width.ToString() + " x " + bmp.Height.ToString();
-            string camtype = "unknown";
-            switch (res)
-            {
-                case "640 x 480":
-                    if (IsGreyScale)
-                        camtype = "FH-SM/FZ-S/FZ-SH/FZ-SF/FZ-SP";
-                    else
-                        camtype = "FH-SC/FZ-SC/FZ-SHC/FZ-SFC/FZ-SPC";
-                    break;
-                case "720 x 540":
-                    if (IsGreyScale)
-                        camtype = "FH-SMX/FHV7■-M004";
-                    else
-                        camtype = "FH-SCX/FHV7■-C004";
-                    break;
-                case "752 x 480":
-                    if (IsGreyScale)
-                        camtype = "FQ2-CH■-M/FQ2CR■-M/FQ-M12■-M";
-                    else
-                        camtype = "FZ-SQ/FQ2-S1■/FQ2-S2■/FQ-M12■";
-                    break;
-                case "928 x 828":
-                    if (IsGreyScale)
-                        camtype = "FQ2-S3■-08M/FQ2-S4■-08M";
-                    else
-                        camtype = "FQ2-S■-08/FQ2-S4■-08";
-                    break;
-                case "1280 x 1024":
-                    if (IsGreyScale)
-                        camtype = "FQ2-S3■-13M/FQ2-S4■-13M";
-                    else
-                        camtype = "FQ2-S■-13/FQ2-S4■-13";
-                    break;
-                case "1440 x 1080":
-                    if (IsGreyScale)
-                        camtype = "FH-SMX01/FHV7■-M016";
-                    else
-                        camtype = "FH-SCX01/FHV7■-C016";
-                    break;
-                case "1600 x 1200":
-                    if (IsGreyScale)
-                        camtype = "FZ-S2M";
-                    else
-                        camtype = "FZ-SC2M";
-                    break;
-                case "2040 x 1088":
-                    if (IsGreyScale)
-                        camtype = "FH-SM02";
-                    else
-                        camtype = "FH-SC02";
-                    break;
-                case "2046 x 1536":
-                    if (IsGreyScale)
-                        camtype = "FH-SMX03";
-                    else
-                        camtype = "FH-SCX03";
-                    break;
-                case "2048 x 1536":
-                    if (IsGreyScale)
-                        camtype = "FHV7■-M032";
-                    else
-                        camtype = "FHV7■-C032";
-                    break;
-                case "2040 x 2048":
-                    if (IsGreyScale)
-                        camtype = "FH-SM04";
-                    else
-                        camtype = "FH-SC04";
-                    break;
-                case "2448 x 2044":
-                    if (IsGreyScale)
-                        camtype = "FZ-S5M2";
-                    else
-                        camtype = "FZ-SC5M2";
-                    break;
-                case "2448 x 2048":
-                    if (IsGreyScale)
-                        camtype = "FH-SMX05/FHV7■-M050/FZ-S5M3";
-                    else
-                        camtype = "FH-SCX05/FHV7■-C050/FZ-SC5M3";
-                    break;
-                case "2592 x 1944":
-                    if (IsGreyScale)
-                        camtype = "FH-SM05R";
-                    else
-                        camtype = "FH-SC05R";
-                    break;
-                case "3072 x 2048":
-                    if (IsGreyScale)
-                        camtype = "FHV7■-M063R";
-                    else
-                        camtype = "FHV7■-C063R";
-                    break;
-                case "4000 x 3000":
-                    if (IsGreyScale)
-                        camtype = "FHV7■-M120R";
-                    else
-                        camtype = "FHV7■-C120R";
-                    break;
-                case "4084 x 3072":
-                    if (IsGreyScale)
-                        camtype = "FH-SM12";
-                    else
-                        camtype = "FH-SC12";
-                    break;
-                case "4092 x 3000":
-                    if (IsGreyScale)
-                        camtype = "FH-SMX12";
-                    else
-                        camtype = "FH-SCX12";
-                    break;
-                case "5544 x 3692":
-                    if (IsGreyScale)
-                        camtype = "FH-SM21R";
-                    else
-                        camtype = "FH-SC21R";
-                    break;
-            }
-            return camtype;
-        }
-
-        private void tbIFZName_Leave(object sender, EventArgs e)
-        {
-            tbIFZName.Text = System.IO.Path.GetFileNameWithoutExtension(lblName.Text);
-            
-        }
-
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            
-            if (!File.Exists(FileName)){return;}
-
-            // combine the arguments together
-            // it doesn't matter if there is a space after ','
-            string argument = "/select, \"" + FileName + "\"";
-
-            Process.Start("explorer.exe", argument);
-
-        }
-
-        private void linkLabel_MouseEnter(object sender, EventArgs e)
-        {
-            linkLabel.LinkColor= Color.FromArgb(155, 155, 155);
-        }
-
-        private void linkLabel_MouseLeave(object sender, EventArgs e)
-        {
-            linkLabel.LinkColor= Color.FromArgb(0,120,215);
-        }
-
-        private void Form_DisplayImage_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
-        }
-
-        private void Form_DisplayImage_DragDrop(object sender, DragEventArgs e)
-        {
-            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            LoadImage(fileList[0]);
-            
         }
     }
-    public static class MyExtensions
+
+    private void PopulatePnlImageInfo()
     {
-        public static class FileSizeFormatter
+        tbIFZName.Text = System.IO.Path.GetFileNameWithoutExtension(lblName.Text);
+        //long length = new System.IO.FileInfo(FileName).Length;
+        FileInfo fi = new FileInfo(FileName);
+        string Size = MyExtensions.FileSizeFormatter.FormatSize(fi.Length);
+        lblSizeInfo.Text = Properties.strings.lblSize;
+        lblSize2.Text = bmp.Width.ToString() + " x " + bmp.Height.ToString() + "  " + Size;
+        lblFolder.Text = Properties.strings.lblFolder;
+        linkLabel.Text = FileName;
+        lblCamera.Text = Properties.strings.lblCamera;
+        lblCamera2.Text = CameraGuess();
+    }
+
+    private string CameraGuess()
+    {
+        string res = bmp.Width.ToString() + " x " + bmp.Height.ToString();
+        string camtype = "unknown";
+        switch (res)
         {
-            // Load all suffixes in an array  
-            static readonly string[] suffixes =
-            { "Bytes", "KB", "MB", "GB", "TB", "PB" };
-            public static string FormatSize(Int64 bytes)
-            {
-                int counter = 0;
-                decimal number = (decimal)bytes;
-                while (Math.Round(number / 1024) >= 1)
-                {
-                    number = number / 1024;
-                    counter++;
-                }
-                return string.Format("{0:n2}{1}", number, suffixes[counter]);
-            }
+            case "640 x 480":
+                if (IsGreyScale)
+                    camtype = "FH-SM/FZ-S/FZ-SH/FZ-SF/FZ-SP";
+                else
+                    camtype = "FH-SC/FZ-SC/FZ-SHC/FZ-SFC/FZ-SPC";
+                break;
+            case "720 x 540":
+                if (IsGreyScale)
+                    camtype = "FH-SMX/FHV7■-M004";
+                else
+                    camtype = "FH-SCX/FHV7■-C004";
+                break;
+            case "752 x 480":
+                if (IsGreyScale)
+                    camtype = "FQ2-CH■-M/FQ2CR■-M/FQ-M12■-M";
+                else
+                    camtype = "FZ-SQ/FQ2-S1■/FQ2-S2■/FQ-M12■";
+                break;
+            case "928 x 828":
+                if (IsGreyScale)
+                    camtype = "FQ2-S3■-08M/FQ2-S4■-08M";
+                else
+                    camtype = "FQ2-S■-08/FQ2-S4■-08";
+                break;
+            case "1280 x 1024":
+                if (IsGreyScale)
+                    camtype = "FQ2-S3■-13M/FQ2-S4■-13M";
+                else
+                    camtype = "FQ2-S■-13/FQ2-S4■-13";
+                break;
+            case "1440 x 1080":
+                if (IsGreyScale)
+                    camtype = "FH-SMX01/FHV7■-M016";
+                else
+                    camtype = "FH-SCX01/FHV7■-C016";
+                break;
+            case "1600 x 1200":
+                if (IsGreyScale)
+                    camtype = "FZ-S2M";
+                else
+                    camtype = "FZ-SC2M";
+                break;
+            case "2040 x 1088":
+                if (IsGreyScale)
+                    camtype = "FH-SM02";
+                else
+                    camtype = "FH-SC02";
+                break;
+            case "2046 x 1536":
+                if (IsGreyScale)
+                    camtype = "FH-SMX03";
+                else
+                    camtype = "FH-SCX03";
+                break;
+            case "2048 x 1536":
+                if (IsGreyScale)
+                    camtype = "FHV7■-M032";
+                else
+                    camtype = "FHV7■-C032";
+                break;
+            case "2040 x 2048":
+                if (IsGreyScale)
+                    camtype = "FH-SM04";
+                else
+                    camtype = "FH-SC04";
+                break;
+            case "2448 x 2044":
+                if (IsGreyScale)
+                    camtype = "FZ-S5M2";
+                else
+                    camtype = "FZ-SC5M2";
+                break;
+            case "2448 x 2048":
+                if (IsGreyScale)
+                    camtype = "FH-SMX05/FHV7■-M050/FZ-S5M3";
+                else
+                    camtype = "FH-SCX05/FHV7■-C050/FZ-SC5M3";
+                break;
+            case "2592 x 1944":
+                if (IsGreyScale)
+                    camtype = "FH-SM05R";
+                else
+                    camtype = "FH-SC05R";
+                break;
+            case "3072 x 2048":
+                if (IsGreyScale)
+                    camtype = "FHV7■-M063R";
+                else
+                    camtype = "FHV7■-C063R";
+                break;
+            case "4000 x 3000":
+                if (IsGreyScale)
+                    camtype = "FHV7■-M120R";
+                else
+                    camtype = "FHV7■-C120R";
+                break;
+            case "4084 x 3072":
+                if (IsGreyScale)
+                    camtype = "FH-SM12";
+                else
+                    camtype = "FH-SC12";
+                break;
+            case "4092 x 3000":
+                if (IsGreyScale)
+                    camtype = "FH-SMX12";
+                else
+                    camtype = "FH-SCX12";
+                break;
+            case "5544 x 3692":
+                if (IsGreyScale)
+                    camtype = "FH-SM21R";
+                else
+                    camtype = "FH-SC21R";
+                break;
         }
+        return camtype;
+    }
+
+    private void tbIFZName_Leave(object sender, EventArgs e)
+    {
+        tbIFZName.Text = System.IO.Path.GetFileNameWithoutExtension(lblName.Text);
 
     }
+
+
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+
+        if (!File.Exists(FileName)) { return; }
+
+        // combine the arguments together
+        // it doesn't matter if there is a space after ','
+        string argument = "/select, \"" + FileName + "\"";
+
+        Process.Start("explorer.exe", argument);
+
+    }
+
+    private void linkLabel_MouseEnter(object sender, EventArgs e)
+    {
+        linkLabel.LinkColor = Color.FromArgb(155, 155, 155);
+    }
+
+    private void linkLabel_MouseLeave(object sender, EventArgs e)
+    {
+        linkLabel.LinkColor = Color.FromArgb(0, 120, 215);
+    }
+
+    private void Form_DisplayImage_DragEnter(object sender, DragEventArgs e)
+    {
+        e.Effect = DragDropEffects.Move;
+    }
+
+    private void Form_DisplayImage_DragDrop(object sender, DragEventArgs e)
+    {
+        string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+        LoadImage(fileList[0]);
+
+    }
+}
+public static class MyExtensions
+{
+    public static class FileSizeFormatter
+    {
+        // Load all suffixes in an array  
+        static readonly string[] suffixes =
+        { "Bytes", "KB", "MB", "GB", "TB", "PB" };
+        public static string FormatSize(Int64 bytes)
+        {
+            int counter = 0;
+            decimal number = (decimal)bytes;
+            while (Math.Round(number / 1024) >= 1)
+            {
+                number = number / 1024;
+                counter++;
+            }
+            return string.Format("{0:n2}{1}", number, suffixes[counter]);
+        }
+    }
+
+}
 }

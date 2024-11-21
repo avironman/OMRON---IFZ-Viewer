@@ -142,5 +142,40 @@ namespace OMRON_IFZ_Viewer.Properties {
                 this["ConversionFileFormat"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color ButtonBackGroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ButtonBackGroundColor"]));
+            }
+            set {
+                this["ButtonBackGroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("31, 31, 31")]
+        public global::System.Drawing.Color ThemeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ThemeColor"]));
+            }
+            set {
+                this["ThemeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color ThemeText {
+            get {
+                return ((global::System.Drawing.Color)(this["ThemeText"]));
+            }
+            set {
+                this["ThemeText"] = value;
+            }
+        }
     }
 }

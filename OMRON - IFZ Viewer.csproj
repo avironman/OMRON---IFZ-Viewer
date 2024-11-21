@@ -294,6 +294,10 @@
     <Content Include="IfzThumbnailHandler.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-theme-26.png" />
+    <None Include="Resources\icons8-paint-roller-26.png" />
+    <None Include="Resources\FlipLR.png" />
+    <None Include="Resources\FlipUD.png" />
     <Content Include="ServerRegistrationManager.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

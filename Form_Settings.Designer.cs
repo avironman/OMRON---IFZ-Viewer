@@ -28,24 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Settings));
             this.lbl1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lbl4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl3 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lbl5 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lbl6 = new System.Windows.Forms.Label();
+            this.colorComboBox = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.btnClose = new RoundButton();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,17 +109,17 @@
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // panel2
+            // panel4
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.panel2.Controls.Add(this.lblVersion);
-            this.panel2.Controls.Add(this.lbl4);
-            this.panel2.Location = new System.Drawing.Point(15, 317);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(849, 71);
-            this.panel2.TabIndex = 5;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.panel4.Controls.Add(this.lblVersion);
+            this.panel4.Controls.Add(this.lbl4);
+            this.panel4.Location = new System.Drawing.Point(15, 485);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(849, 71);
+            this.panel4.TabIndex = 5;
             // 
             // lblVersion
             // 
@@ -133,7 +143,6 @@
             this.lbl4.TabIndex = 4;
             this.lbl4.Text = "Version";
             this.lbl4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbl4.Click += new System.EventHandler(this.label1_Click);
             // 
             // label3
             // 
@@ -151,23 +160,23 @@
             // 
             this.lbl3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lbl3.Location = new System.Drawing.Point(15, 294);
+            this.lbl3.Location = new System.Drawing.Point(15, 462);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(293, 20);
             this.lbl3.TabIndex = 7;
             this.lbl3.Text = "Personalisation";
             // 
-            // panel3
+            // panel2
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.panel3.Controls.Add(this.lbl5);
-            this.panel3.Controls.Add(this.comboBox2);
-            this.panel3.Location = new System.Drawing.Point(15, 201);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(849, 71);
-            this.panel3.TabIndex = 5;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.panel2.Controls.Add(this.lbl5);
+            this.panel2.Controls.Add(this.comboBox2);
+            this.panel2.Location = new System.Drawing.Point(15, 201);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(849, 71);
+            this.panel2.TabIndex = 5;
             // 
             // lbl5
             // 
@@ -197,6 +206,80 @@
             this.comboBox2.TabIndex = 0;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.panel3.Controls.Add(this.lbl6);
+            this.panel3.Controls.Add(this.colorComboBox);
+            this.panel3.Location = new System.Drawing.Point(15, 275);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(849, 71);
+            this.panel3.TabIndex = 6;
+            // 
+            // lbl6
+            // 
+            this.lbl6.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lbl6.Image = global::OMRON_IFZ_Viewer.Properties.Resources.icons8_theme_26;
+            this.lbl6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl6.Location = new System.Drawing.Point(9, 19);
+            this.lbl6.Name = "lbl6";
+            this.lbl6.Size = new System.Drawing.Size(582, 34);
+            this.lbl6.TabIndex = 4;
+            this.lbl6.Text = "Button color";
+            this.lbl6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // colorComboBox
+            // 
+            this.colorComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.colorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.colorComboBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colorComboBox.FormattingEnabled = true;
+            this.colorComboBox.Location = new System.Drawing.Point(597, 25);
+            this.colorComboBox.Name = "colorComboBox";
+            this.colorComboBox.Size = new System.Drawing.Size(243, 25);
+            this.colorComboBox.TabIndex = 0;
+            this.colorComboBox.SelectedIndexChanged += new System.EventHandler(this.ColorComboBox_SelectedIndexChanged);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(597, 25);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(243, 25);
+            this.comboBox3.TabIndex = 0;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.comboBox3);
+            this.panel5.Location = new System.Drawing.Point(15, 350);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(849, 71);
+            this.panel5.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.label1.Image = global::OMRON_IFZ_Viewer.Properties.Resources.icons8_paint_roller_26;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(9, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(582, 34);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Theme color";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::OMRON_IFZ_Viewer.Properties.Resources.LOGO;
@@ -220,6 +303,20 @@
             this.lblTitle.Text = "Paramètres";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSettings.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
+            this.btnSettings.Enabled = false;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
+            this.btnSettings.Location = new System.Drawing.Point(227, 289);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(46, 46);
+            this.btnSettings.TabIndex = 29;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            // 
             // btnClose
             // 
             this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -235,7 +332,7 @@
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Fermer";
             this.btnClose.TextColor = System.Drawing.Color.Black;
-            this.btnClose.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // Form_Settings
             // 
@@ -243,21 +340,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(876, 656);
+            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.lbl3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form_Settings";
             this.Load += new System.EventHandler(this.Form_Settings_Load);
             this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -271,14 +373,21 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lbl2;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lbl4;
         private System.Windows.Forms.Label lbl3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbl5;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lbl6;
+        private System.Windows.Forms.ComboBox colorComboBox;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSettings;
     }
 }

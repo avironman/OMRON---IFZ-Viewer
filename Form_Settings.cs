@@ -37,6 +37,56 @@ namespace OMRON_IFZ_Viewer
             this.TopMost = true; //permet d'avoir cette fenêtre non modale toujours devant.
             lblVersion.Text =Application.ProductVersion;
             Translation();
+            InitializeColorComboBox();
+
+            
+        }
+        private void InitializeColorComboBox()
+        {
+            // Set ComboBox properties for a modern look
+            colorComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            colorComboBox.FlatStyle = FlatStyle.Flat;
+            colorComboBox.DrawMode = DrawMode.OwnerDrawFixed;
+           // colorComboBox.Width = 150;
+
+            // Add colors to ComboBox
+            colorComboBox.Items.Add(Color.FromArgb(222,12,140)); 
+            colorComboBox.Items.Add(Color.FromArgb(0, 94, 184));
+            colorComboBox.Items.Add(Color.FromArgb(140,222, 12));
+            colorComboBox.Items.Add(Color.FromArgb(122, 73, 165));
+            colorComboBox.Items.Add(Color.FromArgb(0,153,99));
+            colorComboBox.Items.Add(Color.FromArgb(255,165,0));
+
+            // Event for drawing each item
+            colorComboBox.DrawItem += ColorComboBox_DrawItem;
+            colorComboBox.SelectedIndexChanged += ColorComboBox_SelectedIndexChanged;
+
+            // Set initial selection
+            colorComboBox.SelectedIndex = colorComboBox.Items.IndexOf(Properties.Settings.Default.ButtonBackGroundColor);
+        }
+        private void ColorComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+            
+            // Get color item
+            Color color = (Color)colorComboBox.Items[e.Index];
+
+            // Draw background and selection
+            e.DrawBackground();
+            e.Graphics.FillRectangle(new SolidBrush(color), e.Bounds.X + 2, e.Bounds.Y + 2, 20, e.Bounds.Height - 4);
+
+            // Draw color name next to color box
+            TextRenderer.DrawText(e.Graphics, color.Name, e.Font, new Point(e.Bounds.X + 30, e.Bounds.Y + 2), Color.Black);
+
+            e.DrawFocusRectangle();
+        }
+
+        private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Set form background to selected color
+            //this.BackColor = (Color)colorComboBox.SelectedItem;
+            btnSettings.BackColor = (Color)colorComboBox.SelectedItem;
+            Properties.Settings.Default.ButtonBackGroundColor = (Color)colorComboBox.SelectedItem;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -45,9 +95,10 @@ namespace OMRON_IFZ_Viewer
             this.Close();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -112,7 +163,8 @@ namespace OMRON_IFZ_Viewer
             lbl3.Text = Properties.strings.Settings_lbl3;
             lbl4.Text = Properties.strings.Settings_lbl4;
             lbl5.Text = Properties.strings.Settings_lbl5;
-            
+            lbl6.Text = Properties.strings.Settings_lbl6;
+
             comboBox2.Items.Clear();
             comboBox2.Items.Add(Properties.strings.Settings_cb2_opt1);
             comboBox2.Items.Add(Properties.strings.Settings_cb2_opt2);
@@ -122,10 +174,7 @@ namespace OMRON_IFZ_Viewer
             Refresh();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -148,6 +197,11 @@ namespace OMRON_IFZ_Viewer
         {
             var url = "mailto:jerome.pinard@omron.com";
             Process.Start(url);
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

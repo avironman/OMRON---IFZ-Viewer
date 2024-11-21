@@ -133,6 +133,26 @@ namespace OMRON_IFZ_Viewer.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FlipLR {
+            get {
+                object obj = ResourceManager.GetObject("FlipLR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlipUD {
+            get {
+                object obj = ResourceManager.GetObject("FlipUD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Folder {
             get {
                 object obj = ResourceManager.GetObject("Folder", resourceCulture);
@@ -193,29 +213,19 @@ namespace OMRON_IFZ_Viewer.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_flip_horizontal_20 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-flip-horizontal-20", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_flip_vertical_20 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-flip-vertical-20", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_flip_vertical_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-flip-vertical-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_paint_roller_26 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-paint-roller-26", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +256,16 @@ namespace OMRON_IFZ_Viewer.Properties {
         internal static System.Drawing.Bitmap icons8_shutdown_26 {
             get {
                 object obj = ResourceManager.GetObject("icons8-shutdown-26", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_theme_26 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-theme-26", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -578,7 +578,7 @@ namespace OMRON_IFZ_Viewer
 			}
 			else
 			{
-				if (mAGETYPE == IMAGE_TYPE.BMITMAP)
+				if (mAGETYPE == IMAGE_TYPE.BITMAP)
 				{
 					imageFileInfo.cam_dispatch = 1;
 					return imageFileInfo;
@@ -641,7 +641,7 @@ namespace OMRON_IFZ_Viewer
 					}
 					if ((num & 65535) == 19778)
 					{
-						return IMAGE_TYPE.BMITMAP;
+						return IMAGE_TYPE.BITMAP;
 					}
 					if ((num & 65535) == 55551)
 					{
@@ -757,7 +757,7 @@ namespace OMRON_IFZ_Viewer
 			IMAGE_TYPE mAGETYPE = imageFileInfo.type;
 			if (mAGETYPE <= IMAGE_TYPE.BYR)
 			{
-				if (mAGETYPE == IMAGE_TYPE.BMITMAP)
+				if (mAGETYPE == IMAGE_TYPE.BITMAP)
 				{
 					bitmap = new Bitmap(FileName);
 				}

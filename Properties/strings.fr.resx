@@ -220,7 +220,7 @@
     <value>Préférence de zoom</value>
   </data>
   <data name="Settings_lbl6" xml:space="preserve">
-    <value>Intégration Windows</value>
+    <value>Couleur d'arrière plan des boutons</value>
   </data>
   <data name="Settings_lbl7" xml:space="preserve">
     <value>Installer l'extension de gestion des miniatures IFZ dans l'explorateur.</value>
