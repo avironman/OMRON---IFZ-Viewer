@@ -149,7 +149,7 @@ namespace OMRON_IFZ_Viewer
             this.btnInfo.Size = new System.Drawing.Size(46, 46);
             this.btnInfo.TabIndex = 32;
             this.btnInfo.UseVisualStyleBackColor = false;
-            this.btnInfo.Click += new System.EventHandler(this.button1_Click);
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnFlipUD
             // 
@@ -884,9 +884,9 @@ namespace OMRON_IFZ_Viewer
             this.pnlImageInfo_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.pnlImageInfo_Title.Location = new System.Drawing.Point(8, 18);
             this.pnlImageInfo_Title.Name = "pnlImageInfo_Title";
-            this.pnlImageInfo_Title.Size = new System.Drawing.Size(129, 28);
+            this.pnlImageInfo_Title.Size = new System.Drawing.Size(120, 28);
             this.pnlImageInfo_Title.TabIndex = 0;
-            this.pnlImageInfo_Title.Text = "Informations";
+            this.pnlImageInfo_Title.Text = "Information";
             // 
             // pictureBox1
             // 

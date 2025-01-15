@@ -408,33 +408,9 @@ namespace OMRON_IFZ_Viewer
             this.Shown += new EventHandler(Form_DisplayImage_Shown);
             this.Disposed += new EventHandler(Form_DisplayImage__Disposed);
 
-            // Create the ToolTip and set initial values.
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
-            this.toolTip1.AutoPopDelay = 5000;
-            this.toolTip1.InitialDelay = 500;
-            this.toolTip1.OwnerDraw = true;
-            this.toolTip1.ReshowDelay = 10;
-            this.toolTip1.Draw += new DrawToolTipEventHandler(this.toolTip1_Draw);
-            this.toolTip1.Popup += new PopupEventHandler(toolTip1_Popup);
-
-
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.LangueSoft);
 
-            // Set up the ToolTip text for the Button and Checkbox.
-            toolTip1.SetToolTip(btnFullScreen, Properties.strings.tooltip_001);
-            toolTip1.SetToolTip(btnZoomToScale, Properties.strings.tooltip_002);
-            toolTip1.SetToolTip(btnZoomToFit, Properties.strings.tooltip_003);
-            toolTip1.SetToolTip(btnRotate, Properties.strings.tooltip_004);
-            toolTip1.SetToolTip(btnTrash, Properties.strings.tooltip_005);
-            toolTip1.SetToolTip(btnPrint, Properties.strings.tooltip_006);
-            toolTip1.SetToolTip(btnSettings, Properties.strings.tooltip_007);
-            toolTip1.SetToolTip(btnFlipLR, Properties.strings.tooltip_008);
-            toolTip1.SetToolTip(btnFlipUD, Properties.strings.tooltip_009);
-            toolTip1.SetToolTip(btnZoomIn, Properties.strings.tooltip_010);
-            toolTip1.SetToolTip(btnZoomOut, Properties.strings.tooltip_011);
-            toolTip1.SetToolTip(btnRibbon, Properties.strings.tooltip_012);
-
-
+            ToolTipInit();
 
             if (!Directory.Exists(dispImageDir) || Directory.GetFiles(dispImageDir, "*.ifz").Length == 0)
             {
@@ -474,6 +450,41 @@ namespace OMRON_IFZ_Viewer
                 }
 
             }
+
+        }
+
+        /// <summary>
+        /// Hints for the buttons (mouse over)
+        /// </summary>
+        private void ToolTipInit()
+        {
+
+            // Create the ToolTip and set initial values.
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.OwnerDraw = true;
+            this.toolTip1.ReshowDelay = 10;
+            this.toolTip1.Draw += new DrawToolTipEventHandler(this.toolTip1_Draw);
+            this.toolTip1.Popup += new PopupEventHandler(toolTip1_Popup);
+
+            // Set up the ToolTip text for the Button and Checkbox.
+            toolTip1.SetToolTip(btnFullScreen, Properties.strings.tooltip_fullscreen);
+            toolTip1.SetToolTip(btnZoomToScale, Properties.strings.tooltip_zoom_realsize);
+            toolTip1.SetToolTip(btnZoomToFit, Properties.strings.tooltip_zoom_fit);
+
+            toolTip1.SetToolTip(btnFolder, Properties.strings.tooltip_open_folder);
+            toolTip1.SetToolTip(btnRotate, Properties.strings.tooltip_rotate);
+            toolTip1.SetToolTip(btnTrash, Properties.strings.tooltip_delete);
+            toolTip1.SetToolTip(btnPrint, Properties.strings.tooltip_print);
+            toolTip1.SetToolTip(btnSettings, Properties.strings.tooltip_settings);
+            toolTip1.SetToolTip(btnFlipLR, Properties.strings.tooltip_flip_h);
+            toolTip1.SetToolTip(btnFlipUD, Properties.strings.tooltip_flip_v);
+            toolTip1.SetToolTip(btnInfo, Properties.strings.tooltip_info);
+
+            toolTip1.SetToolTip(btnZoomIn, Properties.strings.tooltip_zoom_in);
+            toolTip1.SetToolTip(btnZoomOut, Properties.strings.tooltip_zoom_out);
+            toolTip1.SetToolTip(btnRibbon, Properties.strings.tooltip_ribbon);
 
         }
 
@@ -627,6 +638,7 @@ namespace OMRON_IFZ_Viewer
 
         private void pictureBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
+            //If CTRL is pressed, the cursor is moved
             //Si CTRL est enfoncée, on déplace le curseur
             if (e.KeyCode == Keys.Escape)
             {
@@ -635,49 +647,74 @@ namespace OMRON_IFZ_Viewer
                 pnlFooter.Visible = true;
                 ZoomManagment();
             }
+
             if (e.Control)
             {
                 //zoomFit = false;
                 switch (e.KeyCode)
                 {
+                    case Keys.O:
+                        btnFolder.PerformClick();
+                        break;
+
                     case Keys.R:
                         btnRotate.PerformClick();
                         break;
-                    case Keys.D1:
-                    case Keys.NumPad1:
-                        zoomMode = ZoomMode.Scale;
-                        ZoomManagment();
+
+                    case Keys.P:
+                        btnPrint.PerformClick();
                         break;
+
+                    case Keys.I:
+                        btnInfo.PerformClick();
+                        break;
+
+                    case Keys.F:
+                        btnRibbon.PerformClick();
+                        break;
+
                     case Keys.D0:
                     case Keys.NumPad0:
                         zoomMode = ZoomMode.Fit;
                         ZoomManagment();
                         break;
+
+                    case Keys.D1:
+                    case Keys.NumPad1:
+                        zoomMode = ZoomMode.Scale;
+                        ZoomManagment();
+                        break;
+
                     case Keys.Add:
-                        zoomMode = ZoomMode.In;
-                        ZoomManagment();
+                    case Keys.Oemplus:
+                        btnZoomIn.PerformClick();
                         break;
+
                     case Keys.Subtract:
-                        zoomMode = ZoomMode.Out;
-                        ZoomManagment();
-                        PositionImage();
+                    case Keys.OemMinus:
+                        btnZoomOut.PerformClick();
                         break;
+
                     case Keys.Down:
                         Cursor.Position = new System.Drawing.Point(Cursor.Position.X, Cursor.Position.Y + 1);
                         e.IsInputKey = true;
                         break;
+
                     case Keys.Right:
                         Cursor.Position = new System.Drawing.Point(Cursor.Position.X + 1, Cursor.Position.Y);
                         e.IsInputKey = true;
                         break;
+
                     case Keys.Up:
                         Cursor.Position = new System.Drawing.Point(Cursor.Position.X, Cursor.Position.Y - 1);
                         e.IsInputKey = true;
                         break;
+
                     case Keys.Left:
                         Cursor.Position = new System.Drawing.Point(Cursor.Position.X - 1, Cursor.Position.Y);
                         e.IsInputKey = true;
                         break;
+
                     default:
                         break;
                 }
@@ -685,6 +722,7 @@ namespace OMRON_IFZ_Viewer
                 curImageX = translateX; curImageY = translateY;
 
             }
+            //Otherwise, we move the cursor
             //Sinon, on déplace le curseur
             else
             {
@@ -694,9 +732,18 @@ namespace OMRON_IFZ_Viewer
 
                 switch (e.KeyCode)
                 {
+                    case Keys.R:
+                        btnRotate.PerformClick();
+                        break;
+
+                    case Keys.I:
+                        btnInfo.PerformClick();
+                        break;
+
                     case Keys.F:
                         btnRibbon.PerformClick();
                         break;
+
                     case Keys.F11:
                         if (WindowState == FormWindowState.Maximized)
                         {
@@ -707,14 +754,17 @@ namespace OMRON_IFZ_Viewer
                         else
                             btnFullScreen.PerformClick();
                         break;
+
                     case Keys.Down:
                         listByrImgView.Visible = false;
                         Activate();
                         pictureBox1.Focus();
                         break;
+
                     case Keys.Delete:
                         btnTrash.PerformClick();
                         break;
+
                     case Keys.Right:
                     case Keys.PageDown:
                         if (currentFile < nbIFZ - 1)
@@ -724,6 +774,7 @@ namespace OMRON_IFZ_Viewer
                         LoadImage(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
 
                         break;
+
                     case Keys.Left:
                     case Keys.PageUp:
                         if (currentFile == 0)
@@ -732,6 +783,7 @@ namespace OMRON_IFZ_Viewer
                             currentFile -= 1;
                         LoadImage(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
                         break;
+
                     case Keys.Add:
                         if (currentImage < camnb - 1)
                         {
@@ -739,6 +791,7 @@ namespace OMRON_IFZ_Viewer
                             DispImage(currentImage);
                         }
                         break;
+
                     case Keys.Subtract:
                         if (currentImage > 0)
                         {
@@ -753,48 +806,56 @@ namespace OMRON_IFZ_Viewer
                         currentImage = 0;
                         DispImage(currentImage);
                         break;
+
                     case Keys.D2:
                     case Keys.NumPad2:
                         if (currentImage == 1 | camnb < 2) { break; }
                         currentImage = 1;
                         DispImage(currentImage);
                         break;
+
                     case Keys.D3:
                     case Keys.NumPad3:
                         if (currentImage == 2 | camnb < 3) { break; }
                         currentImage = 2;
                         DispImage(currentImage);
                         break;
+
                     case Keys.D4:
                     case Keys.NumPad4:
                         if (currentImage == 3 | camnb < 4) { break; }
                         currentImage = 3;
                         DispImage(currentImage);
                         break;
+
                     case Keys.D5:
                     case Keys.NumPad5:
                         if (currentImage == 4 | camnb < 5) { break; }
                         currentImage = 4;
                         DispImage(currentImage);
                         break;
+
                     case Keys.D6:
                     case Keys.NumPad6:
                         if (currentImage == 5 | camnb < 6) { break; }
                         currentImage = 5;
                         DispImage(currentImage);
                         break;
+
                     case Keys.D7:
                     case Keys.NumPad7:
                         if (currentImage == 6 | camnb < 7) { break; }
                         currentImage = 6;
                         DispImage(currentImage);
                         break;
+
                     case Keys.D8:
                     case Keys.NumPad8:
                         if (currentImage == 7 | camnb < 8) { break; }
                         currentImage = 7;
                         DispImage(currentImage);
                         break;
+
                     default:
                         break;
                 }
@@ -1310,14 +1371,19 @@ namespace OMRON_IFZ_Viewer
 
                 thumbnailsCreated = true;
             }
+
             var tewt2 = imageList1.Images;
             var test = listByrImgView.LargeImageList;
+            
             listByrImgView.Visible = !listByrImgView.Visible;
+
             if (listByrImgView.Visible)
-                pictureBox1.PreviewKeyDown -= pictureBox1_PreviewKeyDown;
+            {
+                //pictureBox1.PreviewKeyDown -= pictureBox1_PreviewKeyDown;
+            }
             else
             {
-                pictureBox1.PreviewKeyDown += pictureBox1_PreviewKeyDown;
+                //pictureBox1.PreviewKeyDown += pictureBox1_PreviewKeyDown;
                 pictureBox1.Focus();
             }
 
@@ -2095,12 +2161,19 @@ namespace OMRON_IFZ_Viewer
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnInfo_Click(object sender, EventArgs e)
         {
-            pnlImageInfo.Visible = true;
-            pnlImageInfo.Width = 344;
-            PopulatePnlImageInfo();
+            if (pnlImageInfo.Visible)
+            {
+                pnlImageInfo_ClosePanel.PerformClick();
+            }
+            else
+            {
 
+                pnlImageInfo.Visible = true;
+                pnlImageInfo.Width = 344;
+                PopulatePnlImageInfo();
+            }
         }
 
         private void btnClosePanel_Click(object sender, EventArgs e)
