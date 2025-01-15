@@ -265,58 +265,64 @@ namespace OMRON_IFZ_Viewer
                     if (bmp != null)
                     {
                         bmp.Dispose();
+                        bmp = null;
                     }
 
                     MessageBox.Show("Error: IFZ file cannot be read!");
-                    return;
                 }
-
-                camnb = bayerMaster.camno;
-                //camera number should be >= 1
-                if (camnb < 1)
+                else 
                 {
-                    //on error - remove previously loaded image
-                    if (bmp != null)
+                
+                    camnb = bayerMaster.camno;
+                    //camera number should be >= 1
+                    if (camnb < 1)
                     {
-                        bmp.Dispose();
+                        //on error - remove previously loaded image
+                        if (bmp != null)
+                        {
+                            bmp.Dispose();
+                            bmp = null;
+                        }
+                        MessageBox.Show("Error: Camera number should be positive!");
                     }
-                    MessageBox.Show("Error: Camera number should be positive!");
-                    return;
+                    else
+                    {
+
+                        if (currentImage >= camnb)
+                            currentImage = 0;
+
+                        bitmap = new Bitmap[bayerMaster.camno];
+                        MonoCol = new int[bayerMaster.camno];
+                        for (i = 0; i < bayerMaster.camno; i++)
+                        {
+                            FiltLibIF.ByrtoBmp(bayerMaster, out bitmap[i], i);
+                            MonoCol[i] = bayerMaster.ByrArray[i].format;
+                        }
+                        bmp = bitmap[currentImage];
+                        IsGreyScale = (MonoCol[currentImage] == 10);
+
+
+                        //if (bmp.Width < pictureBox1.Width && bmp.Height < pictureBox1.Height)
+                        //    zoomFit = 1f;
+                        //else
+                        //{
+                        if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
+                            zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
+                        else
+                            zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
+                        //}
+
+                        ZoomManagment();
+                        PositionImage();
+
+                        pictureBox1.Refresh();
+                        pictureBox1.Focus();
+
+                        //set present position of the image after move.
+                        curImageX = translateX;
+                        curImageY = translateY;
+                    }
                 }
-
-                if (currentImage >= camnb)
-                    currentImage = 0;
-
-                bitmap = new Bitmap[bayerMaster.camno];
-                MonoCol = new int[bayerMaster.camno];
-                for (i = 0; i < bayerMaster.camno; i++)
-                {
-                    FiltLibIF.ByrtoBmp(bayerMaster, out bitmap[i], i);
-                    MonoCol[i] = bayerMaster.ByrArray[i].format;
-                }
-                bmp = bitmap[currentImage];
-                IsGreyScale = (MonoCol[currentImage] == 10);
-
-
-                //if (bmp.Width < pictureBox1.Width && bmp.Height < pictureBox1.Height)
-                //    zoomFit = 1f;
-                //else
-                //{
-                if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
-                    zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
-                else
-                    zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
-                //}
-
-                ZoomManagment();
-                PositionImage();
-
-                pictureBox1.Refresh();
-                pictureBox1.Focus();
-
-                //set present position of the image after move.
-                curImageX = translateX;
-                curImageY = translateY;
             }
             catch (Exception ex)
             {
@@ -324,10 +330,12 @@ namespace OMRON_IFZ_Viewer
                 if (bmp != null)
                 {
                     bmp.Dispose();
+                    bmp = null;
                 }
 
                 MessageBox.Show("Error: " + ex.Message);
             }
+
             GC.Collect();
             ManageButtons();
             PopulatePnlImageInfo();
@@ -2136,7 +2144,7 @@ namespace OMRON_IFZ_Viewer
             }
             else
             {
-                lblSize2.Text = "Error: Image file cannot be read!";
+                lblSize2.Text = "Error: Image file cannot be read!" + " " + Size;
             }
 
             lblFolder.Text = Properties.strings.lblFolder;
@@ -2168,114 +2176,247 @@ namespace OMRON_IFZ_Viewer
                     else
                         camtype = "FH-SC/FZ-SC/FZ-SHC/FZ-SFC/FZ-SPC";
                     break;
+                case "480 x 640":
+                    if (IsGreyScale)
+                        camtype = "FH-SM/FZ-S/FZ-SH/FZ-SF/FZ-SP";
+                    else
+                        camtype = "FH-SC/FZ-SC/FZ-SHC/FZ-SFC/FZ-SPC";
+                    break;
+
                 case "720 x 540":
                 if (IsGreyScale)
                     camtype = "FH-SMX/FHV7■-M004";
                 else
                     camtype = "FH-SCX/FHV7■-C004";
                 break;
+                case "540 x 720":
+                    if (IsGreyScale)
+                        camtype = "FH-SMX/FHV7■-M004";
+                    else
+                        camtype = "FH-SCX/FHV7■-C004";
+                    break;
+
                 case "752 x 480":
                     if (IsGreyScale)
                         camtype = "FQ2-CH■-M/FQ2CR■-M/FQ-M12■-M";
                     else
                         camtype = "FZ-SQ/FQ2-S1■/FQ2-S2■/FQ-M12■";
                     break;
+                case "480 x 752":
+                    if (IsGreyScale)
+                        camtype = "FQ2-CH■-M/FQ2CR■-M/FQ-M12■-M";
+                    else
+                        camtype = "FZ-SQ/FQ2-S1■/FQ2-S2■/FQ-M12■";
+                    break;
+
                 case "928 x 828":
                     if (IsGreyScale)
                         camtype = "FQ2-S3■-08M/FQ2-S4■-08M";
                     else
                         camtype = "FQ2-S■-08/FQ2-S4■-08";
                     break;
+                case "828 x 928":
+                    if (IsGreyScale)
+                        camtype = "FQ2-S3■-08M/FQ2-S4■-08M";
+                    else
+                        camtype = "FQ2-S■-08/FQ2-S4■-08";
+                    break;
+
                 case "1280 x 1024":
                     if (IsGreyScale)
                         camtype = "FQ2-S3■-13M/FQ2-S4■-13M";
                     else
                         camtype = "FQ2-S■-13/FQ2-S4■-13";
                     break;
+                case "1024 x 1280":
+                    if (IsGreyScale)
+                        camtype = "FQ2-S3■-13M/FQ2-S4■-13M";
+                    else
+                        camtype = "FQ2-S■-13/FQ2-S4■-13";
+                    break;
+
                 case "1440 x 1080":
                     if (IsGreyScale)
                         camtype = "FH-SMX01/FHV7■-M016";
                     else
                         camtype = "FH-SCX01/FHV7■-C016";
                     break;
+                case "1080 x 1440":
+                    if (IsGreyScale)
+                        camtype = "FH-SMX01/FHV7■-M016";
+                    else
+                        camtype = "FH-SCX01/FHV7■-C016";
+                    break;
+
                 case "1600 x 1200":
                     if (IsGreyScale)
                         camtype = "FZ-S2M";
                     else
                         camtype = "FZ-SC2M";
                     break;
+                case "1200 x 1600":
+                    if (IsGreyScale)
+                        camtype = "FZ-S2M";
+                    else
+                        camtype = "FZ-SC2M";
+                    break;
+
                 case "2040 x 1088":
                     if (IsGreyScale)
                         camtype = "FH-SM02";
                     else
                         camtype = "FH-SC02";
                     break;
+                case "1088 x 2040":
+                    if (IsGreyScale)
+                        camtype = "FH-SM02";
+                    else
+                        camtype = "FH-SC02";
+                    break;
+
                 case "2046 x 1536":
                     if (IsGreyScale)
                         camtype = "FH-SMX03";
                     else
                         camtype = "FH-SCX03";
                     break;
+                case "1536 x 2046":
+                    if (IsGreyScale)
+                        camtype = "FH-SMX03";
+                    else
+                        camtype = "FH-SCX03";
+                    break;
+
                 case "2048 x 1536":
                     if (IsGreyScale)
                         camtype = "FHV7■-M032";
                     else
                         camtype = "FHV7■-C032";
                     break;
+                case "1536 x 2048":
+                    if (IsGreyScale)
+                        camtype = "FHV7■-M032";
+                    else
+                        camtype = "FHV7■-C032";
+                    break;
+
                 case "2040 x 2048":
                     if (IsGreyScale)
                         camtype = "FH-SM04";
                     else
                         camtype = "FH-SC04";
                     break;
+                case "2048 x 2040":
+                    if (IsGreyScale)
+                        camtype = "FH-SM04";
+                    else
+                        camtype = "FH-SC04";
+                    break;
+
                 case "2448 x 2044":
                     if (IsGreyScale)
                         camtype = "FZ-S5M2";
                     else
                         camtype = "FZ-SC5M2";
                     break;
+                case "2044 x 2448":
+                    if (IsGreyScale)
+                        camtype = "FZ-S5M2";
+                    else
+                        camtype = "FZ-SC5M2";
+                    break;
+
                 case "2448 x 2048":
                     if (IsGreyScale)
                         camtype = "FH-SMX05/FHV7■-M050/FZ-S5M3";
                     else
                         camtype = "FH-SCX05/FHV7■-C050/FZ-SC5M3";
                     break;
+                case "2048 x 2448":
+                    if (IsGreyScale)
+                        camtype = "FH-SMX05/FHV7■-M050/FZ-S5M3";
+                    else
+                        camtype = "FH-SCX05/FHV7■-C050/FZ-SC5M3";
+                    break;
+
                 case "2592 x 1944":
                     if (IsGreyScale)
                         camtype = "FH-SM05R";
                     else
                         camtype = "FH-SC05R";
                     break;
+                case "1944 x 2592":
+                    if (IsGreyScale)
+                        camtype = "FH-SM05R";
+                    else
+                        camtype = "FH-SC05R";
+                    break;
+
                 case "3072 x 2048":
                     if (IsGreyScale)
                         camtype = "FHV7■-M063R";
                     else
                         camtype = "FHV7■-C063R";
                     break;
+                case "2048 x 3072":
+                    if (IsGreyScale)
+                        camtype = "FHV7■-M063R";
+                    else
+                        camtype = "FHV7■-C063R";
+                    break;
+
                 case "4000 x 3000":
                     if (IsGreyScale)
                         camtype = "FHV7■-M120R";
                     else
                         camtype = "FHV7■-C120R";
                     break;
+                case "3000 x 4000":
+                    if (IsGreyScale)
+                        camtype = "FHV7■-M120R";
+                    else
+                        camtype = "FHV7■-C120R";
+                    break;
+
                 case "4084 x 3072":
                     if (IsGreyScale)
                         camtype = "FH-SM12";
                     else
                         camtype = "FH-SC12";
                     break;
+                case "3072 x 4084":
+                    if (IsGreyScale)
+                        camtype = "FH-SM12";
+                    else
+                        camtype = "FH-SC12";
+                    break;
+
                 case "4092 x 3000":
                     if (IsGreyScale)
                         camtype = "FH-SMX12";
                     else
                         camtype = "FH-SCX12";
                     break;
+                case "3000 x 4092":
+                    if (IsGreyScale)
+                        camtype = "FH-SMX12";
+                    else
+                        camtype = "FH-SCX12";
+                    break;
+
                 case "5544 x 3692":
                     if (IsGreyScale)
                         camtype = "FH-SM21R";
                     else
                         camtype = "FH-SC21R";
                     break;
+                case "3692 x 5544":
+                    if (IsGreyScale)
+                        camtype = "FH-SM21R";
+                    else
+                        camtype = "FH-SC21R";
+                    break;
+
             }
             return camtype;
         }
