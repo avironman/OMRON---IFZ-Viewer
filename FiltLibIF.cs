@@ -558,8 +558,20 @@ namespace OMRON_IFZ_Viewer
 			{
 				if (mAGETYPE != IMAGE_TYPE.IFZ)
 				{
-					goto Label2;
-				}
+                    //goto Label2;
+
+                    if (mAGETYPE == IMAGE_TYPE.JPG || mAGETYPE == IMAGE_TYPE.TIF)
+                    {
+                        imageFileInfo.cam_dispatch = 1;
+                        return imageFileInfo;
+                    }
+                    else
+                    {
+                        imageFileInfo.cam_dispatch = 0;
+                        return imageFileInfo;
+                    }
+                }
+
 				try
 				{
 					fileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
@@ -603,19 +615,11 @@ namespace OMRON_IFZ_Viewer
 				imageFileInfo.cam_dispatch = BitConverter.ToInt32(numArray, 0);
 				return imageFileInfo;
 			}
-			imageFileInfo.cam_dispatch = 1;
-			return imageFileInfo;
-		Label2:
-			if (mAGETYPE == IMAGE_TYPE.JPG || mAGETYPE == IMAGE_TYPE.TIF)
-			{
-				imageFileInfo.cam_dispatch = 1;
-				return imageFileInfo;
-			}
-			else
-			{
-				imageFileInfo.cam_dispatch = 0;
-				return imageFileInfo;
-			}
+			
+			// unreachable code
+			// imageFileInfo.cam_dispatch = 1;
+			// return imageFileInfo;
+			//Label2:	//no need
 		}
 
 		public static IMAGE_TYPE GetImageType(string filename)
@@ -770,14 +774,22 @@ namespace OMRON_IFZ_Viewer
 						return false;
 					}
 					bayerMaster = new FiltLibIF.BayerMaster();
-					FiltLibIF.MakeByrData(FileName, ref bayerMaster);
+					bool flag = FiltLibIF.MakeByrData(FileName, ref bayerMaster);
+					if (!flag) 
+					{
+						return false; 
+					}
 					FiltLibIF.ByrtoBmp(bayerMaster, out bitmap, imageno);
 				}
 			}
 			else if (mAGETYPE == IMAGE_TYPE.IFZ)
 			{
 				bayerMaster = new FiltLibIF.BayerMaster();
-				FiltLibIF.MakeByrData(FileName, ref bayerMaster);
+				bool flag = FiltLibIF.MakeByrData(FileName, ref bayerMaster);
+				if (!flag)
+				{
+					return false;
+				}
 				FiltLibIF.ByrtoBmp(bayerMaster, out bitmap, imageno);
 			}
 			else if (mAGETYPE == IMAGE_TYPE.JPG)
@@ -829,10 +841,17 @@ namespace OMRON_IFZ_Viewer
 			bool flag = false;
 			FileStream fileStream = null;
 			ImageFileInfo imageFileInfo = FiltLibIF.GetImageFileInfo(filename);
+			
 			if (imageFileInfo.type == IMAGE_TYPE.UN_KNOWN)
-			{ 
-				throw new ApplicationException("Invalid IFZ file!");
-			}
+			{
+				//throw new ApplicationException();
+
+				//no need to throw exception
+				//just correctly return false & check value in Form_DisplayImage
+				//error message popup should be done in Forms
+				return false;
+            }
+
 			try
 			{
 				try
