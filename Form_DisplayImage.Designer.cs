@@ -116,7 +116,6 @@ namespace OMRON_IFZ_Viewer
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1396, 46);
             this.pnlHeader.TabIndex = 5;
-            this.pnlHeader.Click += new System.EventHandler(this.pnlHeader_DoubleClick);
             this.pnlHeader.DoubleClick += new System.EventHandler(this.pnlHeader_DoubleClick);
             this.pnlHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
             this.pnlHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseMove);
@@ -124,6 +123,7 @@ namespace OMRON_IFZ_Viewer
             // 
             // pnlImageMgmt
             // 
+            this.pnlImageMgmt.BackColor = System.Drawing.Color.Transparent;
             this.pnlImageMgmt.Controls.Add(this.btnInfo);
             this.pnlImageMgmt.Controls.Add(this.btnFlipUD);
             this.pnlImageMgmt.Controls.Add(this.btnFlipLR);
@@ -132,7 +132,7 @@ namespace OMRON_IFZ_Viewer
             this.pnlImageMgmt.Controls.Add(this.btnTrash);
             this.pnlImageMgmt.Controls.Add(this.btnRotate);
             this.pnlImageMgmt.Controls.Add(this.btnFolder);
-            this.pnlImageMgmt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlImageMgmt.ForeColor = System.Drawing.SystemColors.Control;
             this.pnlImageMgmt.Location = new System.Drawing.Point(544, 0);
             this.pnlImageMgmt.Name = "pnlImageMgmt";
             this.pnlImageMgmt.Size = new System.Drawing.Size(372, 46);

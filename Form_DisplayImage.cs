@@ -268,7 +268,12 @@ namespace OMRON_IFZ_Viewer
                         bmp = null;
                     }
 
+                    //Reset camera & image numbers.
+                    camnb = 0;
+                    currentImage = 0;
+
                     MessageBox.Show("Error: IFZ file cannot be read!");
+                    
                 }
                 else 
                 {
@@ -283,6 +288,11 @@ namespace OMRON_IFZ_Viewer
                             bmp.Dispose();
                             bmp = null;
                         }
+
+                        //Reset camera & image numbers.
+                        camnb = 0;
+                        currentImage = 0;
+
                         MessageBox.Show("Error: Camera number should be positive!");
                     }
                     else
@@ -326,7 +336,7 @@ namespace OMRON_IFZ_Viewer
             }
             catch (Exception ex)
             {
-                //On error - remove previously loaded image
+                //on error - remove previously loaded image
                 if (bmp != null)
                 {
                     bmp.Dispose();
@@ -423,7 +433,7 @@ namespace OMRON_IFZ_Viewer
                     //Kill BackgroundWorker to avoid problems
                     KillBGW();
 
-                    //Retrieve the first image from the directory
+                    //We retrieve the first image from the directory
                     string fName = form_EmptyFolder.ReturnValue;
                     dispImageDir = System.IO.Path.GetDirectoryName(fName);
                     nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
@@ -519,6 +529,7 @@ namespace OMRON_IFZ_Viewer
                 btnReduce.Visible = false;
             }
             ZoomManagment();
+            PanelImageMgmtCenter();
             pictureBox1.Refresh();
         }
         
@@ -562,15 +573,18 @@ namespace OMRON_IFZ_Viewer
                 g.TranslateTransform(translateX, translateY);
             }
 
-            //Drawback the bitmap to the transformed decive context
+            // Drawback the bitmap to the transformed decive context
 
-            //Apply double buffering (Draw to a bitmap first and then draw to picturebox) if
+            // Apply double buffering (Draw to a bitmap first and then draw to picturebox) if
             // using large image and experience flickering
+
+            int borderMargin = 50;  //margin for Next and Previous buttons/images
 
             try
             {
                 g.DrawImage(bmp, 0, 0);
 
+                //management of the display of the Next and Previous buttons
                 //gestion de l'affichage des boutons Next et Previous
                 if (isMouseOverRight && !isNextVisible)
                 {
@@ -587,7 +601,7 @@ namespace OMRON_IFZ_Viewer
                     g.DrawImage(
                         imagette,
                         new PointF(
-                            (pictureBox1.Width - 50) / zoomFac - curImageX,
+                            (pictureBox1.Width - borderMargin) / zoomFac - curImageX,
                             (pictureBox1.Height - Properties.Resources.Next.Height) / 2.0f / zoomFac - curImageY)
                         );
 
@@ -597,6 +611,7 @@ namespace OMRON_IFZ_Viewer
                     isNextVisible = false;
 
                 }
+
                 if (isMouseOverLeft && !isPreviousVisible)
                 {
                     isPreviousVisible = true;
@@ -611,7 +626,7 @@ namespace OMRON_IFZ_Viewer
 
                     g.DrawImage(
                         imagette,
-                        new PointF((80 - Properties.Resources.Previous.Width) / zoomFac - curImageX,
+                        new PointF((borderMargin - Properties.Resources.Previous.Width) / zoomFac - curImageX,
                         (pictureBox1.Height - Properties.Resources.Next.Height) / 2.0f / zoomFac - curImageY)
                         );
 
@@ -1405,7 +1420,9 @@ namespace OMRON_IFZ_Viewer
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string FileName = openFileDialog1.FileName; //on récupère la première image du répertoire
+                //we retrieve the first image from the directory
+                //on récupère la première image du répertoire
+                string FileName = openFileDialog1.FileName; 
                 if (System.IO.Path.GetDirectoryName(openFileDialog1.FileName) != dispImageDir)
                 {
                     //btnRibbon.Enabled = false;
@@ -1420,6 +1437,7 @@ namespace OMRON_IFZ_Viewer
                     LoadImage(FileName);
 
                     thumbnailsCreated = false;
+                    listByrImgView.Visible = false; //hide opened Ribbon
 
                     Properties.Settings.Default.LastDir = dispImageDir;
                     zoomMode = ZoomMode.Scale;
@@ -2027,6 +2045,25 @@ namespace OMRON_IFZ_Viewer
             None = 5
         }
 
+        /// <summary>
+        /// Set Image panel menu with buttons in the middle of the header.
+        /// Limitation from the left side: no leftier than mainBtn + lblFileName + lblFileNb.
+        /// </summary>
+        public void PanelImageMgmtCenter()
+        {
+            int headerWidthCenter = pnlHeader.Width / 2;
+            int leftLimit = lblFileNb.Location.X + lblFileNb.Width; //the most right element from left controls
+
+            int panelImageLocationX = headerWidthCenter - (pnlImageMgmt.Width / 2);
+
+            //Check that we don't go over bnt + filename + file numbers (XX/YY) labels.
+            if (panelImageLocationX < leftLimit)
+            {
+                panelImageLocationX = leftLimit;
+            }
+
+            pnlImageMgmt.Location = new Point(panelImageLocationX, pnlImageMgmt.Location.Y);
+        }
 
         #region //Resize
 
