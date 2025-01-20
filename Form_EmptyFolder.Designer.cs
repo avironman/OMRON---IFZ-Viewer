@@ -1,6 +1,6 @@
 ﻿namespace OMRON_IFZ_Viewer
 {
-    partial class Form_EmpryFolder
+    partial class Form_EmptyFolder
     {
         /// <summary>
         /// Required designer variable.
@@ -67,6 +67,7 @@
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "      Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.UseMnemonic = false;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -91,7 +92,7 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Form_EmpryFolder
+            // Form_EmptyFolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -102,7 +103,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblSubtitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form_EmpryFolder";
+            this.Name = "Form_EmptyFolder";
             this.ResumeLayout(false);
 
         }

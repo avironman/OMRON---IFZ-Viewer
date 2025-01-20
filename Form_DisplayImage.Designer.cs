@@ -116,7 +116,8 @@ namespace OMRON_IFZ_Viewer
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1396, 46);
             this.pnlHeader.TabIndex = 5;
-            this.pnlHeader.DoubleClick += new System.EventHandler(this.panel1_DoubleClick);
+            this.pnlHeader.Click += new System.EventHandler(this.pnlHeader_DoubleClick);
+            this.pnlHeader.DoubleClick += new System.EventHandler(this.pnlHeader_DoubleClick);
             this.pnlHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
             this.pnlHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseMove);
             this.pnlHeader.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseUp);
@@ -286,6 +287,7 @@ namespace OMRON_IFZ_Viewer
             this.btnMain.Size = new System.Drawing.Size(46, 46);
             this.btnMain.TabIndex = 8;
             this.btnMain.UseVisualStyleBackColor = false;
+            this.btnMain.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // pnlControlBox
             // 

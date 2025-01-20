@@ -141,12 +141,12 @@ namespace OMRON_IFZ_Viewer
             FileName = "";
             if (!Directory.Exists(dispImageDir) || Directory.GetFiles(dispImageDir, "*.ifz").Length == 0)
             {
-                Form_EmpryFolder form_EmpryFolder = new Form_EmpryFolder();
-                form_EmpryFolder.StartPosition = FormStartPosition.CenterScreen;
-                DialogResult res = form_EmpryFolder.ShowDialog();
+                Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
+                form_EmptyFolder.StartPosition = FormStartPosition.CenterScreen;
+                DialogResult res = form_EmptyFolder.ShowDialog();
                 if (res == DialogResult.OK)
                 {
-                    FileName = form_EmpryFolder.ReturnValue;
+                    FileName = form_EmptyFolder.ReturnValue;
                     dispImageDir = System.IO.Path.GetDirectoryName(FileName);
                 }
                 else
@@ -414,16 +414,17 @@ namespace OMRON_IFZ_Viewer
 
             if (!Directory.Exists(dispImageDir) || Directory.GetFiles(dispImageDir, "*.ifz").Length == 0)
             {
-                Form_EmpryFolder form_EmpryFolder = new Form_EmpryFolder();
-                form_EmpryFolder.InitValue = dispImageDir;
-                form_EmpryFolder.StartPosition = FormStartPosition.CenterScreen;
+                Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
+                form_EmptyFolder.InitValue = dispImageDir;
+                form_EmptyFolder.StartPosition = FormStartPosition.CenterScreen;
 
-                if (form_EmpryFolder.ShowDialog() == DialogResult.OK)
+                if (form_EmptyFolder.ShowDialog() == DialogResult.OK)
                 {
                     //Kill BackgroundWorker to avoid problems
                     KillBGW();
 
-                    string fName = form_EmpryFolder.ReturnValue; //on récupère la première image du répertoire
+                    //Retrieve the first image from the directory
+                    string fName = form_EmptyFolder.ReturnValue;
                     dispImageDir = System.IO.Path.GetDirectoryName(fName);
                     nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
                     currentFile = Array.IndexOf(Directory.GetFiles(dispImageDir, "*.ifz"), fName);
@@ -436,6 +437,7 @@ namespace OMRON_IFZ_Viewer
                 }
                 else
                 {
+                    //If the user closes the dialog box, we exit cleanly.
                     //Si l'utilisateur ferme la boite de dialogue, on quitte proprement
                     if (System.Windows.Forms.Application.MessageLoop)
                     {
@@ -1140,8 +1142,8 @@ namespace OMRON_IFZ_Viewer
             else
                 Cursor = Cursors.Default;
 
-            Activate();
-            pictureBox1.Focus();
+            //Activate();   //don't activate a form if mouse is just over (enter/exit) the form
+            //pictureBox1.Focus();
         }
 
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
@@ -1183,14 +1185,14 @@ namespace OMRON_IFZ_Viewer
         }
         #endregion
 
-        private void panel1_DoubleClick(object sender, EventArgs e)
+        /// <summary>
+        /// Double click on Header Panel will maximize the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pnlHeader_DoubleClick(object sender, EventArgs e)
         {
-            pnlHeader.Visible = false;
-            pnlFooter.Visible = false;
-            this.TopMost = true;
-            this.WindowState = FormWindowState.Maximized;
-            pictureBox1.Focus();//important de donner le Focus, cela permet de capturer la touche echap pour quitter le plein ecran.
-            ZoomManagment();
+            SetMainWindowFullScreen();
         }
 
         #region //Button events
@@ -1226,13 +1228,24 @@ namespace OMRON_IFZ_Viewer
 
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
+            SetMainWindowFullScreen();
+        }
+
+        /// <summary>
+        /// Make main window enlarge in fullscreen mode.
+        /// From button click or double click on the Header panel.
+        /// </summary>
+        private void SetMainWindowFullScreen()
+        {
             pnlHeader.Visible = false;
             pnlFooter.Visible = false;
             this.TopMost = true;
             this.WindowState = FormWindowState.Maximized;
 
+            //important to give the Focus, this allows to capture the escape key to exit full screen.
+            //important de donner le Focus, cela permet de capturer la touche echap pour quitter le plein ecran.
+            pictureBox1.Focus();
             ZoomManagment();
-            pictureBox1.Focus();//important de donner le Focus, cela permet de capturer la touche echap pour quitter le plein ecran.
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -1248,6 +1261,7 @@ namespace OMRON_IFZ_Viewer
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            //we close the backgroundworker if it is still open.
             //on ferme le backgroundworker s'il est toujours ouvert.
             if (backgroundWorker1.IsBusy)
             {
@@ -1308,9 +1322,9 @@ namespace OMRON_IFZ_Viewer
                 }
                 else
                 {
-                    Form_EmpryFolder form_EmpryFolder = new Form_EmpryFolder();
-                    form_EmpryFolder.StartPosition = FormStartPosition.CenterParent;
-                    DialogResult = form_EmpryFolder.ShowDialog();
+                    Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
+                    form_EmptyFolder.StartPosition = FormStartPosition.CenterParent;
+                    DialogResult = form_EmptyFolder.ShowDialog();
                     if (DialogResult == DialogResult.OK)
                         btnFolder.PerformClick();
                     else
@@ -1651,8 +1665,11 @@ namespace OMRON_IFZ_Viewer
             Bitmap bitmap = null;
             string[] files = Directory.GetFiles(this.dispImageDir, "*.ifz");
             int num = 0;
-            for (int i = 0; i < (int)files.Length; i++)
+            int files_length = files.Length;
+
+            for (int i = 0; i < files_length; i++)
             {
+                //Allows to cancel the background worker task and exit this loop
                 //Permet d'annuler la tâche du background worker et de sortir de cette boucle
                 if (worker.CancellationPending)
                 {
@@ -1671,6 +1688,7 @@ namespace OMRON_IFZ_Viewer
                     FiltLibIF.GetImageFileInfo(files[i]);
                     string str = "";
                     string str1 = "";
+
                     for (int j = 0; j < num1; j++)
                     {
                         FiltLibIF.ImageFiletoBitmap(files[i], out bitmap, j, -1, -1);
@@ -1687,7 +1705,7 @@ namespace OMRON_IFZ_Viewer
                         str1 = string.Concat(strArrays);
                         if (bitmap != null)
                         {
-                            worker.ReportProgress((i * 100 / (int)files.Length), new Tuple<Bitmap, int, string, string>(bitmap, num, str, str1));
+                            worker.ReportProgress((i * 100 / files_length), new Tuple<Bitmap, int, string, string>(bitmap, num, str, str1));
                             num++;
                         }
                     }
@@ -1785,7 +1803,9 @@ namespace OMRON_IFZ_Viewer
         private void listByrImgView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.listByrImgView.SelectedItems.Count == 0)
+            {
                 return;
+            }
 
             string str;
             //int num;
@@ -2065,9 +2085,20 @@ namespace OMRON_IFZ_Viewer
         {
             if (onFullScreen | maximized) { return; }
 
-            if (this.Width <= minimumWidth) { this.Width = (minimumWidth + 5); on_MinimumSize = true; }
-            if (this.Height <= minimumHeight) { this.Height = (minimumHeight + 5); on_MinimumSize = true; }
-            if (on_MinimumSize) { stopResizer(); } else { startResizer(); }
+            if (this.Width <= minimumWidth) { 
+                this.Width = (minimumWidth + 5); 
+                on_MinimumSize = true; 
+            }
+            if (this.Height <= minimumHeight) { 
+                this.Height = (minimumHeight + 5); 
+                on_MinimumSize = true; 
+            }
+            if (on_MinimumSize) { 
+                stopResizer(); 
+            } 
+            else { 
+                startResizer(); 
+            }
 
 
             onBorderRight = false;

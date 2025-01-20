@@ -512,7 +512,11 @@ namespace OMRON_IFZ_Viewer
 					{
 						num1 = 1;
 					}
-					if (num1 == 1)
+
+					//Set >=1 instead of previous ==1 because one IFZ file can contain
+					//more than 1 image related to the same camera.
+					//Example: 21mpx ifz with 2 images per Cam0 with diff shutter/gain from Christophe P.
+					if (num1 >= 1)
 					{
 						flag = true;
 					}
@@ -844,12 +848,12 @@ namespace OMRON_IFZ_Viewer
 			
 			if (imageFileInfo.type == IMAGE_TYPE.UN_KNOWN)
 			{
-				//throw new ApplicationException();
+                //throw new ApplicationException("Invalid IFZ file!");
 
-				//no need to throw exception
-				//just correctly return false & check value in Form_DisplayImage
-				//error message popup should be done in Forms
-				return false;
+                //no need to throw exception
+                //just correctly return false & check value in Form_DisplayImage
+                //error message popup should be done in Forms
+                return false;
             }
 
 			try
@@ -990,6 +994,7 @@ namespace OMRON_IFZ_Viewer
 								{
 									byrArray *= 3;
 								}
+
 								if (num2 - 32 == byrArray)
 								{
 									byr.ByrArray[i].data = new byte[byrArray];

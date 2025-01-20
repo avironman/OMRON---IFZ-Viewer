@@ -29,8 +29,8 @@ namespace OMRON_IFZ_Viewer
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.ShowInTaskbar = false;
-            this.TopMost = true; //permet d'avoir cette fenêtre non modale toujours devant.
-           //this.BringToFront();
+            this.TopMost = true; //allows to have this non-modal window always in front.
+                                 //this.BringToFront();
             lblSubtitle.Text = Properties.strings.Confirm_label1;
             lblTitle.Text = Properties.strings.Confirm_label2;
             btnCancel.Text = Properties.strings.Confirm_cancel;

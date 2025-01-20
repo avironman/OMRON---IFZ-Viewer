@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace OMRON_IFZ_Viewer
 {
-    public partial class Form_EmpryFolder : Form
+    public partial class Form_EmptyFolder : Form
     {
         public string ReturnValue { get; set; }
 
@@ -28,7 +28,7 @@ namespace OMRON_IFZ_Viewer
             int nHeightEllipse // height of ellipse
         );
 
-        public Form_EmpryFolder()
+        public Form_EmptyFolder()
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));

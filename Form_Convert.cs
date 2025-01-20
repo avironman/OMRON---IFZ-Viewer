@@ -40,7 +40,7 @@ namespace OMRON_IFZ_Viewer
             InitializeComponent();
             progressBar1.Value = 0;
             nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
-            this.TopMost = true; //permet d'avoir cette fenêtre non modale toujours devant.
+            this.TopMost = true; //allows to have this non-modal window always in front.
             //this.BringToFront();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.ShowInTaskbar = false;
@@ -140,7 +140,9 @@ namespace OMRON_IFZ_Viewer
             Bitmap bitmap = null;
             string[] files = Directory.GetFiles(this.dispImageDir, "*.ifz");
             int num = 0;
-            for (int i = 0; i < (int)files.Length; i++)
+            int files_length = files.Length;
+
+            for (int i = 0; i < files_length; i++)
             {
                 //Allows to cancel the background worker task and exit this loop.
                 //Permet d'annuler la tâche du background worker et de sortir de cette boucle.
@@ -177,7 +179,7 @@ namespace OMRON_IFZ_Viewer
 
 
                             FiltLibIF.SavePicture(bitmap, dispImageDir+"\\"+FileName, fmt, 100);
-                            worker.ReportProgress((i * 100 / (int)files.Length),FileName);
+                            worker.ReportProgress((i * 100 / files_length),FileName);
                             num++;
                         }
                     }
