@@ -958,40 +958,35 @@ namespace OMRON_IFZ_Viewer
                                             //    fmt = ImageFormat.Jpeg;
                                             //    break;
                                     }
-                                    FiltLibIF.savepicture((Bitmap)bmp, saveFileDialog1.FileName, fmt, 100);
+                                    bool saveFlag = FiltLibIF.SavePicture((Bitmap)bmp, saveFileDialog1.FileName, fmt, 100);
                                 }
                             }
                             break;
                         case "Print":
-                            using (Bitmap bmp2 = new Bitmap(bmp))
-                            {
-                                using (Bitmap newImage = new Bitmap(bmp2))
-                                {
-                                    newImage.Save(@"D:\temp.jpg", ImageFormat.Jpeg);
-                                }
-                            }
-                            this.WindowState = FormWindowState.Minimized;
-                            //pictureBox1.Image.Save(@"C:\temp.bmp");
-                            var p = new Process();
-                            p.StartInfo.FileName = @"D:\temp.jpg";
-                            p.StartInfo.Verb = "Print";
-                            p.Start();
+
+                            //Print02NewProcessStart(); //original print code
+                            Print01PhotosWizard();
                             break;
+
                         case "Delete":
                             //btnTrash.PerformClick();
                             DeleteFile();
                             break;
+
                         case "Convert":
                             Form_Convert frmcvrt = new Form_Convert(dispImageDir);
                             //frmcvrt.StartPosition = FormStartPosition.Manual;
                             frmcvrt.ShowDialog();
-
                             break;
-                        default: break;
+
+                        default:
+                            break;
                     }
                 }
                 else
+                {
                     this.BringToFront();
+                }
             }
 
         }
@@ -1426,6 +1421,14 @@ namespace OMRON_IFZ_Viewer
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            Print01PhotosWizard();
+        }
+
+        /// <summary>
+        /// Printing image, approach 01 with OS printing wizard
+        /// </summary>
+        private void Print01PhotosWizard()
+        {
             //we cannot print what was not loaded correctly
             if (bmp == null)
             {
@@ -1441,19 +1444,57 @@ namespace OMRON_IFZ_Viewer
             int num1 = bayerMaster.camno;
             bayerMaster.ByrArray = null;
             GC.KeepAlive(bayerMaster);
-            FiltLibIF.GetImageFileInfo(FileName);
 
+            FiltLibIF.GetImageFileInfo(FileName);
             FiltLibIF.ImageFiletoBitmap(FileName, out bitmap, currentImage, -1, -1);
 
             if (bitmap != null)
             {
                 TempFileName = Path.Combine(Path.GetTempPath(), System.IO.Path.GetFileNameWithoutExtension(FileName) + ".bmp");
-                FiltLibIF.savepicture(bitmap, TempFileName, fmt, 100);
+                bool saveFlag = FiltLibIF.SavePicture(bitmap, TempFileName, fmt, 100);
+
+                //TODO: check return from SavePicture()
+                if (saveFlag)
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                    //wait for remote printer to connect & check everything
+                    System.Threading.Thread.Sleep(2000);
+                    ShellHelper.PrintPhotosWizard(TempFileName);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Error: Cannot print temp file!");
+                return;
+            }
+            
+        }
+
+        /// <summary>
+        /// Printing image, approach 02 with new Process
+        /// </summary>
+        private void Print02NewProcessStart()
+        {
+            string strUserPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string printFilePath = strUserPath + "\\temp.jpg";
+
+            using (Bitmap bmp2 = new Bitmap(bmp))
+            {
+                using (Bitmap newImage = new Bitmap(bmp2))
+                {
+                    newImage.Save(printFilePath, ImageFormat.Jpeg);
+                }
             }
             this.WindowState = FormWindowState.Minimized;
+            //pictureBox1.Image.Save(@"C:\temp.bmp");
+            var p = new Process();
+            p.StartInfo.FileName = printFilePath;
+            p.StartInfo.Verb = "Print";
+            p.Start();
 
-            ShellHelper.PrintPhotosWizard(TempFileName);
-
+            //wait for remote printer to connect & check everything
+            System.Threading.Thread.Sleep(2000);
         }
 
         private void btnRotate_Click(object sender, EventArgs e)
@@ -1581,7 +1622,6 @@ namespace OMRON_IFZ_Viewer
 
         }
         #endregion
-
 
         #region //Filling ribbon area with background worker
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

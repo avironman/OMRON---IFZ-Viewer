@@ -1026,7 +1026,7 @@ namespace OMRON_IFZ_Viewer
 			return flag;
 		}
 
-		public static bool savepicture(Bitmap bmp, string filename, ImageFormat fmt)
+		public static bool SavePicture(Bitmap bmp, string filename, ImageFormat fmt)
 		{
 			Bitmap bitmap = new Bitmap(bmp.Width, bmp.Height, bmp.PixelFormat);
 			Graphics.FromImage(bitmap).DrawImage(bmp, 0, 0);
@@ -1034,12 +1034,13 @@ namespace OMRON_IFZ_Viewer
 			return true;
 		}
 
-		public static bool savepicture(Bitmap bmp, string filename, ImageFormat fmt, int ratio)
+		public static bool SavePicture(Bitmap bmp, string filename, ImageFormat fmt, int ratio)
 		{
 			bool flag = true;
 			Bitmap bitmap = null;
 			int width = bmp.Width * ratio / 100;
 			int height = bmp.Height * ratio / 100;
+
 			if (bmp.PixelFormat != PixelFormat.Format8bppIndexed)
 			{
 				bitmap = new Bitmap(width, height, bmp.PixelFormat);
@@ -1049,7 +1050,7 @@ namespace OMRON_IFZ_Viewer
 			}
 			else
 			{
-				FiltLibIF.ScaleChangeForGray(bmp, out bitmap, ratio);
+				bool scaleChanged = FiltLibIF.ScaleChangeForGray(bmp, out bitmap, ratio);
 				bitmap.Save(filename, fmt);
 			}
 			return flag;
@@ -1069,6 +1070,7 @@ namespace OMRON_IFZ_Viewer
 			int num = Math.Abs(bitmapDatum.Stride);
 			int num1 = Math.Abs(bitmapDatum1.Stride);
 			double num2 = 100 / (double)ratio;
+
 			for (int i = 0; i < height; i++)
 			{
 				for (int j = 0; j < num; j++)
@@ -1077,14 +1079,17 @@ namespace OMRON_IFZ_Viewer
 					*(scan0 + i * num + j) = *(numPointer + num3 + (int)((double)j * num2));
 				}
 			}
+
 			destBmp.UnlockBits(bitmapDatum);
 			oriBmp.UnlockBits(bitmapDatum1);
 			ColorPalette palette = destBmp.Palette;
+			
 			for (int k = 0; k < (int)palette.Entries.Length; k++)
 			{
 				Color color = Color.FromArgb(k, k, k);
 				palette.Entries[k] = color;
 			}
+			
 			destBmp.Palette = palette;
 			return true;
 		}

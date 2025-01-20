@@ -79,7 +79,8 @@ namespace OMRON_IFZ_Viewer
             }
         }
 
-        #region // Déplacement de la fenêtre
+        #region // Moving the window
+        // Déplacement de la fenêtre
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -121,6 +122,7 @@ namespace OMRON_IFZ_Viewer
             {
                 progressBar1.Value = 100;
             }));
+
             label1.Invoke(new MethodInvoker(delegate
             {
 
@@ -140,15 +142,16 @@ namespace OMRON_IFZ_Viewer
             int num = 0;
             for (int i = 0; i < (int)files.Length; i++)
             {
-                //Permet d'annuler la tâche du background worker et de sortir de cette boucle
+                //Allows to cancel the background worker task and exit this loop.
+                //Permet d'annuler la tâche du background worker et de sortir de cette boucle.
                 if (worker.CancellationPending)
                 {
                     break;
                 }
 
-                FileName = "a construire";
+                //FileName = "a construire";
+                FileName = "to_build";  //no spaces, ASCII only
 
-               
 
                 if (FiltLibIF.CheckCaptures(files[i]))
                 {
@@ -173,7 +176,7 @@ namespace OMRON_IFZ_Viewer
                                 FileName = System.IO.Path.GetFileNameWithoutExtension(files[i]) +"_"+j.ToString()+ fileExtension;
 
 
-                            FiltLibIF.savepicture(bitmap, dispImageDir+"\\"+FileName, fmt, 100);
+                            FiltLibIF.SavePicture(bitmap, dispImageDir+"\\"+FileName, fmt, 100);
                             worker.ReportProgress((i * 100 / (int)files.Length),FileName);
                             num++;
                         }
@@ -208,6 +211,7 @@ namespace OMRON_IFZ_Viewer
         }
         public void KillBGW()
         {
+            //We stop the BackGroundWorker if it is still indexing a folder to avoid concurrent accesses.
             //On arrête le BackGroundWorker s'il est toujours en train d'indexer un dossier pour eviter les accès concurrents
             if (backgroundWorker1.IsBusy)
             {
