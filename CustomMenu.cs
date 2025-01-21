@@ -39,20 +39,17 @@ namespace OMRON_IFZ_Viewer
             this.ShowInTaskbar = false;
             this.DialogResult = DialogResult.Cancel;
 
+            btnSaveas.Text = "       " + Properties.strings.CM_Saveas;
+            btnPrint.Text = "       " + Properties.strings.CM_Print;
             btnCopy.Text = "       "+Properties.strings.CM_Copy;
             btnOpenwith.Text = "       " + Properties.strings.CM_Openwith;
-            btnPrint.Text = "       " + Properties.strings.CM_Print;
-            btnSaveas.Text = "       " + Properties.strings.CM_Saveas;
             btnOpenFolder.Text = "       " + Properties.strings.CM_OpenFolder;
             btnCopyPath.Text = "       " + Properties.strings.CM_CopyPath;
+            btnBatchConvert.Text = "       " + Properties.strings.CM_BatchConvert;
+            //--- --- ---
             btnErase.Text = "       " + Properties.strings.CM_Erase;
         }
-        public static void ShowOpenWithDialog(string path)
-        {
-            var args = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "shell32.dll");
-            args += ",OpenAs_RunDLL " + path;
-            Process.Start("rundll32.exe", args);
-        }
+        
         private const int CS_DROPSHADOW = 0x00020000;
         protected override CreateParams CreateParams
         {
@@ -64,38 +61,11 @@ namespace OMRON_IFZ_Viewer
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.ReturnValue = "Print";
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.ReturnValue = "SaveAs";
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.ReturnValue = "Copy";
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string FileName = ((Form_DisplayImage)this.Owner).dispImageDir + "\\" + ((Form_DisplayImage)this.Owner).lblName.Text;
-            ShowOpenWithDialog(FileName);
-            this.Close();
-        }
-
         private void handleDeactivate()
-        {            
-            this.Close();           
+        {
+            this.Close();
         }
+
         protected override void WndProc(ref Message m)
         {
             const UInt32 WM_NCACTIVATE = 0x0086;
@@ -110,22 +80,46 @@ namespace OMRON_IFZ_Viewer
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        // --- --- --- _Click button functions from menu --- --- ---
+
+        private void btnSaveAs_Click(object sender, EventArgs e)
         {
-            string FileName = Path.GetDirectoryName(((Form_DisplayImage)this.Owner).dispImageDir + "\\" + ((Form_DisplayImage)this.Owner).lblName.Text);
-            Process.Start(FileName);
+            this.ReturnValue = "SaveAs";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "Print";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "Copy";
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void btnCopyPath_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Clipboard.SetText(((Form_DisplayImage)this.Owner).dispImageDir + "\\" + ((Form_DisplayImage)this.Owner).lblName.Text);
+            this.ReturnValue = "CopyPath";
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void btnErase_Click(object sender, EventArgs e)
+        private void btnOpenWith_Click(object sender, EventArgs e)
         {
-            this.ReturnValue = "Delete";
+            this.ReturnValue = "OpenWith";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnOpenInExplorer_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "OpenInExplorer";
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -133,6 +127,13 @@ namespace OMRON_IFZ_Viewer
         private void btnBatchConvert_Click(object sender, EventArgs e)
         {
             this.ReturnValue = "Convert";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnErase_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "Delete";
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

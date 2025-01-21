@@ -270,4 +270,7 @@
   <data name="tooltip_info" xml:space="preserve">
     <value>Information (I, Ctrl+I)</value>
   </data>
+  <data name="CM_BatchConvert" xml:space="preserve">
+    <value>Batch convert</value>
+  </data>
 </root>

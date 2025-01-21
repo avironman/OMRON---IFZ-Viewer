@@ -43,9 +43,9 @@
             // 
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(12, 251);
+            this.label1.Location = new System.Drawing.Point(12, 265);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(285, 1);
+            this.label1.Size = new System.Drawing.Size(285, 2);
             this.label1.TabIndex = 6;
             // 
             // btnBatchConvert
@@ -56,11 +56,11 @@
             this.btnBatchConvert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnBatchConvert.Image = global::OMRON_IFZ_Viewer.Properties.Resources.icons8_batch_20;
             this.btnBatchConvert.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnBatchConvert.Location = new System.Drawing.Point(12, 216);
+            this.btnBatchConvert.Location = new System.Drawing.Point(12, 231);
             this.btnBatchConvert.Name = "btnBatchConvert";
             this.btnBatchConvert.Size = new System.Drawing.Size(293, 31);
             this.btnBatchConvert.TabIndex = 8;
-            this.btnBatchConvert.Text = "       Batch convert";
+            this.btnBatchConvert.Text = "      Batch convert";
             this.btnBatchConvert.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBatchConvert.UseVisualStyleBackColor = true;
             this.btnBatchConvert.Click += new System.EventHandler(this.btnBatchConvert_Click);
@@ -73,7 +73,7 @@
             this.btnErase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(164)))));
             this.btnErase.Image = global::OMRON_IFZ_Viewer.Properties.Resources.RedTrash;
             this.btnErase.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnErase.Location = new System.Drawing.Point(12, 255);
+            this.btnErase.Location = new System.Drawing.Point(12, 270);
             this.btnErase.Name = "btnErase";
             this.btnErase.Size = new System.Drawing.Size(293, 31);
             this.btnErase.TabIndex = 7;
@@ -90,11 +90,11 @@
             this.btnCopyPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnCopyPath.Image = global::OMRON_IFZ_Viewer.Properties.Resources.CopyPath;
             this.btnCopyPath.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnCopyPath.Location = new System.Drawing.Point(12, 180);
+            this.btnCopyPath.Location = new System.Drawing.Point(12, 120);
             this.btnCopyPath.Name = "btnCopyPath";
             this.btnCopyPath.Size = new System.Drawing.Size(293, 31);
             this.btnCopyPath.TabIndex = 5;
-            this.btnCopyPath.Text = "       Copy Path";
+            this.btnCopyPath.Text = "      Copy Path";
             this.btnCopyPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCopyPath.UseVisualStyleBackColor = true;
             this.btnCopyPath.Click += new System.EventHandler(this.btnCopyPath_Click);
@@ -107,14 +107,14 @@
             this.btnOpenFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnOpenFolder.Image = global::OMRON_IFZ_Viewer.Properties.Resources.OpenFolder;
             this.btnOpenFolder.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnOpenFolder.Location = new System.Drawing.Point(12, 148);
+            this.btnOpenFolder.Location = new System.Drawing.Point(12, 194);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(293, 31);
             this.btnOpenFolder.TabIndex = 4;
             this.btnOpenFolder.Text = "      Open in explorer";
             this.btnOpenFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenFolder.UseVisualStyleBackColor = true;
-            this.btnOpenFolder.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenInExplorer_Click);
             // 
             // btnOpenwith
             // 
@@ -124,14 +124,14 @@
             this.btnOpenwith.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnOpenwith.Image = global::OMRON_IFZ_Viewer.Properties.Resources.OpenWith;
             this.btnOpenwith.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnOpenwith.Location = new System.Drawing.Point(12, 114);
+            this.btnOpenwith.Location = new System.Drawing.Point(12, 157);
             this.btnOpenwith.Name = "btnOpenwith";
             this.btnOpenwith.Size = new System.Drawing.Size(293, 31);
             this.btnOpenwith.TabIndex = 3;
-            this.btnOpenwith.Text = "     Open with";
+            this.btnOpenwith.Text = "      Open with";
             this.btnOpenwith.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenwith.UseVisualStyleBackColor = true;
-            this.btnOpenwith.Click += new System.EventHandler(this.button4_Click);
+            this.btnOpenwith.Click += new System.EventHandler(this.btnOpenWith_Click);
             // 
             // btnCopy
             // 
@@ -141,14 +141,14 @@
             this.btnCopy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnCopy.Image = global::OMRON_IFZ_Viewer.Properties.Resources.Copy1;
             this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnCopy.Location = new System.Drawing.Point(12, 80);
+            this.btnCopy.Location = new System.Drawing.Point(12, 83);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(293, 31);
             this.btnCopy.TabIndex = 2;
-            this.btnCopy.Text = "     Copy";
+            this.btnCopy.Text = "      Copy";
             this.btnCopy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.button3_Click);
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // btnSaveas
             // 
@@ -158,14 +158,14 @@
             this.btnSaveas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnSaveas.Image = global::OMRON_IFZ_Viewer.Properties.Resources.SaveAs;
             this.btnSaveas.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnSaveas.Location = new System.Drawing.Point(12, 12);
+            this.btnSaveas.Location = new System.Drawing.Point(12, 9);
             this.btnSaveas.Name = "btnSaveas";
             this.btnSaveas.Size = new System.Drawing.Size(293, 31);
             this.btnSaveas.TabIndex = 1;
-            this.btnSaveas.Text = "     Save as";
+            this.btnSaveas.Text = "      Save as";
             this.btnSaveas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSaveas.UseVisualStyleBackColor = true;
-            this.btnSaveas.Click += new System.EventHandler(this.button2_Click);
+            this.btnSaveas.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // btnPrint
             // 
@@ -179,17 +179,17 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(293, 31);
             this.btnPrint.TabIndex = 0;
-            this.btnPrint.Text = "    Print";
+            this.btnPrint.Text = "      Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.button1_Click);
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // CustomMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.ClientSize = new System.Drawing.Size(317, 305);
+            this.ClientSize = new System.Drawing.Size(317, 312);
             this.Controls.Add(this.btnBatchConvert);
             this.Controls.Add(this.btnErase);
             this.Controls.Add(this.label1);

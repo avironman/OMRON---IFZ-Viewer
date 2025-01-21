@@ -61,6 +61,15 @@ namespace OMRON_IFZ_Viewer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Batch convert.
+        /// </summary>
+        internal static string CM_BatchConvert {
+            get {
+                return ResourceManager.GetString("CM_BatchConvert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         internal static string CM_Copy {

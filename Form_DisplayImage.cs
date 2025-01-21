@@ -992,9 +992,7 @@ namespace OMRON_IFZ_Viewer
                     this.BringToFront();
                     switch (menu.ReturnValue)
                     {
-                        case "Copy":
-                            Clipboard.SetImage(bmp);
-                            break;
+
                         case "SaveAs":
 
                             //SaveFileDialog saveFileDialog1 = new SaveFileDialog
@@ -1046,21 +1044,67 @@ namespace OMRON_IFZ_Viewer
                                 }
                             }
                             break;
+
                         case "Print":
 
                             //Print02NewProcessStart(); //original print code
                             Print01PhotosWizard();
                             break;
 
-                        case "Delete":
-                            //btnTrash.PerformClick();
-                            DeleteFile();
+                        case "Copy":
+                            Clipboard.SetImage(bmp);
+                            break;
+
+                        case "CopyPath":
+
+                            System.Windows.Forms.Clipboard.SetText(dispImageDir + "\\" + lblName.Text);
+                            //Here we don't care if the path is correct or not.
+                            break;
+
+                        case "OpenWith":
+
+                            string FileNameTemp = dispImageDir + "\\" + lblName.Text;
+                            if (File.Exists(FileNameTemp))
+                            {
+                                ShowOpenWithDialog(FileNameTemp);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error: Cannot open current file! \r\nCheck filename and folder path!");
+                            }
+
+                            break;
+
+                        case "OpenInExplorer":
+
+                            string FolderNameTemp = Path.GetDirectoryName(dispImageDir + "\\" + lblName.Text);
+                            if (Directory.Exists(FolderNameTemp))
+                            {
+                                Process.Start(FolderNameTemp);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error: folder does not exist! \r\nCheck folder path!");
+                            }
+
                             break;
 
                         case "Convert":
-                            Form_Convert frmcvrt = new Form_Convert(dispImageDir);
-                            //frmcvrt.StartPosition = FormStartPosition.Manual;
-                            frmcvrt.ShowDialog();
+
+                            //Checking if dispImageDir folder exists or notify User.
+                            if (!MissingFolderPopup())
+                            {
+                                Form_Convert frmcvrt = new Form_Convert(dispImageDir);
+                                frmcvrt.ShowDialog();
+                            }
+                            
+                            break;
+
+                        // --- --- ---
+
+                        case "Delete":
+                            //btnTrash.PerformClick();
+                            DeleteFile();
                             break;
 
                         default:
@@ -1073,6 +1117,13 @@ namespace OMRON_IFZ_Viewer
                 }
             }
 
+        }
+
+        public static void ShowOpenWithDialog(string path)
+        {
+            var args = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "shell32.dll");
+            args += ",OpenAs_RunDLL " + path;
+            Process.Start("rundll32.exe", args);
         }
 
         PointF stretched(System.Drawing.Point p0)
@@ -1373,30 +1424,54 @@ namespace OMRON_IFZ_Viewer
             Form_Confirm fConf = new Form_Confirm();
             fConf.StartPosition = FormStartPosition.CenterParent;
             DialogResult = fConf.ShowDialog();
+
             if (DialogResult == DialogResult.OK)
             {
                 string FileName = dispImageDir + @"\" + lblName.Text;
-                File.Delete(FileName);
-                if (Directory.GetFiles(dispImageDir, "*.ifz").Length >= 1)
+                if (File.Exists(FileName))
                 {
-                    if (currentFile != 0)
-                        currentFile -= 1;
+                    File.Delete(FileName);
+                }
 
-                    LoadImage(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
+                if (Directory.Exists(dispImageDir))
+                {
+                    if (Directory.GetFiles(dispImageDir, "*.ifz").Length >= 1)
+                    {
+                        if (currentFile != 0)
+                            currentFile -= 1;
 
+                        LoadImage(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
 
-                    lblName.Text = System.IO.Path.GetFileName(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
-                    lblFileNb.Text = (currentFile + 1).ToString() + "/" + Directory.GetFiles(dispImageDir, "*.ifz").Length.ToString();
+                        lblName.Text = System.IO.Path.GetFileName(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
+                        lblFileNb.Text = (currentFile + 1).ToString() + "/" + Directory.GetFiles(dispImageDir, "*.ifz").Length.ToString();
+                    }
+                    else
+                    {
+                        //Directory does not have any ifz files - ask to open new one.
+                        btnFolder.PerformClick();
+
+                        //Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
+                        //form_EmptyFolder.StartPosition = FormStartPosition.CenterParent;
+                        //DialogResult = form_EmptyFolder.ShowDialog();
+                        //if (DialogResult == DialogResult.OK)
+                        //    btnFolder.PerformClick();
+                        //else
+                        //    btnClose.PerformClick();
+
+                    }
                 }
                 else
                 {
-                    Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
-                    form_EmptyFolder.StartPosition = FormStartPosition.CenterParent;
-                    DialogResult = form_EmptyFolder.ShowDialog();
-                    if (DialogResult == DialogResult.OK)
-                        btnFolder.PerformClick();
-                    else
-                        btnClose.PerformClick();
+                    //Directory does not exist - ask to open new one.
+                    btnFolder.PerformClick();
+
+                    //Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
+                    //form_EmptyFolder.StartPosition = FormStartPosition.CenterParent;
+                    //DialogResult = form_EmptyFolder.ShowDialog();
+                    //if (DialogResult == DialogResult.OK)
+                    //    btnFolder.PerformClick();
+                    //else
+                    //    btnClose.PerformClick();
 
                 }
             }
@@ -1637,17 +1712,19 @@ namespace OMRON_IFZ_Viewer
 
             var c = GetAll(this, typeof(System.Windows.Forms.Button));
 
-            foreach (System.Windows.Forms.Button btn in c)
+            foreach (System.Windows.Forms.Control btn in c)
             {
-                if (btn.Name != "btnClose")
+                if (btn.Name != "btnClose" && (btn is System.Windows.Forms.Button))
                 {
-                    btn.FlatAppearance.MouseOverBackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ButtonBackGroundColor;
+                    (btn as System.Windows.Forms.Button).FlatAppearance.MouseOverBackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ButtonBackGroundColor;
                 }
             }
 
             c = GetAll(this, typeof(System.Windows.Forms.CheckBox));
-            foreach (System.Windows.Forms.CheckBox btn in c)
-                btn.FlatAppearance.MouseOverBackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ButtonBackGroundColor;
+            foreach (System.Windows.Forms.Control chb in c)
+            {
+                (chb as System.Windows.Forms.CheckBox).FlatAppearance.MouseOverBackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ButtonBackGroundColor;
+            }
         }
 
         private void btnFlipLR_Click(object sender, EventArgs e)
@@ -2714,7 +2791,7 @@ namespace OMRON_IFZ_Viewer
         }
 
         /// <summary>
-        /// Check if we are missing folder with images. 
+        /// Check if we are missing "dispImageDir" folder with ifz images. 
         /// Cannot perform 90% of actions withouth it.
         /// Show MessageBox on error and open dialog box for new folder.
         /// </summary>
@@ -2725,6 +2802,30 @@ namespace OMRON_IFZ_Viewer
             {
                 MessageBox.Show("Error: folder is missing or .ifz were not found!");
                 
+                //Reset camera & image numbers.
+                camnb = 0;
+                currentImage = 0;
+
+                btnFolder.PerformClick();
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check if we are missing "custom" folder with ifz images. 
+        /// Cannot perform 90% of actions withouth it.
+        /// Show MessageBox on error and open dialog box for new folder.
+        /// </summary>
+        /// <param name="dispImageDirTemp">Custom user path to folder</param>
+        /// <returns></returns>
+        private bool MissingFolderPopup(string dispImageDirTemp)
+        {
+            if (!Directory.Exists(dispImageDirTemp) || Directory.GetFiles(dispImageDirTemp, "*.ifz").Length == 0)
+            {
+                MessageBox.Show("Error: folder is missing or .ifz were not found!");
+
                 //Reset camera & image numbers.
                 camnb = 0;
                 currentImage = 0;
