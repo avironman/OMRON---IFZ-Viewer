@@ -136,7 +136,7 @@ namespace OMRON_IFZ_Viewer
             this.pnlImageMgmt.Location = new System.Drawing.Point(544, 0);
             this.pnlImageMgmt.Name = "pnlImageMgmt";
             this.pnlImageMgmt.Size = new System.Drawing.Size(372, 46);
-            this.pnlImageMgmt.TabIndex = 10;
+            this.pnlImageMgmt.TabIndex = 6;
             // 
             // btnInfo
             // 
@@ -148,7 +148,7 @@ namespace OMRON_IFZ_Viewer
             this.btnInfo.Location = new System.Drawing.Point(322, 0);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(46, 46);
-            this.btnInfo.TabIndex = 32;
+            this.btnInfo.TabIndex = 17;
             this.btnInfo.UseVisualStyleBackColor = false;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
@@ -162,7 +162,7 @@ namespace OMRON_IFZ_Viewer
             this.btnFlipUD.Location = new System.Drawing.Point(276, 0);
             this.btnFlipUD.Name = "btnFlipUD";
             this.btnFlipUD.Size = new System.Drawing.Size(46, 46);
-            this.btnFlipUD.TabIndex = 31;
+            this.btnFlipUD.TabIndex = 16;
             this.btnFlipUD.UseVisualStyleBackColor = false;
             this.btnFlipUD.Click += new System.EventHandler(this.btnFlipUD_Click);
             // 
@@ -176,7 +176,7 @@ namespace OMRON_IFZ_Viewer
             this.btnFlipLR.Location = new System.Drawing.Point(230, 0);
             this.btnFlipLR.Name = "btnFlipLR";
             this.btnFlipLR.Size = new System.Drawing.Size(46, 46);
-            this.btnFlipLR.TabIndex = 30;
+            this.btnFlipLR.TabIndex = 15;
             this.btnFlipLR.UseVisualStyleBackColor = false;
             this.btnFlipLR.Click += new System.EventHandler(this.btnFlipLR_Click);
             // 
@@ -190,7 +190,7 @@ namespace OMRON_IFZ_Viewer
             this.btnSettings.Location = new System.Drawing.Point(184, 0);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(46, 46);
-            this.btnSettings.TabIndex = 28;
+            this.btnSettings.TabIndex = 14;
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
@@ -204,7 +204,7 @@ namespace OMRON_IFZ_Viewer
             this.btnPrint.Location = new System.Drawing.Point(138, 0);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(46, 46);
-            this.btnPrint.TabIndex = 10;
+            this.btnPrint.TabIndex = 13;
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -218,7 +218,7 @@ namespace OMRON_IFZ_Viewer
             this.btnTrash.Location = new System.Drawing.Point(92, 0);
             this.btnTrash.Name = "btnTrash";
             this.btnTrash.Size = new System.Drawing.Size(46, 46);
-            this.btnTrash.TabIndex = 9;
+            this.btnTrash.TabIndex = 12;
             this.btnTrash.UseVisualStyleBackColor = false;
             this.btnTrash.Click += new System.EventHandler(this.btnTrash_Click);
             // 
@@ -232,7 +232,7 @@ namespace OMRON_IFZ_Viewer
             this.btnRotate.Location = new System.Drawing.Point(46, 0);
             this.btnRotate.Name = "btnRotate";
             this.btnRotate.Size = new System.Drawing.Size(46, 46);
-            this.btnRotate.TabIndex = 29;
+            this.btnRotate.TabIndex = 11;
             this.btnRotate.UseVisualStyleBackColor = false;
             this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
             // 
@@ -246,7 +246,7 @@ namespace OMRON_IFZ_Viewer
             this.btnFolder.Location = new System.Drawing.Point(0, 0);
             this.btnFolder.Name = "btnFolder";
             this.btnFolder.Size = new System.Drawing.Size(46, 46);
-            this.btnFolder.TabIndex = 11;
+            this.btnFolder.TabIndex = 10;
             this.btnFolder.UseVisualStyleBackColor = false;
             this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
             // 
@@ -258,7 +258,7 @@ namespace OMRON_IFZ_Viewer
             this.lblFileNb.Location = new System.Drawing.Point(485, 0);
             this.lblFileNb.Name = "lblFileNb";
             this.lblFileNb.Size = new System.Drawing.Size(59, 46);
-            this.lblFileNb.TabIndex = 11;
+            this.lblFileNb.TabIndex = 2;
             this.lblFileNb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblName
@@ -269,7 +269,7 @@ namespace OMRON_IFZ_Viewer
             this.lblName.Location = new System.Drawing.Point(46, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(439, 46);
-            this.lblName.TabIndex = 9;
+            this.lblName.TabIndex = 1;
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
             this.lblName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseMove);
@@ -285,7 +285,7 @@ namespace OMRON_IFZ_Viewer
             this.btnMain.Location = new System.Drawing.Point(0, 0);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(46, 46);
-            this.btnMain.TabIndex = 8;
+            this.btnMain.TabIndex = 0;
             this.btnMain.UseVisualStyleBackColor = false;
             this.btnMain.Click += new System.EventHandler(this.btnSettings_Click);
             // 
@@ -312,7 +312,7 @@ namespace OMRON_IFZ_Viewer
             this.btnReduce.Location = new System.Drawing.Point(85, 0);
             this.btnReduce.Name = "btnReduce";
             this.btnReduce.Size = new System.Drawing.Size(46, 32);
-            this.btnReduce.TabIndex = 4;
+            this.btnReduce.TabIndex = 31;
             this.btnReduce.UseVisualStyleBackColor = false;
             this.btnReduce.Visible = false;
             this.btnReduce.Click += new System.EventHandler(this.btnReduce_Click);
@@ -328,7 +328,7 @@ namespace OMRON_IFZ_Viewer
             this.btnMinimize.Location = new System.Drawing.Point(36, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(46, 32);
-            this.btnMinimize.TabIndex = 3;
+            this.btnMinimize.TabIndex = 30;
             this.btnMinimize.UseVisualStyleBackColor = false;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             this.btnMinimize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
@@ -343,7 +343,7 @@ namespace OMRON_IFZ_Viewer
             this.btnClose.Location = new System.Drawing.Point(134, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(46, 32);
-            this.btnClose.TabIndex = 1;
+            this.btnClose.TabIndex = 32;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseEnter += new System.EventHandler(this.btnClose_MouseEnter);
@@ -359,7 +359,7 @@ namespace OMRON_IFZ_Viewer
             this.btnMaximize.Location = new System.Drawing.Point(83, 0);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(46, 32);
-            this.btnMaximize.TabIndex = 2;
+            this.btnMaximize.TabIndex = 31;
             this.btnMaximize.UseVisualStyleBackColor = false;
             this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
             // 
@@ -388,7 +388,7 @@ namespace OMRON_IFZ_Viewer
             this.pnlFooter.Location = new System.Drawing.Point(0, 777);
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Size = new System.Drawing.Size(1396, 38);
-            this.pnlFooter.TabIndex = 6;
+            this.pnlFooter.TabIndex = 8;
             this.pnlFooter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
             this.pnlFooter.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseMove);
             this.pnlFooter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseUp);
@@ -403,7 +403,7 @@ namespace OMRON_IFZ_Viewer
             this.cb8.Location = new System.Drawing.Point(304, 0);
             this.cb8.Name = "cb8";
             this.cb8.Size = new System.Drawing.Size(38, 38);
-            this.cb8.TabIndex = 35;
+            this.cb8.TabIndex = 48;
             this.cb8.Text = "8";
             this.cb8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb8.UseVisualStyleBackColor = true;
@@ -419,7 +419,7 @@ namespace OMRON_IFZ_Viewer
             this.cb7.Location = new System.Drawing.Point(266, 0);
             this.cb7.Name = "cb7";
             this.cb7.Size = new System.Drawing.Size(38, 38);
-            this.cb7.TabIndex = 34;
+            this.cb7.TabIndex = 47;
             this.cb7.Text = "7";
             this.cb7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb7.UseVisualStyleBackColor = true;
@@ -435,7 +435,7 @@ namespace OMRON_IFZ_Viewer
             this.cb6.Location = new System.Drawing.Point(228, 0);
             this.cb6.Name = "cb6";
             this.cb6.Size = new System.Drawing.Size(38, 38);
-            this.cb6.TabIndex = 33;
+            this.cb6.TabIndex = 46;
             this.cb6.Text = "6";
             this.cb6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb6.UseVisualStyleBackColor = true;
@@ -451,7 +451,7 @@ namespace OMRON_IFZ_Viewer
             this.cb5.Location = new System.Drawing.Point(190, 0);
             this.cb5.Name = "cb5";
             this.cb5.Size = new System.Drawing.Size(38, 38);
-            this.cb5.TabIndex = 32;
+            this.cb5.TabIndex = 45;
             this.cb5.Text = "5";
             this.cb5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb5.UseVisualStyleBackColor = true;
@@ -467,7 +467,7 @@ namespace OMRON_IFZ_Viewer
             this.cb4.Location = new System.Drawing.Point(152, 0);
             this.cb4.Name = "cb4";
             this.cb4.Size = new System.Drawing.Size(38, 38);
-            this.cb4.TabIndex = 31;
+            this.cb4.TabIndex = 44;
             this.cb4.Text = "4";
             this.cb4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb4.UseVisualStyleBackColor = true;
@@ -483,7 +483,7 @@ namespace OMRON_IFZ_Viewer
             this.cb3.Location = new System.Drawing.Point(114, 0);
             this.cb3.Name = "cb3";
             this.cb3.Size = new System.Drawing.Size(38, 38);
-            this.cb3.TabIndex = 30;
+            this.cb3.TabIndex = 43;
             this.cb3.Text = "3";
             this.cb3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb3.UseVisualStyleBackColor = true;
@@ -499,7 +499,7 @@ namespace OMRON_IFZ_Viewer
             this.cb2.Location = new System.Drawing.Point(76, 0);
             this.cb2.Name = "cb2";
             this.cb2.Size = new System.Drawing.Size(38, 38);
-            this.cb2.TabIndex = 29;
+            this.cb2.TabIndex = 42;
             this.cb2.Text = "2";
             this.cb2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb2.UseVisualStyleBackColor = true;
@@ -515,7 +515,7 @@ namespace OMRON_IFZ_Viewer
             this.cb1.Location = new System.Drawing.Point(38, 0);
             this.cb1.Name = "cb1";
             this.cb1.Size = new System.Drawing.Size(38, 38);
-            this.cb1.TabIndex = 28;
+            this.cb1.TabIndex = 41;
             this.cb1.Text = "1";
             this.cb1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb1.UseVisualStyleBackColor = true;
@@ -530,7 +530,7 @@ namespace OMRON_IFZ_Viewer
             this.lblPixelPos.Location = new System.Drawing.Point(705, 0);
             this.lblPixelPos.Name = "lblPixelPos";
             this.lblPixelPos.Size = new System.Drawing.Size(197, 38);
-            this.lblPixelPos.TabIndex = 9;
+            this.lblPixelPos.TabIndex = 49;
             this.lblPixelPos.Tag = "Use numpad or numbers or +/- to navigate through images.";
             this.lblPixelPos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblPixelPos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
@@ -546,7 +546,7 @@ namespace OMRON_IFZ_Viewer
             this.lblColor.Location = new System.Drawing.Point(902, 0);
             this.lblColor.Name = "lblColor";
             this.lblColor.Size = new System.Drawing.Size(38, 38);
-            this.lblColor.TabIndex = 7;
+            this.lblColor.TabIndex = 49;
             this.lblColor.Tag = "Use numpad or numbers or +/- to navigate through images.";
             this.lblColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
@@ -562,7 +562,7 @@ namespace OMRON_IFZ_Viewer
             this.lblPixelValue.Location = new System.Drawing.Point(940, 0);
             this.lblPixelValue.Name = "lblPixelValue";
             this.lblPixelValue.Size = new System.Drawing.Size(197, 38);
-            this.lblPixelValue.TabIndex = 8;
+            this.lblPixelValue.TabIndex = 49;
             this.lblPixelValue.Tag = "Use numpad or numbers or +/- to navigate through images.";
             this.lblPixelValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblPixelValue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
@@ -578,7 +578,7 @@ namespace OMRON_IFZ_Viewer
             this.lblZoom.Location = new System.Drawing.Point(1137, 0);
             this.lblZoom.Name = "lblZoom";
             this.lblZoom.Size = new System.Drawing.Size(69, 38);
-            this.lblZoom.TabIndex = 6;
+            this.lblZoom.TabIndex = 50;
             this.lblZoom.Text = "100%";
             this.lblZoom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblZoom.Click += new System.EventHandler(this.lblZoom_Click);
@@ -595,7 +595,7 @@ namespace OMRON_IFZ_Viewer
             this.btnRibbon.Location = new System.Drawing.Point(0, 0);
             this.btnRibbon.Name = "btnRibbon";
             this.btnRibbon.Size = new System.Drawing.Size(38, 38);
-            this.btnRibbon.TabIndex = 5;
+            this.btnRibbon.TabIndex = 40;
             this.btnRibbon.UseVisualStyleBackColor = false;
             this.btnRibbon.Click += new System.EventHandler(this.btnRibbon_Click);
             this.btnRibbon.Paint += new System.Windows.Forms.PaintEventHandler(this.Ctrl_Paint);
@@ -610,7 +610,7 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomOut.Location = new System.Drawing.Point(1206, 0);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(38, 38);
-            this.btnZoomOut.TabIndex = 4;
+            this.btnZoomOut.TabIndex = 51;
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
             this.btnZoomOut.Paint += new System.Windows.Forms.PaintEventHandler(this.Ctrl_Paint);
@@ -625,7 +625,7 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomIn.Location = new System.Drawing.Point(1244, 0);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(38, 38);
-            this.btnZoomIn.TabIndex = 3;
+            this.btnZoomIn.TabIndex = 52;
             this.btnZoomIn.UseVisualStyleBackColor = false;
             this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
             this.btnZoomIn.Paint += new System.Windows.Forms.PaintEventHandler(this.Ctrl_Paint);
@@ -640,7 +640,7 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomToFit.Location = new System.Drawing.Point(1282, 0);
             this.btnZoomToFit.Name = "btnZoomToFit";
             this.btnZoomToFit.Size = new System.Drawing.Size(38, 38);
-            this.btnZoomToFit.TabIndex = 2;
+            this.btnZoomToFit.TabIndex = 53;
             this.btnZoomToFit.UseVisualStyleBackColor = false;
             this.btnZoomToFit.Click += new System.EventHandler(this.btnZoomToFit_Click);
             this.btnZoomToFit.Paint += new System.Windows.Forms.PaintEventHandler(this.Ctrl_Paint);
@@ -655,7 +655,7 @@ namespace OMRON_IFZ_Viewer
             this.btnZoomToScale.Location = new System.Drawing.Point(1320, 0);
             this.btnZoomToScale.Name = "btnZoomToScale";
             this.btnZoomToScale.Size = new System.Drawing.Size(38, 38);
-            this.btnZoomToScale.TabIndex = 1;
+            this.btnZoomToScale.TabIndex = 54;
             this.btnZoomToScale.UseVisualStyleBackColor = false;
             this.btnZoomToScale.Click += new System.EventHandler(this.btnZoomToScale_Click);
             this.btnZoomToScale.Paint += new System.Windows.Forms.PaintEventHandler(this.Ctrl_Paint);
@@ -670,7 +670,7 @@ namespace OMRON_IFZ_Viewer
             this.btnFullScreen.Location = new System.Drawing.Point(1358, 0);
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Size = new System.Drawing.Size(38, 38);
-            this.btnFullScreen.TabIndex = 0;
+            this.btnFullScreen.TabIndex = 55;
             this.btnFullScreen.UseVisualStyleBackColor = false;
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
@@ -702,7 +702,7 @@ namespace OMRON_IFZ_Viewer
             this.listByrImgView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listByrImgView.HideSelection = false;
             this.listByrImgView.LargeImageList = this.imageList1;
-            this.listByrImgView.Location = new System.Drawing.Point(0, 639);
+            this.listByrImgView.Location = new System.Drawing.Point(0, 638);
             this.listByrImgView.Margin = new System.Windows.Forms.Padding(0);
             this.listByrImgView.Name = "listByrImgView";
             this.listByrImgView.RightToLeftLayout = true;
@@ -716,10 +716,11 @@ namespace OMRON_IFZ_Viewer
             // 
             // progressBar1
             // 
+            this.progressBar1.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 776);
+            this.progressBar1.Location = new System.Drawing.Point(0, 775);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1052, 1);
+            this.progressBar1.Size = new System.Drawing.Size(1052, 2);
             this.progressBar1.TabIndex = 9;
             // 
             // openFileDialog1
@@ -759,7 +760,7 @@ namespace OMRON_IFZ_Viewer
             this.lblCamera2.Location = new System.Drawing.Point(42, 258);
             this.lblCamera2.Name = "lblCamera2";
             this.lblCamera2.Size = new System.Drawing.Size(276, 45);
-            this.lblCamera2.TabIndex = 45;
+            this.lblCamera2.TabIndex = 7;
             // 
             // lblCamera
             // 
@@ -768,7 +769,7 @@ namespace OMRON_IFZ_Viewer
             this.lblCamera.Location = new System.Drawing.Point(42, 235);
             this.lblCamera.Name = "lblCamera";
             this.lblCamera.Size = new System.Drawing.Size(276, 23);
-            this.lblCamera.TabIndex = 44;
+            this.lblCamera.TabIndex = 6;
             this.lblCamera.Text = "Camera";
             // 
             // pictureBox5
@@ -789,7 +790,7 @@ namespace OMRON_IFZ_Viewer
             this.linkLabel.Location = new System.Drawing.Point(42, 338);
             this.linkLabel.Name = "linkLabel";
             this.linkLabel.Size = new System.Drawing.Size(276, 142);
-            this.linkLabel.TabIndex = 42;
+            this.linkLabel.TabIndex = 9;
             this.linkLabel.TabStop = true;
             this.linkLabel.Text = "linkLabel1";
             this.linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -803,7 +804,7 @@ namespace OMRON_IFZ_Viewer
             this.lblSize2.Location = new System.Drawing.Point(42, 189);
             this.lblSize2.Name = "lblSize2";
             this.lblSize2.Size = new System.Drawing.Size(276, 23);
-            this.lblSize2.TabIndex = 40;
+            this.lblSize2.TabIndex = 5;
             // 
             // lblFolder
             // 
@@ -812,7 +813,7 @@ namespace OMRON_IFZ_Viewer
             this.lblFolder.Location = new System.Drawing.Point(42, 315);
             this.lblFolder.Name = "lblFolder";
             this.lblFolder.Size = new System.Drawing.Size(276, 23);
-            this.lblFolder.TabIndex = 39;
+            this.lblFolder.TabIndex = 8;
             this.lblFolder.Text = "Chemin";
             // 
             // pictureBox4
@@ -831,7 +832,7 @@ namespace OMRON_IFZ_Viewer
             this.lblSizeInfo.Location = new System.Drawing.Point(42, 166);
             this.lblSizeInfo.Name = "lblSizeInfo";
             this.lblSizeInfo.Size = new System.Drawing.Size(276, 23);
-            this.lblSizeInfo.TabIndex = 37;
+            this.lblSizeInfo.TabIndex = 4;
             this.lblSizeInfo.Text = "Taille";
             // 
             // pictureBox3
@@ -852,7 +853,7 @@ namespace OMRON_IFZ_Viewer
             this.tbIFZName.Location = new System.Drawing.Point(42, 105);
             this.tbIFZName.Name = "tbIFZName";
             this.tbIFZName.Size = new System.Drawing.Size(276, 18);
-            this.tbIFZName.TabIndex = 35;
+            this.tbIFZName.TabIndex = 3;
             this.tbIFZName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_KeyDown);
             this.tbIFZName.Leave += new System.EventHandler(this.tbIFZName_Leave);
             // 
@@ -875,7 +876,7 @@ namespace OMRON_IFZ_Viewer
             this.pnlImageInfo_ClosePanel.Location = new System.Drawing.Point(286, 6);
             this.pnlImageInfo_ClosePanel.Name = "pnlImageInfo_ClosePanel";
             this.pnlImageInfo_ClosePanel.Size = new System.Drawing.Size(46, 46);
-            this.pnlImageInfo_ClosePanel.TabIndex = 33;
+            this.pnlImageInfo_ClosePanel.TabIndex = 1;
             this.pnlImageInfo_ClosePanel.UseVisualStyleBackColor = false;
             this.pnlImageInfo_ClosePanel.Click += new System.EventHandler(this.btnClosePanel_Click);
             // 
@@ -896,7 +897,7 @@ namespace OMRON_IFZ_Viewer
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 46);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1052, 730);
+            this.pictureBox1.Size = new System.Drawing.Size(1052, 729);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;

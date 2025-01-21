@@ -42,7 +42,8 @@
             this.lbl5 = new System.Windows.Forms.Label();
             this.cmbZoom = new System.Windows.Forms.ComboBox();
             this.pnlBtnColor = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblPreview = new System.Windows.Forms.Label();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.lbl6 = new System.Windows.Forms.Label();
             this.cmbColor = new System.Windows.Forms.ComboBox();
             this.cmbThemeColor = new System.Windows.Forms.ComboBox();
@@ -51,8 +52,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblEmailYury = new System.Windows.Forms.Label();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.btnClose = new RoundButton();
+            this.lblRestartToApplyTheme = new System.Windows.Forms.Label();
             this.pnlLanguage.SuspendLayout();
             this.pnlVersion.SuspendLayout();
             this.pnlZoom.SuspendLayout();
@@ -213,7 +214,7 @@
             this.pnlBtnColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlBtnColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.pnlBtnColor.Controls.Add(this.label2);
+            this.pnlBtnColor.Controls.Add(this.lblPreview);
             this.pnlBtnColor.Controls.Add(this.btnSettings);
             this.pnlBtnColor.Controls.Add(this.lbl6);
             this.pnlBtnColor.Controls.Add(this.cmbColor);
@@ -222,17 +223,31 @@
             this.pnlBtnColor.Size = new System.Drawing.Size(849, 71);
             this.pnlBtnColor.TabIndex = 6;
             // 
-            // label2
+            // lblPreview
             // 
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(185, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 34);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Preview:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPreview.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPreview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPreview.Location = new System.Drawing.Point(185, 19);
+            this.lblPreview.Name = "lblPreview";
+            this.lblPreview.Size = new System.Drawing.Size(108, 34);
+            this.lblPreview.TabIndex = 5;
+            this.lblPreview.Text = "Preview:";
+            this.lblPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSettings.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
+            this.btnSettings.Enabled = false;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
+            this.btnSettings.Location = new System.Drawing.Point(299, 14);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(46, 46);
+            this.btnSettings.TabIndex = 29;
+            this.btnSettings.UseVisualStyleBackColor = false;
             // 
             // lbl6
             // 
@@ -278,6 +293,7 @@
             this.pnlThemeColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlThemeColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.pnlThemeColor.Controls.Add(this.lblRestartToApplyTheme);
             this.pnlThemeColor.Controls.Add(this.label1);
             this.pnlThemeColor.Controls.Add(this.cmbThemeColor);
             this.pnlThemeColor.Location = new System.Drawing.Point(15, 350);
@@ -333,20 +349,6 @@
             this.lblEmailYury.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblEmailYury.Click += new System.EventHandler(this.emailYury_Click);
             // 
-            // btnSettings
-            // 
-            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSettings.BackColor = global::OMRON_IFZ_Viewer.Properties.Settings.Default.ThemeColor;
-            this.btnSettings.Enabled = false;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
-            this.btnSettings.Location = new System.Drawing.Point(299, 14);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(46, 46);
-            this.btnSettings.TabIndex = 29;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            // 
             // btnClose
             // 
             this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -363,6 +365,18 @@
             this.btnClose.Text = "Fermer";
             this.btnClose.TextColor = System.Drawing.Color.Black;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // lblRestartToApplyTheme
+            // 
+            this.lblRestartToApplyTheme.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRestartToApplyTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblRestartToApplyTheme.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRestartToApplyTheme.Location = new System.Drawing.Point(154, 16);
+            this.lblRestartToApplyTheme.Name = "lblRestartToApplyTheme";
+            this.lblRestartToApplyTheme.Size = new System.Drawing.Size(191, 34);
+            this.lblRestartToApplyTheme.TabIndex = 30;
+            this.lblRestartToApplyTheme.Text = "To apply Theme - restart app.";
+            this.lblRestartToApplyTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form_Settings
             // 
@@ -420,6 +434,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Label lblEmailYury;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPreview;
+        private System.Windows.Forms.Label lblRestartToApplyTheme;
     }
 }

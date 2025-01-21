@@ -460,7 +460,9 @@ namespace OMRON_IFZ_Viewer
                     ManageButtons();
                     //LoadIfzThumbnail();
                     Properties.Settings.Default.LastDir = dispImageDir;
-                    zoomMode = ZoomMode.Scale;
+
+                    //No need to change zoom mode on new file
+                    //zoomMode = ZoomMode.Scale;
                 }
                 else
                 {
@@ -1596,10 +1598,13 @@ namespace OMRON_IFZ_Viewer
                     listByrImgView.Visible = false; //hide opened Ribbon
 
                     Properties.Settings.Default.LastDir = dispImageDir;
-                    zoomMode = ZoomMode.Scale;
+                    
+                    //No need to change zoom mode on new file
+                    //zoomMode = ZoomMode.Scale;
                 }
                 else
                 {
+                    //if it is the same folder - just show selected filename
                     currentFile = Array.IndexOf(Directory.GetFiles(dispImageDir, "*.ifz"), FileName);
                     LoadImage(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]);
                 }
