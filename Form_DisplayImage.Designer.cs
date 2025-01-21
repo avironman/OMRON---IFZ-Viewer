@@ -930,6 +930,7 @@ namespace OMRON_IFZ_Viewer
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "OMRON - IFZ Viewer";
             this.Load += new System.EventHandler(this.Form_DisplayImage_Load);
+            this.Shown += new System.EventHandler(this.Form_DisplayImage_Shown);
             this.SizeChanged += new System.EventHandler(this.Form_DisplayImage_SizeChanged);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form_DisplayImage_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form_DisplayImage_DragEnter);
