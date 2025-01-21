@@ -126,16 +126,16 @@ namespace OMRON_IFZ_Viewer
             InitializeComponent();
             this.CenterToScreen();
 
-            Properties.Settings.Default.ThemeColor = System.Drawing.Color.FromArgb(31, 31, 31);
-
             thumbnailsCreated = false;
 
+            // Default zoom mode
             zoomMode = (ZoomMode)Properties.Settings.Default.ZoomMode;
 
             Chkbxes = new[] { cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8 };
 
             this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
-                                                             // Properties.Settings.Default.LastDir = @"D:\TFS\a detruire\DDJ";   
+   
+            //Last directory used
             string dispImageDir = Properties.Settings.Default.LastDir;
 
             FileName = "";
@@ -151,6 +151,7 @@ namespace OMRON_IFZ_Viewer
                 }
                 else
                 {
+                    //If the user closes the dialog box, we exit cleanly
                     //Si l'utilisateur ferme la boite de dialogue, on quitte proprement
                     if (System.Windows.Forms.Application.MessageLoop)
                     {
@@ -176,14 +177,33 @@ namespace OMRON_IFZ_Viewer
 
             LoadImage(FileName);
             ManageButtons();
-            // LoadIfzThumbnail();
+
         }
 
         public Form_DisplayImage(string IFZFileName) : base()
         {
             FileName = IFZFileName;
-            InitializeComponent();
+            if (!File.Exists(FileName))
+            {
+                //If the user gave us incorrect filename, we stop.
+                if (System.Windows.Forms.Application.MessageLoop)
+                {
+                    // WinForms app
+                    System.Windows.Forms.Application.Exit();
+                }
+                else
+                {
+                    // Console app
+                    System.Environment.Exit(1);
+                }
+            }
 
+            InitializeComponent();
+            this.CenterToScreen();
+
+            thumbnailsCreated = false;
+
+            // Default zoom mode
             zoomMode = (ZoomMode)Properties.Settings.Default.ZoomMode;
 
             Chkbxes = new[] { cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8 };
@@ -194,11 +214,9 @@ namespace OMRON_IFZ_Viewer
             currentFile = Array.IndexOf(Directory.GetFiles(dispImageDir, "*.ifz"), FileName);
             nbIFZ = Directory.GetFiles(dispImageDir, "*.ifz").Length;
 
-
             LoadImage(FileName);
             ManageButtons();
-            // LoadIfzThumbnail();
-
+            
         }
 
         private void LoadIfzThumbnail()
@@ -1144,13 +1162,14 @@ namespace OMRON_IFZ_Viewer
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            int rightThreshold = pictureBox1.Width - 100; // Adjust the threshold as per your requirement
+            int thresholdX = 100;
+            int rightThreshold = pictureBox1.Width - thresholdX; // Adjust the threshold as per your requirement
 
             isMouseOverRight = (e.X >= rightThreshold && !isNextVisible && e.Button != MouseButtons.Left && currentFile < nbIFZ);
             isMouseLeavingRight = (e.X < rightThreshold && isNextVisible);
 
-            isMouseOverLeft = (e.X <= 100 && !isPreviousVisible && e.Button != MouseButtons.Left && currentFile > 0);
-            isMouseLeavingLeft = (e.X > 100 && isPreviousVisible);
+            isMouseOverLeft = (e.X <= thresholdX && !isPreviousVisible && e.Button != MouseButtons.Left && currentFile > 0);
+            isMouseLeavingLeft = (e.X > thresholdX && isPreviousVisible);
 
             if (isMouseOverRight || isMouseLeavingRight || isMouseOverLeft || isMouseLeavingLeft)
             {
@@ -1194,21 +1213,25 @@ namespace OMRON_IFZ_Viewer
 
                         lblPixelPos.Text = "X: " + mDown.X.ToString() + " Y: " + mDown.Y.ToString();
                         if (IsGreyScale)
-                            lblPixelValue.Text = Properties.strings.lblMono + c.R.ToString();
+                        {
+                            lblPixelValue.Text = Properties.strings.lblMono + " " + c.R.ToString();
+                        }
                         else
                         {
                             var Red = c.R;
                             var Green = c.G;
                             var Blue = c.B;
 
-                            lblPixelValue.Text = Properties.strings.lblColor + $"({Red}, {Green},{Blue})";
+                            lblPixelValue.Text = Properties.strings.lblColor + $" ({Red}, {Green}, {Blue})";
                         }
                     }
                     else
                     {
-                        lblColor.BackColor = Color.FromArgb(39, 39, 39);
-                        lblPixelPos.Text = "";
-                        lblPixelValue.Text = "";
+                        lblColor.BackColor = Properties.Settings.Default.ThemeColor;
+                        
+                        // Let us keep the latest value (border) in Labels
+                        //lblPixelPos.Text = "";
+                        //lblPixelValue.Text = "";
                     }
                 }
             }
@@ -1281,10 +1304,15 @@ namespace OMRON_IFZ_Viewer
 
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
-            lblColor.BackColor = Color.FromArgb(39, 39, 39);
-            lblPixelPos.Text = "";
-            lblPixelValue.Text = "";
+            lblColor.BackColor = Properties.Settings.Default.ThemeColor;
+
+            // Let us keep the latest value (border) in Labels
+            //lblPixelPos.Text = "";
+            //lblPixelValue.Text = "";
+
             isMouseOverRight = false;
+            isMouseOverLeft = false;
+
             //pictureBox1.Refresh();
             Cursor.Current = Cursors.Default;
             Cursor = Cursors.Default;
@@ -1405,7 +1433,7 @@ namespace OMRON_IFZ_Viewer
 
         private void btnClose_MouseLeave(object sender, EventArgs e)
         {
-            btnClose.BackColor = Color.FromArgb(31, 31, 31);
+            btnClose.BackColor = Properties.Settings.Default.ThemeColor;
         }
 
         private void btnReduce_Click(object sender, EventArgs e)
@@ -1889,16 +1917,20 @@ namespace OMRON_IFZ_Viewer
         
         public void KillBGW()
         {
+            //We stop the BackGroundWorker if it is still indexing a folder to avoid concurrent accesses
             //On arrête le BackGroundWorker s'il est toujours en train d'indexer un dossier pour eviter les accès concurrents
             if (backgroundWorker1.IsBusy)
             {
                 backgroundWorker1.CancelAsync();
             }
 
+            //we do not exit this function until the BGW has finished.
             //on ne quitte pas cette fonction tant que le BGW n'a pas terminé.
             while (backgroundWorker1.IsBusy)
             {
-                Application.DoEvents(); //sans cette ligne, le BGW.isBusy est toujours true
+                //without this line, the BGW.isBusy is always true
+                //sans cette ligne, le BGW.isBusy est toujours true
+                Application.DoEvents();
                 System.Threading.Thread.Sleep(100);
             }
         }

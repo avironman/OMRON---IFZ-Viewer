@@ -32,26 +32,27 @@
             this.lbl1 = new System.Windows.Forms.Label();
             this.pnlLanguage = new System.Windows.Forms.Panel();
             this.lbl2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.pnlVersion = new System.Windows.Forms.Panel();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lbl4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblEmailJerome = new System.Windows.Forms.Label();
             this.lbl3 = new System.Windows.Forms.Label();
             this.pnlZoom = new System.Windows.Forms.Panel();
             this.lbl5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbZoom = new System.Windows.Forms.ComboBox();
             this.pnlBtnColor = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
-            this.colorComboBox = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmbColor = new System.Windows.Forms.ComboBox();
+            this.cmbThemeColor = new System.Windows.Forms.ComboBox();
             this.pnlThemeColor = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblEmailYury = new System.Windows.Forms.Label();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnClose = new RoundButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.pnlLanguage.SuspendLayout();
             this.pnlVersion.SuspendLayout();
             this.pnlZoom.SuspendLayout();
@@ -76,7 +77,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLanguage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.pnlLanguage.Controls.Add(this.lbl2);
-            this.pnlLanguage.Controls.Add(this.comboBox1);
+            this.pnlLanguage.Controls.Add(this.cmbLanguage);
             this.pnlLanguage.Location = new System.Drawing.Point(15, 127);
             this.pnlLanguage.Name = "pnlLanguage";
             this.pnlLanguage.Size = new System.Drawing.Size(849, 71);
@@ -95,20 +96,20 @@
             this.lbl2.Text = "Langue";
             this.lbl2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // comboBox1
+            // cmbLanguage
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbLanguage.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbLanguage.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Items.AddRange(new object[] {
             "Français",
             "English"});
-            this.comboBox1.Location = new System.Drawing.Point(597, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(243, 25);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbLanguage.Location = new System.Drawing.Point(597, 25);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(243, 25);
+            this.cmbLanguage.TabIndex = 0;
+            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
             // 
             // pnlVersion
             // 
@@ -145,17 +146,17 @@
             this.lbl4.Text = "Version";
             this.lbl4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label3
+            // lblEmailJerome
             // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.label3.Location = new System.Drawing.Point(687, 595);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(177, 26);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "jerome.pinard@omron.com";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Click += new System.EventHandler(this.email_Click);
+            this.lblEmailJerome.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmailJerome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblEmailJerome.Location = new System.Drawing.Point(687, 595);
+            this.lblEmailJerome.Name = "lblEmailJerome";
+            this.lblEmailJerome.Size = new System.Drawing.Size(177, 26);
+            this.lblEmailJerome.TabIndex = 8;
+            this.lblEmailJerome.Text = "pinard.jerome@gmail.com";
+            this.lblEmailJerome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblEmailJerome.Click += new System.EventHandler(this.emailJerome_Click);
             // 
             // lbl3
             // 
@@ -173,7 +174,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlZoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.pnlZoom.Controls.Add(this.lbl5);
-            this.pnlZoom.Controls.Add(this.comboBox2);
+            this.pnlZoom.Controls.Add(this.cmbZoom);
             this.pnlZoom.Location = new System.Drawing.Point(15, 201);
             this.pnlZoom.Name = "pnlZoom";
             this.pnlZoom.Size = new System.Drawing.Size(849, 71);
@@ -192,32 +193,46 @@
             this.lbl5.Text = "Préférence de zoom";
             this.lbl5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // comboBox2
+            // cmbZoom
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbZoom.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbZoom.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbZoom.FormattingEnabled = true;
+            this.cmbZoom.Items.AddRange(new object[] {
             "Français",
             "English"});
-            this.comboBox2.Location = new System.Drawing.Point(597, 25);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(243, 25);
-            this.comboBox2.TabIndex = 0;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cmbZoom.Location = new System.Drawing.Point(597, 25);
+            this.cmbZoom.Name = "cmbZoom";
+            this.cmbZoom.Size = new System.Drawing.Size(243, 25);
+            this.cmbZoom.TabIndex = 0;
+            this.cmbZoom.SelectedIndexChanged += new System.EventHandler(this.cmbZoom_SelectedIndexChanged);
             // 
             // pnlBtnColor
             // 
             this.pnlBtnColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlBtnColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.pnlBtnColor.Controls.Add(this.label2);
+            this.pnlBtnColor.Controls.Add(this.btnSettings);
             this.pnlBtnColor.Controls.Add(this.lbl6);
-            this.pnlBtnColor.Controls.Add(this.colorComboBox);
+            this.pnlBtnColor.Controls.Add(this.cmbColor);
             this.pnlBtnColor.Location = new System.Drawing.Point(15, 275);
             this.pnlBtnColor.Name = "pnlBtnColor";
             this.pnlBtnColor.Size = new System.Drawing.Size(849, 71);
             this.pnlBtnColor.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Location = new System.Drawing.Point(185, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 34);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Preview:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbl6
             // 
@@ -232,29 +247,31 @@
             this.lbl6.Text = "Button color";
             this.lbl6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // colorComboBox
+            // cmbColor
             // 
-            this.colorComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.colorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.colorComboBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorComboBox.FormattingEnabled = true;
-            this.colorComboBox.Location = new System.Drawing.Point(597, 25);
-            this.colorComboBox.Name = "colorComboBox";
-            this.colorComboBox.Size = new System.Drawing.Size(243, 25);
-            this.colorComboBox.TabIndex = 0;
-            this.colorComboBox.SelectedIndexChanged += new System.EventHandler(this.ColorComboBox_SelectedIndexChanged);
+            this.cmbColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbColor.FormattingEnabled = true;
+            this.cmbColor.Location = new System.Drawing.Point(597, 25);
+            this.cmbColor.Name = "cmbColor";
+            this.cmbColor.Size = new System.Drawing.Size(243, 25);
+            this.cmbColor.TabIndex = 0;
+            this.cmbColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbColor_DrawItem);
+            this.cmbColor.SelectedIndexChanged += new System.EventHandler(this.cmbColor_SelectedIndexChanged);
             // 
-            // comboBox3
+            // cmbThemeColor
             // 
-            this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(597, 25);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(243, 25);
-            this.comboBox3.TabIndex = 0;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            this.cmbThemeColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbThemeColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbThemeColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbThemeColor.FormattingEnabled = true;
+            this.cmbThemeColor.Location = new System.Drawing.Point(597, 25);
+            this.cmbThemeColor.Name = "cmbThemeColor";
+            this.cmbThemeColor.Size = new System.Drawing.Size(243, 25);
+            this.cmbThemeColor.TabIndex = 0;
+            this.cmbThemeColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbThemeColor_DrawItem);
+            this.cmbThemeColor.SelectedIndexChanged += new System.EventHandler(this.cmbThemeColor_SelectedIndexChanged);
             // 
             // pnlThemeColor
             // 
@@ -262,7 +279,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlThemeColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.pnlThemeColor.Controls.Add(this.label1);
-            this.pnlThemeColor.Controls.Add(this.comboBox3);
+            this.pnlThemeColor.Controls.Add(this.cmbThemeColor);
             this.pnlThemeColor.Location = new System.Drawing.Point(15, 350);
             this.pnlThemeColor.Name = "pnlThemeColor";
             this.pnlThemeColor.Size = new System.Drawing.Size(849, 71);
@@ -304,6 +321,18 @@
             this.lblTitle.Text = "Paramètres";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblEmailYury
+            // 
+            this.lblEmailYury.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmailYury.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblEmailYury.Location = new System.Drawing.Point(687, 621);
+            this.lblEmailYury.Name = "lblEmailYury";
+            this.lblEmailYury.Size = new System.Drawing.Size(177, 26);
+            this.lblEmailYury.TabIndex = 30;
+            this.lblEmailYury.Text = "yury.puzino@omron.com";
+            this.lblEmailYury.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblEmailYury.Click += new System.EventHandler(this.emailYury_Click);
+            // 
             // btnSettings
             // 
             this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -312,7 +341,7 @@
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
-            this.btnSettings.Location = new System.Drawing.Point(227, 289);
+            this.btnSettings.Location = new System.Drawing.Point(299, 14);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(46, 46);
             this.btnSettings.TabIndex = 29;
@@ -335,31 +364,19 @@
             this.btnClose.TextColor = System.Drawing.Color.Black;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.label2.Location = new System.Drawing.Point(687, 621);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(177, 26);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "yury.puzino@omron.com";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(876, 656);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.lblEmailYury);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.lbl3);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblEmailJerome);
             this.Controls.Add(this.pnlLanguage);
             this.Controls.Add(this.pnlZoom);
             this.Controls.Add(this.pnlBtnColor);
@@ -384,24 +401,25 @@
         private RoundButton btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlLanguage;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Panel pnlVersion;
         private System.Windows.Forms.Label lbl4;
         private System.Windows.Forms.Label lbl3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblEmailJerome;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel pnlZoom;
         private System.Windows.Forms.Label lbl5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbZoom;
         private System.Windows.Forms.Panel pnlBtnColor;
         private System.Windows.Forms.Label lbl6;
-        private System.Windows.Forms.ComboBox colorComboBox;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbColor;
+        private System.Windows.Forms.ComboBox cmbThemeColor;
         private System.Windows.Forms.Panel pnlThemeColor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Label lblEmailYury;
         private System.Windows.Forms.Label label2;
     }
 }

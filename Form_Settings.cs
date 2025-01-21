@@ -34,42 +34,83 @@ namespace OMRON_IFZ_Viewer
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.ShowInTaskbar = false;
-            this.TopMost = true; //permet d'avoir cette fenêtre non modale toujours devant.
-            lblVersion.Text =Application.ProductVersion;
-            Translation();
-            InitializeColorComboBox();
+            //allows to have this non-modal window always in front.
+            //permet d'avoir cette fenêtre non modale toujours devant.
+            this.TopMost = true; 
 
+            lblVersion.Text = Application.ProductVersion;
             
+            Translation();
+
+            InitializeCmbColor();
+            InitializeCmbThemeColor();
+
         }
-        private void InitializeColorComboBox()
+
+        private void Form_Settings_Load(object sender, EventArgs e)
+        {
+            // Set Language
+            switch (Properties.Settings.Default.LangueSoft)
+            {
+                case "fr-FR":
+                    cmbLanguage.SelectedIndex = 0;
+                    break;
+
+                case "it-IT":
+                    cmbLanguage.SelectedIndex = 2;
+                    break;
+
+                case "de-DE":
+                    cmbLanguage.SelectedIndex = 3;
+                    break;
+
+                case "en-US":
+                    cmbLanguage.SelectedIndex = 1;
+                    break;
+
+                default:
+                    cmbLanguage.SelectedIndex = 1;
+                    break;
+
+            }
+            
+            // Set Zoom
+            cmbZoom.SelectedIndex = Properties.Settings.Default.ZoomMode;
+
+            // lblVersion.Text= Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
+
+        private void InitializeCmbColor()
         {
             // Set ComboBox properties for a modern look
-            colorComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            colorComboBox.FlatStyle = FlatStyle.Flat;
-            colorComboBox.DrawMode = DrawMode.OwnerDrawFixed;
-           // colorComboBox.Width = 150;
+            cmbColor.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbColor.FlatStyle = FlatStyle.Flat;
+            cmbColor.DrawMode = DrawMode.OwnerDrawFixed;
+            // colorComboBox.Width = 150;
 
             // Add colors to ComboBox
-            colorComboBox.Items.Add(Color.FromArgb(222,12,140)); 
-            colorComboBox.Items.Add(Color.FromArgb(0, 94, 184));
-            colorComboBox.Items.Add(Color.FromArgb(140,222, 12));
-            colorComboBox.Items.Add(Color.FromArgb(122, 73, 165));
-            colorComboBox.Items.Add(Color.FromArgb(0,153,99));
-            colorComboBox.Items.Add(Color.FromArgb(255,165,0));
+            cmbColor.Items.Add(Color.FromArgb(31, 31, 31));    //default black
+            cmbColor.Items.Add(Color.FromArgb(204,204,204));   //grey
+            cmbColor.Items.Add(Color.FromArgb(222,12,140));    //pink
+            cmbColor.Items.Add(Color.FromArgb(0, 94, 184));    //blue
+            cmbColor.Items.Add(Color.FromArgb(140,222, 12));   //light green
+            cmbColor.Items.Add(Color.FromArgb(122, 73, 165));  //vio
+            cmbColor.Items.Add(Color.FromArgb(0,153,99));      //green
+            cmbColor.Items.Add(Color.FromArgb(255,165,0));     //orange
 
-            // Event for drawing each item
-            colorComboBox.DrawItem += ColorComboBox_DrawItem;
-            colorComboBox.SelectedIndexChanged += ColorComboBox_SelectedIndexChanged;
+            // Events defined in Properties of the Form_Settings
 
-            // Set initial selection
-            colorComboBox.SelectedIndex = colorComboBox.Items.IndexOf(Properties.Settings.Default.ButtonBackGroundColor);
+            // Set initial selection for Color
+            cmbColor.SelectedIndex = cmbColor.Items.IndexOf(Properties.Settings.Default.ButtonBackGroundColor);
+
         }
-        private void ColorComboBox_DrawItem(object sender, DrawItemEventArgs e)
+
+        private void cmbColor_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index < 0) return;
             
             // Get color item
-            Color color = (Color)colorComboBox.Items[e.Index];
+            Color color = (Color)cmbColor.Items[e.Index];
 
             // Draw background and selection
             e.DrawBackground();
@@ -81,13 +122,54 @@ namespace OMRON_IFZ_Viewer
             e.DrawFocusRectangle();
         }
 
-        private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbColor_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Set form background to selected color
-            //this.BackColor = (Color)colorComboBox.SelectedItem;
-            btnSettings.BackColor = (Color)colorComboBox.SelectedItem;
-            Properties.Settings.Default.ButtonBackGroundColor = (Color)colorComboBox.SelectedItem;
+            btnSettings.BackColor = (Color)cmbColor.SelectedItem;
+            Properties.Settings.Default.ButtonBackGroundColor = (Color)cmbColor.SelectedItem;
         }
+
+        /// <summary>
+        /// Init theme color selector combobox
+        /// </summary>
+        private void InitializeCmbThemeColor()
+        {
+            // Set ComboBox properties for a modern look
+            cmbThemeColor.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbThemeColor.FlatStyle = FlatStyle.Flat;
+            cmbThemeColor.DrawMode = DrawMode.OwnerDrawFixed;
+
+            // Add colors to ComboBox
+            cmbThemeColor.Items.Add(Color.FromArgb(31, 31, 31));    //default black
+            cmbThemeColor.Items.Add(Color.FromArgb(204, 204, 204));   //grey
+            cmbThemeColor.Items.Add(Color.FromArgb(222, 12, 140));    //pink
+            cmbThemeColor.Items.Add(Color.FromArgb(0, 94, 184));    //blue
+            cmbThemeColor.Items.Add(Color.FromArgb(140, 222, 12));   //light green
+            cmbThemeColor.Items.Add(Color.FromArgb(122, 73, 165));  //vio
+            cmbThemeColor.Items.Add(Color.FromArgb(0, 153, 99));      //green
+            cmbThemeColor.Items.Add(Color.FromArgb(255, 165, 0));     //orange
+
+            // Set initial selection for Theme
+            cmbThemeColor.SelectedIndex = cmbThemeColor.Items.IndexOf(Properties.Settings.Default.ThemeColor);
+        }
+
+        private void cmbThemeColor_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            // Get color item
+            Color color = (Color)cmbThemeColor.Items[e.Index];
+
+            // Draw background and selection
+            e.DrawBackground();
+            e.Graphics.FillRectangle(new SolidBrush(color), e.Bounds.X + 2, e.Bounds.Y + 2, 20, e.Bounds.Height - 4);
+
+            // Draw color name next to color box
+            TextRenderer.DrawText(e.Graphics, color.Name, e.Font, new Point(e.Bounds.X + 30, e.Bounds.Y + 2), Color.Black);
+
+            e.DrawFocusRectangle();
+        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -114,37 +196,27 @@ namespace OMRON_IFZ_Viewer
             }
         }
 
-        private void Form_Settings_Load(object sender, EventArgs e)
-        {
-            switch (Properties.Settings.Default.LangueSoft)
-            {
-                case "fr-FR":
-                    comboBox1.SelectedIndex = 0;
-                    break;
-                case "it-IT":
-                    comboBox1.SelectedIndex = 2;
-                    break;
-                default:
-                    comboBox1.SelectedIndex = 1;
-                    break;
-
-            }
-            comboBox2.SelectedIndex = Properties.Settings.Default.ZoomMode;
-           
-                // lblVersion.Text= Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             string language;
-            switch (comboBox1.SelectedItem)
+            switch (cmbLanguage.SelectedItem)
             {
                 case "Français":
                     language = "fr-FR";
                     break;
+
                 case "Italiano":
                     language = "it-IT";
                     break;
+
+                case "Deutsch":
+                    language = "de-DE";
+                    break;
+
+                case "English":
+                    language = "en-US";
+                    break;
+
                 default:
                     language = "en-US";
                     break;
@@ -165,21 +237,19 @@ namespace OMRON_IFZ_Viewer
             lbl5.Text = Properties.strings.Settings_lbl5;
             lbl6.Text = Properties.strings.Settings_lbl6;
 
-            comboBox2.Items.Clear();
-            comboBox2.Items.Add(Properties.strings.Settings_cb2_opt1);
-            comboBox2.Items.Add(Properties.strings.Settings_cb2_opt2);
+            cmbZoom.Items.Clear();
+            cmbZoom.Items.Add(Properties.strings.Settings_cb2_opt1);
+            cmbZoom.Items.Add(Properties.strings.Settings_cb2_opt2);
         
             btnClose.Text = Properties.strings.Settings_btnClose;
 
             Refresh();
         }
 
-
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbZoom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ZoomMode = comboBox2.SelectedIndex;
-            Console.WriteLine(comboBox2.SelectedIndex);
+            Properties.Settings.Default.ZoomMode = cmbZoom.SelectedIndex;
+            Console.WriteLine(cmbZoom.SelectedIndex);
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
@@ -193,15 +263,23 @@ namespace OMRON_IFZ_Viewer
             process.WaitForExit();// Waits here for the process to exit.
         }
 
-        private void email_Click(object sender, EventArgs e)
+        private void emailJerome_Click(object sender, EventArgs e)
         {
-            var url = "mailto:jerome.pinard@omron.com";
+            var url = "mailto:pinard.jerome@gmail.com";
             Process.Start(url);
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void emailYury_Click(object sender, EventArgs e)
         {
+            var url = "mailto:yury.puzino@omron.com";
+            Process.Start(url);
+        }
 
+        private void cmbThemeColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Set form background to selected color
+            // btnSettings.BackColor = (Color)cmbColor.SelectedItem;
+            Properties.Settings.Default.ThemeColor = (Color)cmbThemeColor.SelectedItem;
         }
     }
 }

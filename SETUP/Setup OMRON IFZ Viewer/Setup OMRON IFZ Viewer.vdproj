@@ -33,7 +33,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_80707DE7591FF1590C20265BB9E3EF77"
+        "MsmKey" = "8:_34633EA496C28E4F5E382785002EE49C"
         "OwnerKey" = "8:_064FD2EA523F413CB80E3D988ABC992D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -51,14 +51,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CD05B0A87BFA4A9394DBEC95785AC463"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_C1BC41AE3BBB18F0752FE573E03EA141"
+        "OwnerKey" = "8:_CD05B0A87BFA4A9394DBEC95785AC463"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CD48830C25271E86E18AFEEAC45035CE"
-        "OwnerKey" = "8:_064FD2EA523F413CB80E3D988ABC992D"
+        "MsmKey" = "8:_CD05B0A87BFA4A9394DBEC95785AC463"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -69,12 +69,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F5EAC403C5D1A2A5BE70DB32BBEC8967"
-        "OwnerKey" = "8:_CD05B0A87BFA4A9394DBEC95785AC463"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_064FD2EA523F413CB80E3D988ABC992D"
         "MsmSig" = "8:_UNDEFINED"
@@ -82,25 +76,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_34633EA496C28E4F5E382785002EE49C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CD05B0A87BFA4A9394DBEC95785AC463"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F5EAC403C5D1A2A5BE70DB32BBEC8967"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_80707DE7591FF1590C20265BB9E3EF77"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CD48830C25271E86E18AFEEAC45035CE"
+        "OwnerKey" = "8:_C1BC41AE3BBB18F0752FE573E03EA141"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -238,20 +226,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_80707DE7591FF1590C20265BB9E3EF77"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_34633EA496C28E4F5E382785002EE49C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:FZ_CustomControl, Version=1.0.8109.37020, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_80707DE7591FF1590C20265BB9E3EF77"
+                    "_34633EA496C28E4F5E382785002EE49C"
                     {
-                    "Name" = "8:FZ_CustomControl.dll"
+                    "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:FZ_CustomControl.dll"
+            "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A0A3E0A377A84D2E877D910480ECAB13"
@@ -309,6 +297,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C1BC41AE3BBB18F0752FE573E03EA141"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SharpShell, Version=2.2.0.0, Culture=neutral, PublicKeyToken=f14dc899472fe6fb, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C1BC41AE3BBB18F0752FE573E03EA141"
+                    {
+                    "Name" = "8:SharpShell.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SharpShell.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A0A3E0A377A84D2E877D910480ECAB13"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CD05B0A87BFA4A9394DBEC95785AC463"
             {
             "AssemblyRegister" = "3:2"
@@ -340,37 +359,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CD48830C25271E86E18AFEEAC45035CE"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_CD48830C25271E86E18AFEEAC45035CE"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A0A3E0A377A84D2E877D910480ECAB13"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD4FA38727D346CDBC2411ACDD30F54F"
             {
             "SourcePath" = "8:..\\..\\bin\\Release\\FZ-TransCoordinate.dll"
@@ -389,37 +377,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F5EAC403C5D1A2A5BE70DB32BBEC8967"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpShell, Version=2.2.0.0, Culture=neutral, PublicKeyToken=f14dc899472fe6fb, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F5EAC403C5D1A2A5BE70DB32BBEC8967"
-                    {
-                    "Name" = "8:SharpShell.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpShell.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A0A3E0A377A84D2E877D910480ECAB13"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -490,7 +447,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IFZ Viewer"
         "ProductCode" = "8:{596329E6-0870-4B1B-B01B-079EB630D3EE}"
-        "PackageCode" = "8:{D34835F2-CB48-41C3-B59B-6F3B516F68E9}"
+        "PackageCode" = "8:{534D652C-183F-45EA-A052-032B101C1546}"
         "UpgradeCode" = "8:{899FA4B9-1D68-45D5-942E-62F2BB4E2344}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -731,7 +688,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_B9063361EC2C4B5F8ACA3F0476A9BF51"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progression"
+                    "DisplayName" = "8:Progress"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"
@@ -775,7 +732,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_AFC5E9EB13DA4C4FB07269194D7A783F"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Terminé"
+                    "DisplayName" = "8:Finished"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
@@ -806,7 +763,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_424A36D4CA58429DA7F42082C1F2E366"
                     {
                     "Sequence" = "3:200"
-                    "DisplayName" = "8:Dossier d'installation"
+                    "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdFolderDlg.wid"
@@ -841,7 +798,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_DC42113A188D43EBAB198A63E5C7C7F0"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirmer l'installation"
+                    "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
@@ -863,7 +820,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_E087A2C9809E40FCB6DDF40B9C294144"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Bienvenue"
+                    "DisplayName" = "8:Welcome"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdWelcomeDlg.wid"
@@ -927,7 +884,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_347BBD0F33A84F28B1D53E74F80F0581"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Terminé"
+                    "DisplayName" = "8:Finished"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
@@ -971,7 +928,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_8161C0074D5B4E86856DA6C20102BCE1"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progression"
+                    "DisplayName" = "8:Progress"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
@@ -1015,7 +972,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_3E410058ED9C4D4395020A86E0361554"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Bienvenue"
+                    "DisplayName" = "8:Welcome"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
@@ -1064,7 +1021,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_87D861716C8E4D76AA46DC9391C1D0A5"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirmer l'installation"
+                    "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
@@ -1086,7 +1043,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_DCB3A36D744D493FBDA3FB0C686D187A"
                     {
                     "Sequence" = "3:200"
-                    "DisplayName" = "8:Dossier d'installation"
+                    "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFolderDlg.wid"
@@ -1115,7 +1072,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_064FD2EA523F413CB80E3D988ABC992D"
             {
-            "SourcePath" = "8:..\\..\\obj\\Release\\OMRON - IFZ Viewer.exe"
+            "SourcePath" = "8:..\\..\\obj\\Debug\\OMRON - IFZ Viewer.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A0A3E0A377A84D2E877D910480ECAB13"

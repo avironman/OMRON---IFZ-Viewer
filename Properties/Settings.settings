@@ -24,7 +24,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LangueSoft" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">en-US</Value>
     </Setting>
     <Setting Name="ZoomMode" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -33,7 +33,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ButtonBackGroundColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">31, 31, 31</Value>
     </Setting>
     <Setting Name="ThemeColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">31, 31, 31</Value>
