@@ -549,6 +549,7 @@ namespace OMRON_IFZ_Viewer
                 btnMaximize.Visible = true;
                 btnReduce.Visible = false;
             }
+
             ZoomManagment();
             PanelImageMgmtCenter();
             pictureBox1.Refresh();
@@ -713,14 +714,12 @@ namespace OMRON_IFZ_Viewer
 
                     case Keys.D0:
                     case Keys.NumPad0:
-                        zoomMode = ZoomMode.Fit;
-                        ZoomManagment();
+                        btnZoomToFit.PerformClick();
                         break;
 
                     case Keys.D1:
                     case Keys.NumPad1:
-                        zoomMode = ZoomMode.Scale;
-                        ZoomManagment();
+                        btnZoomToScale.PerformClick();
                         break;
 
                     case Keys.Add:
@@ -1508,6 +1507,7 @@ namespace OMRON_IFZ_Viewer
             pictureBox1.Focus();
         }
         
+        //Zoom to Scale to real size 1:1
         private void btnZoomToScale_Click(object sender, EventArgs e)
         {
             zoomMode = ZoomMode.Scale;
@@ -1518,11 +1518,13 @@ namespace OMRON_IFZ_Viewer
 
         }
 
+        //Zoom to Fit Screen
         private void btnZoomToFit_Click(object sender, EventArgs e)
         {
             zoomMode = ZoomMode.Fit;
             ZoomManagment();
             PositionImage();
+
             pictureBox1.Refresh();
             pictureBox1.Focus();
         }
@@ -2199,10 +2201,12 @@ namespace OMRON_IFZ_Viewer
                         break;
                 }
             }
+
             btnZoomToScale.Enabled = (Math.Abs(zoomFac - 1f) > EPS);
             btnZoomToFit.Enabled = (Math.Abs(zoomFac - zoomFit) > EPS);
             btnZoomOut.Enabled = ((zoomFit > 1f && zoomFac > 1f) || (zoomFit < 1 && zoomFac > zoomFit));
             btnZoomIn.Enabled = (zoomFac < 20f);
+            
             //    PositionImage();
         }
 
