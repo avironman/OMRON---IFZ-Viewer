@@ -15,7 +15,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
-// YURY
+using Microsoft.VisualBasic.FileIO;
 
 
 namespace OMRON_IFZ_Viewer
@@ -85,17 +85,17 @@ namespace OMRON_IFZ_Viewer
 
         public ZoomMode zoomMode = ZoomMode.Fit;
         public new string Name
-        { 
-            get { return name; } 
-            set { name = value; } 
+        {
+            get { return name; }
+            set { name = value; }
         }
 
         Bitmap[] bitmap;
 
         public Bitmap[] Bitmap
-        { 
-            get { return bitmap; } 
-            set { bitmap = value; } 
+        {
+            get { return bitmap; }
+            set { bitmap = value; }
         }
 
         public System.Windows.Forms.CheckBox[] Chkbxes = new System.Windows.Forms.CheckBox[8];
@@ -105,9 +105,9 @@ namespace OMRON_IFZ_Viewer
         int currentImage;
 
         public int CurrentImage
-        { 
-            get { return currentImage; } 
-            set { currentImage = value; } 
+        {
+            get { return currentImage; }
+            set { currentImage = value; }
         }
 
         //temporary storage in bitmap
@@ -134,7 +134,7 @@ namespace OMRON_IFZ_Viewer
             Chkbxes = new[] { cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8 };
 
             this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
-   
+
             //Last directory used
             string dispImageDir = Properties.Settings.Default.LastDir;
 
@@ -183,7 +183,7 @@ namespace OMRON_IFZ_Viewer
         public Form_DisplayImage(string IFZFileName) : base()
         {
             FileName = IFZFileName;
-            if (!File.Exists(FileName))
+            if (!System.IO.File.Exists(FileName))
             {
                 //If the user gave us incorrect filename, we stop.
                 if (System.Windows.Forms.Application.MessageLoop)
@@ -216,7 +216,7 @@ namespace OMRON_IFZ_Viewer
 
             LoadImage(FileName);
             ManageButtons();
-            
+
         }
 
         private void LoadIfzThumbnail()
@@ -291,11 +291,11 @@ namespace OMRON_IFZ_Viewer
                     currentImage = 0;
 
                     MessageBox.Show("Error: IFZ file cannot be read!");
-                    
+
                 }
-                else 
+                else
                 {
-                
+
                     camnb = bayerMaster.camno;
                     //camera number should be >= 1
                     if (camnb < 1)
@@ -392,19 +392,6 @@ namespace OMRON_IFZ_Viewer
             PopulatePnlImageInfo();
         }
 
-        public void ManageButtons()
-        {
-
-            for (int i = 0; i < 8; i++)
-            {
-                Chkbxes[i].CheckedChanged -= new System.EventHandler(this.cb_CheckedChanged);
-                Chkbxes[i].Visible = (i < camnb);
-                Chkbxes[i].Checked = (i == currentImage);
-                Chkbxes[i].CheckedChanged += new System.EventHandler(this.cb_CheckedChanged);
-            }
-            cb1.Visible = (camnb > 1);
-        }
-
         #region // Moving the window // Déplacement de la fenêtre
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -430,8 +417,6 @@ namespace OMRON_IFZ_Viewer
         {
 
             pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-
-            //btnRibbon.Enabled = false;
 
             this.Disposed += new EventHandler(Form_DisplayImage__Disposed); //not possible through Design params
 
@@ -536,7 +521,7 @@ namespace OMRON_IFZ_Viewer
                 bmp.Dispose();
             }
         }
-        
+
         private void Form_DisplayImage_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized)
@@ -554,7 +539,7 @@ namespace OMRON_IFZ_Viewer
             PanelImageMgmtCenter();
             pictureBox1.Refresh();
         }
-        
+
         private void Form_DisplayImage_SizeChanged(object sender, EventArgs e)
         {
             if (bmp == null) { return; }
@@ -576,8 +561,8 @@ namespace OMRON_IFZ_Viewer
         protected void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             //Conditions to avoid to proceed further.
-            if (bmp == null) { 
-                return; 
+            if (bmp == null) {
+                return;
             }
             if (translateSet == false && zoomSet == false) { return; }
 
@@ -613,9 +598,9 @@ namespace OMRON_IFZ_Viewer
                     isNextVisible = true;
 
                     Bitmap imagette = new Bitmap(
-                        Properties.Resources.Next, 
+                        Properties.Resources.Next,
                         new Size(
-                            (int)Math.Round(Properties.Resources.Next.Width / zoomFac), 
+                            (int)Math.Round(Properties.Resources.Next.Width / zoomFac),
                             (int)Math.Round(Properties.Resources.Next.Height / zoomFac)
                             )
                         );
@@ -675,6 +660,12 @@ namespace OMRON_IFZ_Viewer
             btnZoomToScale.Enabled = (Math.Round(zoomFac, 3) != 1f);
         }
 
+        /// <summary>
+        /// Hotkeys. 
+        /// Get codes from Pressed buttons and call functions accordingly.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //If CTRL is pressed, the cursor is moved
@@ -693,43 +684,51 @@ namespace OMRON_IFZ_Viewer
                 switch (e.KeyCode)
                 {
                     case Keys.O:
-                        btnFolder.PerformClick();
+                        OpenNewFolder();
                         break;
 
                     case Keys.R:
-                        btnRotate.PerformClick();
+                        RotateImage90();
                         break;
 
                     case Keys.P:
-                        btnPrint.PerformClick();
+                        Print01PhotosWizard();
                         break;
 
                     case Keys.I:
-                        btnInfo.PerformClick();
+                        ShowHideInfoPanel();
                         break;
 
                     case Keys.F:
-                        btnRibbon.PerformClick();
+                        ShowHideRibbon();
+                        break;
+
+                    case Keys.C:
+                        Clipboard.SetImage(bmp);
+                        break;
+
+                    case Keys.S:
+                        SaveIfzAsImage();
                         break;
 
                     case Keys.D0:
                     case Keys.NumPad0:
-                        btnZoomToFit.PerformClick();
+                        ZoomToFitScreen();
                         break;
 
                     case Keys.D1:
                     case Keys.NumPad1:
-                        btnZoomToScale.PerformClick();
+                        ZoomToOriginalScale();
                         break;
 
                     case Keys.Add:
                     case Keys.Oemplus:
-                        btnZoomIn.PerformClick();
+                        ZoomIn();
                         break;
 
                     case Keys.Subtract:
                     case Keys.OemMinus:
-                        btnZoomOut.PerformClick();
+                        ZoomOut();
                         break;
 
                     case Keys.Down:
@@ -756,37 +755,31 @@ namespace OMRON_IFZ_Viewer
                         break;
                 }
                 pictureBox1.Refresh();
-                curImageX = translateX; curImageY = translateY;
+                curImageX = translateX;
+                curImageY = translateY;
 
             }
             //Otherwise, we move the cursor
             //Sinon, on déplace le curseur
             else
             {
-                
+
                 switch (e.KeyCode)
                 {
                     case Keys.R:
-                        btnRotate.PerformClick();
+                        RotateImage90();
                         break;
 
                     case Keys.I:
-                        btnInfo.PerformClick();
+                        ShowHideInfoPanel();
                         break;
 
                     case Keys.F:
-                        btnRibbon.PerformClick();
+                        ShowHideRibbon();
                         break;
 
                     case Keys.F11:
-                        if (WindowState == FormWindowState.Maximized)
-                        {
-                            this.WindowState = FormWindowState.Normal;
-                            pnlHeader.Visible = true;
-                            pnlFooter.Visible = true;
-                        }
-                        else
-                            btnFullScreen.PerformClick();
+                        SetMainWindowFullScreen();
                         break;
 
                     case Keys.Down:
@@ -796,7 +789,7 @@ namespace OMRON_IFZ_Viewer
                         break;
 
                     case Keys.Delete:
-                        btnTrash.PerformClick();
+                        DeleteFile();
                         break;
 
                     case Keys.Right:
@@ -812,6 +805,7 @@ namespace OMRON_IFZ_Viewer
                         break;
 
                     case Keys.Add:
+                    case Keys.Oemplus:
                         if (currentImage < camnb - 1)
                         {
                             currentImage += 1;
@@ -820,6 +814,7 @@ namespace OMRON_IFZ_Viewer
                         break;
 
                     case Keys.Subtract:
+                    case Keys.OemMinus:
                         if (currentImage > 0)
                         {
                             currentImage -= 1;
@@ -829,58 +824,42 @@ namespace OMRON_IFZ_Viewer
 
                     case Keys.D1:
                     case Keys.NumPad1:
-                        if (currentImage == 0) { break; }
-                        currentImage = 0;
-                        DispImage(currentImage);
+                        DispImageNo(0);
                         break;
 
                     case Keys.D2:
                     case Keys.NumPad2:
-                        if (currentImage == 1 | camnb < 2) { break; }
-                        currentImage = 1;
-                        DispImage(currentImage);
+                        DispImageNo(1);
                         break;
 
                     case Keys.D3:
                     case Keys.NumPad3:
-                        if (currentImage == 2 | camnb < 3) { break; }
-                        currentImage = 2;
-                        DispImage(currentImage);
+                        DispImageNo(2);
                         break;
 
                     case Keys.D4:
                     case Keys.NumPad4:
-                        if (currentImage == 3 | camnb < 4) { break; }
-                        currentImage = 3;
-                        DispImage(currentImage);
+                        DispImageNo(3);
                         break;
 
                     case Keys.D5:
                     case Keys.NumPad5:
-                        if (currentImage == 4 | camnb < 5) { break; }
-                        currentImage = 4;
-                        DispImage(currentImage);
+                        DispImageNo(4);
                         break;
 
                     case Keys.D6:
                     case Keys.NumPad6:
-                        if (currentImage == 5 | camnb < 6) { break; }
-                        currentImage = 5;
-                        DispImage(currentImage);
+                        DispImageNo(5);
                         break;
 
                     case Keys.D7:
                     case Keys.NumPad7:
-                        if (currentImage == 6 | camnb < 7) { break; }
-                        currentImage = 6;
-                        DispImage(currentImage);
+                        DispImageNo(6);
                         break;
 
                     case Keys.D8:
                     case Keys.NumPad8:
-                        if (currentImage == 7 | camnb < 8) { break; }
-                        currentImage = 7;
-                        DispImage(currentImage);
+                        DispImageNo(7);
                         break;
 
                     default:
@@ -889,6 +868,20 @@ namespace OMRON_IFZ_Viewer
 
             }
 
+        }
+
+        /// <summary>
+        /// Show any subimage by index.
+        /// </summary>
+        /// <param name="no">index [0 ... 7]</param>
+        private void DispImageNo(int no)
+        {
+            if (no < 0 || no > 7) { return; }
+
+            if (currentImage == no | camnb < no + 1) { return; }
+
+            currentImage = no;  //save current selection
+            DispImage(currentImage);
         }
 
         /// <summary>
@@ -1014,54 +1007,7 @@ namespace OMRON_IFZ_Viewer
 
                         case "SaveAs":
 
-                            //SaveFileDialog saveFileDialog1 = new SaveFileDialog
-                            //{
-                            //    InitialDirectory = dispImageDir,// Properties.Settings.Default.defaultSavingPath,
-                            //    Title = "Save an Image File",
-                            //    FileName = System.IO.Path.GetFileNameWithoutExtension(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]),
-                            //    DefaultExt = "bmp",
-                            //    Filter = "Bitmap Image|*.bmp|Jpeg Image|*.jpg|Png Image|*.png|Tiff Image|*.tif|Gif Image|*.gif", //|IFZ Image|*.ifz|StRAW Image|*.straw|WEBP|*.webp
-                            //};
-
-                            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                            saveFileDialog1.InitialDirectory = dispImageDir;
-                            saveFileDialog1.Title = "Save an Image File";
-                            saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(lblName.Text);
-                            saveFileDialog1.DefaultExt = "bmp";
-                            saveFileDialog1.Filter = "Bitmap Image|*.bmp|Jpeg Image|*.jpg|Png Image|*.png|Tiff Image|*.tif|Gif Image|*.gif"; //|IFZ Image|*.ifz|StRAW Image|*.straw|WEBP|*.webp
-
-                            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                            {
-                                if (saveFileDialog1.FileName != "")
-                                {
-                                    ImageFormat fmt = ImageFormat.Bmp;
-                                    switch (saveFileDialog1.FilterIndex)
-                                    {
-                                        case 1: //BMP
-                                            fmt = ImageFormat.Bmp;
-                                            break;
-                                        case 2: //JPEG
-                                            fmt = ImageFormat.Jpeg;
-                                            break;
-                                        case 3: //PNG
-                                            fmt = ImageFormat.Png;
-                                            break;
-                                        case 4: //TIF
-                                            fmt = ImageFormat.Tiff;
-                                            break;
-                                        case 5: //GIF
-                                            fmt = ImageFormat.Gif;
-                                            break;
-                                            //case 6: //IFZ
-
-                                            //    break;
-                                            //case 7: //StRAW
-                                            //    fmt = ImageFormat.Jpeg;
-                                            //    break;
-                                    }
-                                    bool saveFlag = FiltLibIF.SavePicture((Bitmap)bmp, saveFileDialog1.FileName, fmt, 100);
-                                }
-                            }
+                            SaveIfzAsImage();
                             break;
 
                         case "Print":
@@ -1083,7 +1029,7 @@ namespace OMRON_IFZ_Viewer
                         case "OpenWith":
 
                             string FileNameTemp = dispImageDir + "\\" + lblName.Text;
-                            if (File.Exists(FileNameTemp))
+                            if (System.IO.File.Exists(FileNameTemp))
                             {
                                 ShowOpenWithDialog(FileNameTemp);
                             }
@@ -1116,13 +1062,12 @@ namespace OMRON_IFZ_Viewer
                                 Form_Convert frmcvrt = new Form_Convert(dispImageDir);
                                 frmcvrt.ShowDialog();
                             }
-                            
+
                             break;
 
                         // --- --- ---
 
                         case "Delete":
-                            //btnTrash.PerformClick();
                             DeleteFile();
                             break;
 
@@ -1136,6 +1081,58 @@ namespace OMRON_IFZ_Viewer
                 }
             }
 
+        }
+
+        private void SaveIfzAsImage()
+        {
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            //{
+            //    InitialDirectory = dispImageDir,// Properties.Settings.Default.defaultSavingPath,
+            //    Title = "Save an Image File",
+            //    FileName = System.IO.Path.GetFileNameWithoutExtension(Directory.GetFiles(dispImageDir, "*.ifz")[currentFile]),
+            //    DefaultExt = "bmp",
+            //    Filter = "Bitmap Image|*.bmp|Jpeg Image|*.jpg|Png Image|*.png|Tiff Image|*.tif|Gif Image|*.gif", //|IFZ Image|*.ifz|StRAW Image|*.straw|WEBP|*.webp
+            //};
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = dispImageDir;
+            saveFileDialog1.Title = "Save an Image File";
+            saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(lblName.Text);
+            saveFileDialog1.DefaultExt = "bmp";
+            saveFileDialog1.Filter = "Bitmap Image|*.bmp|Jpeg Image|*.jpg|Png Image|*.png|Tiff Image|*.tif|Gif Image|*.gif"; //|IFZ Image|*.ifz|StRAW Image|*.straw|WEBP|*.webp
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (saveFileDialog1.FileName != "")
+                {
+                    ImageFormat fmt = ImageFormat.Bmp;
+                    switch (saveFileDialog1.FilterIndex)
+                    {
+                        case 1: //BMP
+                            fmt = ImageFormat.Bmp;
+                            break;
+                        case 2: //JPEG
+                            fmt = ImageFormat.Jpeg;
+                            break;
+                        case 3: //PNG
+                            fmt = ImageFormat.Png;
+                            break;
+                        case 4: //TIF
+                            fmt = ImageFormat.Tiff;
+                            break;
+                        case 5: //GIF
+                            fmt = ImageFormat.Gif;
+                            break;
+                            //case 6: //IFZ
+
+                            //    break;
+                            //case 7: //StRAW
+                            //    fmt = ImageFormat.Jpeg;
+                            //    break;
+                    }
+                    bool saveFlag = FiltLibIF.SavePicture((Bitmap)bmp, saveFileDialog1.FileName, fmt, 100);
+                }
+            }
         }
 
         public static void ShowOpenWithDialog(string path)
@@ -1229,7 +1226,7 @@ namespace OMRON_IFZ_Viewer
                     else
                     {
                         lblColor.BackColor = Properties.Settings.Default.ThemeColor;
-                        
+
                         // Let us keep the latest value (border) in Labels
                         //lblPixelPos.Text = "";
                         //lblPixelValue.Text = "";
@@ -1237,15 +1234,13 @@ namespace OMRON_IFZ_Viewer
                 }
             }
         }
-        
+
         private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
         {
-            //btnZoomToFit.Enabled = true;
-            //btnZoomToScale.Enabled = true;
 
             //check if image was obtained from .ifz normally
-            if (bmp == null) { 
-                return; 
+            if (bmp == null) {
+                return;
             }
 
             // Calculate the zooming point
@@ -1291,7 +1286,7 @@ namespace OMRON_IFZ_Viewer
             curImageX = translateX;
             curImageY = translateY;
         }
-        
+
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
             if (zoomFac > zoomFit)
@@ -1344,10 +1339,16 @@ namespace OMRON_IFZ_Viewer
         }
 
         #region //Button events
+
+        /// <summary>
+        /// Paint a semi-transparent black rectangle over the button if it is disabled
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Ctrl_Paint(object sender, PaintEventArgs e)
         {
             System.Windows.Forms.Control b = (System.Windows.Forms.Control)sender;
-            //Paint a semi-transparent black rectangle over the button if disabled
+
             if (!b.Enabled)
             {
                 using (SolidBrush brdim = new SolidBrush(Color.FromArgb(128, 0, 0, 0)))
@@ -1358,12 +1359,31 @@ namespace OMRON_IFZ_Viewer
             }
         }
 
+
+        /// <summary>
+        /// Manage 1...8 buttons (checkboxes) to show subimages from ifz
+        /// </summary>
+        public void ManageButtons()
+        {
+
+            for (int i = 0; i < 8; i++)
+            {
+                Chkbxes[i].CheckedChanged -= new System.EventHandler(this.cb_CheckedChanged);
+                Chkbxes[i].Visible = (i < camnb);
+                Chkbxes[i].Checked = (i == currentImage);
+                Chkbxes[i].CheckedChanged += new System.EventHandler(this.cb_CheckedChanged);
+            }
+            //Hide first image checkbox if we have only one image
+            cb1.Visible = (camnb > 1);
+        }
+
         private void lblZoom_Click(object sender, EventArgs e)
         {
             Form_Zoom frmz = new Form_Zoom(lblZoom.Text);
             frmz.StartPosition = FormStartPosition.Manual;
             frmz.Location = lblZoom.PointToScreen(new Point(0, 0));
             var result = frmz.ShowDialog();
+
             if (result == DialogResult.OK)
             {
                 zoomMode = ZoomMode.Free;
@@ -1374,6 +1394,11 @@ namespace OMRON_IFZ_Viewer
             }
         }
 
+        /// <summary>
+        /// Button click to Make main window enlarge in fullscreen mode.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
             SetMainWindowFullScreen();
@@ -1385,15 +1410,27 @@ namespace OMRON_IFZ_Viewer
         /// </summary>
         private void SetMainWindowFullScreen()
         {
-            pnlHeader.Visible = false;
-            pnlFooter.Visible = false;
-            this.TopMost = true;
-            this.WindowState = FormWindowState.Maximized;
+            if (WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                pnlHeader.Visible = true;
+                pnlFooter.Visible = true;
 
-            //important to give the Focus, this allows to capture the escape key to exit full screen.
-            //important de donner le Focus, cela permet de capturer la touche echap pour quitter le plein ecran.
-            pictureBox1.Focus();
-            ZoomManagment();
+                pictureBox1.Focus();
+                ZoomManagment();
+            }
+            else
+            {
+                pnlHeader.Visible = false;
+                pnlFooter.Visible = false;
+                this.TopMost = true;
+                this.WindowState = FormWindowState.Maximized;
+
+                //important to give the Focus, this allows to capture the escape key to exit full screen.
+                //important de donner le Focus, cela permet de capturer la touche echap pour quitter le plein ecran.
+                pictureBox1.Focus();
+                ZoomManagment();
+            }
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -1448,6 +1485,10 @@ namespace OMRON_IFZ_Viewer
             DeleteFile();
         }
 
+        /// <summary>
+        /// Show confirmation about deleting the ifz file.
+        /// Delete file by sending it to Recycle bin / Trash bin.
+        /// </summary>
         private void DeleteFile()
         {
             Form_Confirm fConf = new Form_Confirm();
@@ -1457,9 +1498,10 @@ namespace OMRON_IFZ_Viewer
             if (DialogResult == DialogResult.OK)
             {
                 string FileName = dispImageDir + @"\" + lblName.Text;
-                if (File.Exists(FileName))
+                if (System.IO.File.Exists(FileName))
                 {
-                    File.Delete(FileName);
+                    //File.Delete(FileName);
+                    FileSystem.DeleteFile(FileName, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
                 }
 
                 if (Directory.Exists(dispImageDir))
@@ -1477,7 +1519,7 @@ namespace OMRON_IFZ_Viewer
                     else
                     {
                         //Directory does not have any ifz files - ask to open new one.
-                        btnFolder.PerformClick();
+                        OpenNewFolder();
 
                         //Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
                         //form_EmptyFolder.StartPosition = FormStartPosition.CenterParent;
@@ -1492,7 +1534,7 @@ namespace OMRON_IFZ_Viewer
                 else
                 {
                     //Directory does not exist - ask to open new one.
-                    btnFolder.PerformClick();
+                    OpenNewFolder();
 
                     //Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
                     //form_EmptyFolder.StartPosition = FormStartPosition.CenterParent;
@@ -1506,20 +1548,43 @@ namespace OMRON_IFZ_Viewer
             }
             pictureBox1.Focus();
         }
-        
-        //Zoom to Scale to real size 1:1
+
+        /// <summary>
+        /// Zoom to Scale to real size 1:1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnZoomToScale_Click(object sender, EventArgs e)
+        {
+            ZoomToOriginalScale();
+        }
+
+        /// <summary>
+        /// Zoom to Scale to real size 1:1
+        /// </summary>
+        private void ZoomToOriginalScale()
         {
             zoomMode = ZoomMode.Scale;
             ZoomManagment();
 
             pictureBox1.Refresh();
             pictureBox1.Focus();
-
         }
 
-        //Zoom to Fit Screen
+        /// <summary>
+        /// Zoom to Fit Screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnZoomToFit_Click(object sender, EventArgs e)
+        {
+            ZoomToFitScreen();
+        }
+
+        /// <summary>
+        /// Zoom to Fit Screen
+        /// </summary>
+        private void ZoomToFitScreen()
         {
             zoomMode = ZoomMode.Fit;
             ZoomManagment();
@@ -1531,6 +1596,11 @@ namespace OMRON_IFZ_Viewer
 
         private void btnZoomIn_Click(object sender, EventArgs e)
         {
+            ZoomIn();
+        }
+
+        private void ZoomIn()
+        {
             zoomMode = ZoomMode.In;
             ZoomManagment();
 
@@ -1540,40 +1610,60 @@ namespace OMRON_IFZ_Viewer
 
         private void btnZoomOut_Click(object sender, EventArgs e)
         {
+            ZoomOut();
+        }
+
+        private void ZoomOut()
+        {
             zoomMode = ZoomMode.Out;
             ZoomManagment();
             PositionImage();
+
             pictureBox1.Refresh();
             pictureBox1.Focus();
         }
 
         private void btnRibbon_Click(object sender, EventArgs e)
         {
+            ShowHideRibbon();
+        }
+
+        /// <summary>
+        /// Show or Hide ribbon with images previews.
+        /// Populate the ribbon on the first time shown.
+        /// </summary>
+        private void ShowHideRibbon()
+        {
+            // Create list of previews
             if (!thumbnailsCreated)
             {
                 LoadIfzThumbnail();
-
                 thumbnailsCreated = true;
             }
 
-            var tewt2 = imageList1.Images;
-            var test = listByrImgView.LargeImageList;
-            
-            listByrImgView.Visible = !listByrImgView.Visible;
-
+            // Switch visibility on/off
             if (listByrImgView.Visible)
             {
-                //pictureBox1.PreviewKeyDown -= pictureBox1_PreviewKeyDown;
+                listByrImgView.Visible = false;
+                progressBar1.Visible = false;
+                pictureBox1.Focus();
             }
             else
             {
-                //pictureBox1.PreviewKeyDown += pictureBox1_PreviewKeyDown;
-                pictureBox1.Focus();
+                listByrImgView.Visible = true;
+                progressBar1.Visible = true;
             }
-
         }
 
         private void btnFolder_Click(object sender, EventArgs e)
+        {
+            OpenNewFolder();
+        }
+
+        /// <summary>
+        /// Open new folder to search for ifz files and load them.
+        /// </summary>
+        private void OpenNewFolder()
         {
 
             openFileDialog1.InitialDirectory = dispImageDir;
@@ -1582,10 +1672,9 @@ namespace OMRON_IFZ_Viewer
             {
                 //we retrieve the first image from the directory
                 //on récupère la première image du répertoire
-                string FileName = openFileDialog1.FileName; 
+                string FileName = openFileDialog1.FileName;
                 if (System.IO.Path.GetDirectoryName(openFileDialog1.FileName) != dispImageDir)
                 {
-                    //btnRibbon.Enabled = false;
                     KillBGW();
 
                     //Get the path of specified file   
@@ -1600,7 +1689,7 @@ namespace OMRON_IFZ_Viewer
                     listByrImgView.Visible = false; //hide opened Ribbon
 
                     Properties.Settings.Default.LastDir = dispImageDir;
-                    
+
                     //No need to change zoom mode on new file
                     //zoomMode = ZoomMode.Scale;
                 }
@@ -1626,7 +1715,7 @@ namespace OMRON_IFZ_Viewer
         private void Print01PhotosWizard()
         {
             //we cannot print what was not loaded correctly
-            if (bmp == null || !File.Exists(FileName))
+            if (bmp == null || !System.IO.File.Exists(FileName))
             {
                 MessageBox.Show("Error: Cannot print current file! \r\nCheck filename and folder path!");
                 return;
@@ -1695,6 +1784,14 @@ namespace OMRON_IFZ_Viewer
 
         private void btnRotate_Click(object sender, EventArgs e)
         {
+            RotateImage90();
+        }
+
+        /// <summary>
+        /// Rotate image by 90 degrees
+        /// </summary>
+        private void RotateImage90()
+        {
             //check if image was obtained from .ifz normally
             if (bmp == null)
             {
@@ -1706,16 +1803,20 @@ namespace OMRON_IFZ_Viewer
 
             //recalcul du zoomFit
             if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
+            {
                 zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
+            }
             else
+            {
                 zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
+            }
 
             //CenterImage();
             ZoomManagment();
             PositionImage();
+            
             pictureBox1.Refresh();
             pictureBox1.Focus();
-
 
         }
 
@@ -2446,23 +2547,50 @@ namespace OMRON_IFZ_Viewer
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
+            ShowHideInfoPanel();
+        }
+
+        /// <summary>
+        /// Show or Hide InfoPanel with image file info.
+        /// </summary>
+        private void ShowHideInfoPanel()
+        {
             if (pnlImageInfo.Visible)
             {
-                pnlImageInfo_ClosePanel.PerformClick();
+                HideInfoPanel();
             }
             else
             {
-
-                pnlImageInfo.Visible = true;
-                pnlImageInfo.Width = 344;
-                PopulatePnlImageInfo();
+                ShowInfoPanel();
             }
         }
 
         private void btnClosePanel_Click(object sender, EventArgs e)
         {
+            HideInfoPanel();
+        }
+
+        /// <summary>
+        /// Show InfoPanel with image file info.
+        /// </summary>
+        private void ShowInfoPanel()
+        {
+            pnlImageInfo.Visible = true;
+            pnlImageInfo.Width = 344;
+
+            PopulatePnlImageInfo();
+        }
+
+        /// <summary>
+        /// Hide InfoPanel with image file info.
+        /// Switch focus back to the pictureBox.
+        /// </summary>
+        private void HideInfoPanel()
+        {
             pnlImageInfo.Visible = false;
             pnlImageInfo.Width = 0;
+
+            pictureBox1.Focus();
         }
         
         private void tb_KeyDown(object sender, KeyEventArgs e)
@@ -2471,25 +2599,27 @@ namespace OMRON_IFZ_Viewer
             {
                 string folder = System.IO.Path.GetDirectoryName(FileName);
                 string newName = System.IO.Path.Combine(folder, tbIFZName.Text + ".ifz");
-                try { 
-                System.IO.File.Move(FileName, newName);
-                // FileName = System.IO.Path.GetFileName(newName);
-                lblName.Text = System.IO.Path.GetFileName(newName);
-                FileName = newName;
-            }
-                catch(Exception ex)
+
+                try
                 {
-                MessageBox.Show(ex.Message);
+                    System.IO.File.Move(FileName, newName);
+                    // FileName = System.IO.Path.GetFileName(newName);
+                    lblName.Text = System.IO.Path.GetFileName(newName);
+                    FileName = newName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
-    }
 
         private void PopulatePnlImageInfo()
         {
             tbIFZName.Text = System.IO.Path.GetFileNameWithoutExtension(lblName.Text);
             string Size = "";
             FileInfo fi = new FileInfo(FileName);
-            if (File.Exists(FileName))
+            if (System.IO.File.Exists(FileName))
             {
                 Size = MyExtensions.FileSizeFormatter.FormatSize(fi.Length);
             }
@@ -2497,7 +2627,7 @@ namespace OMRON_IFZ_Viewer
             lblSizeInfo.Text = Properties.strings.lblSize;
 
             //check if image was obtained from .ifz normally
-            if (bmp != null && File.Exists(FileName))
+            if (bmp != null && System.IO.File.Exists(FileName))
             {
                 lblSize2.Text = bmp.Width.ToString() + " x " + bmp.Height.ToString() + "  " + Size;
             }
@@ -2508,7 +2638,7 @@ namespace OMRON_IFZ_Viewer
 
             lblFolder.Text = Properties.strings.lblFolder;
            
-            if (!File.Exists(FileName))
+            if (!System.IO.File.Exists(FileName))
             {
                 linkLabel.Text = "\r\n" + "File does not exist!";
                 linkLabel.Text += "\r\n" + "Old path: \r\n" + FileName;
@@ -2799,7 +2929,7 @@ namespace OMRON_IFZ_Viewer
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            if (!File.Exists(FileName)) { return; }
+            if (!System.IO.File.Exists(FileName)) { return; }
 
             // combine the arguments together
             // it doesn't matter if there is a space after ','
@@ -2847,7 +2977,7 @@ namespace OMRON_IFZ_Viewer
                 camnb = 0;
                 currentImage = 0;
 
-                btnFolder.PerformClick();
+                OpenNewFolder();
                 return true;
             }
 
@@ -2871,7 +3001,7 @@ namespace OMRON_IFZ_Viewer
                 camnb = 0;
                 currentImage = 0;
 
-                btnFolder.PerformClick();
+                OpenNewFolder();
                 return true;
             }
 
