@@ -90,7 +90,10 @@
             // 
             // openFileDialog1
             // 
+            this.openFileDialog1.DefaultExt = "*.ifz";
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Images IFZ|*.ifz";
+            this.openFileDialog1.Title = "Open IFZ";
             // 
             // Form_EmptyFolder
             // 

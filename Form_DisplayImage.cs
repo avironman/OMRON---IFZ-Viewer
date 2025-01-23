@@ -144,6 +144,7 @@ namespace OMRON_IFZ_Viewer
                 Form_EmptyFolder form_EmptyFolder = new Form_EmptyFolder();
                 form_EmptyFolder.StartPosition = FormStartPosition.CenterScreen;
                 DialogResult res = form_EmptyFolder.ShowDialog();
+
                 if (res == DialogResult.OK)
                 {
                     FileName = form_EmptyFolder.ReturnValue;
@@ -165,6 +166,10 @@ namespace OMRON_IFZ_Viewer
                     }
                 }
                 currentFile = Array.IndexOf(Directory.GetFiles(dispImageDir, "*.ifz"), FileName);
+
+                //Save last used folder in app settings
+                Properties.Settings.Default.LastDir = dispImageDir;
+                Properties.Settings.Default.Save();
             }
             else
             {
@@ -321,24 +326,18 @@ namespace OMRON_IFZ_Viewer
 
                         bitmap = new Bitmap[bayerMaster.camno];
                         MonoCol = new int[bayerMaster.camno];
+                        
                         for (i = 0; i < bayerMaster.camno; i++)
                         {
                             FiltLibIF.ByrtoBmp(bayerMaster, out bitmap[i], i);
                             MonoCol[i] = bayerMaster.ByrArray[i].format;
                         }
+
                         bmp = bitmap[currentImage];
                         IsGreyScale = (MonoCol[currentImage] == 10);
 
 
-                        //if (bmp.Width < pictureBox1.Width && bmp.Height < pictureBox1.Height)
-                        //    zoomFit = 1f;
-                        //else
-                        //{
-                        if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
-                            zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
-                        else
-                            zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
-                        //}
+                        CalcZoomFit();
 
                         ZoomManagment();
                         PositionImage();
@@ -369,6 +368,23 @@ namespace OMRON_IFZ_Viewer
             PopulatePnlImageInfo();
         }
 
+        /// <summary>
+        /// Calculate zoomFit value to set min limit for zoom.
+        /// Range [0.01 ... 2000] or (1% till 200%)
+        /// </summary>
+        public void CalcZoomFit()
+        {
+
+            if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
+            {
+                zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
+            }
+            else
+            {
+                zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
+            }
+        }
+
         public void DispImage(int num)
         {
             if (num >= camnb) { return; }
@@ -377,17 +393,14 @@ namespace OMRON_IFZ_Viewer
             bmp = bitmap[currentImage];
             IsGreyScale = (MonoCol[currentImage] == 10);
 
+            CalcZoomFit();
+            ZoomManagment();
             PositionImage();
 
             pictureBox1.Refresh();
             pictureBox1.Focus();
 
             ManageButtons();
-
-            if ((float)bmp.Width / (float)bmp.Height > (float)pictureBox1.Width / (float)pictureBox1.Height)
-                zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
-            else
-                zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
 
             PopulatePnlImageInfo();
         }
@@ -546,10 +559,7 @@ namespace OMRON_IFZ_Viewer
 
             //we recalculate the minimum Zoom when resizing the window.
             //on recalcule le Zoom mini lors du redimensionnement fenetre.
-            if ((float)bmp.Width / (float)bmp.Height > (float)pictureBox1.Width / (float)pictureBox1.Height)
-                zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
-            else
-                zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
+            CalcZoomFit();
 
             ZoomManagment();
             PositionImage();
@@ -668,8 +678,7 @@ namespace OMRON_IFZ_Viewer
         /// <param name="e"></param>
         private void pictureBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            //If CTRL is pressed, the cursor is moved
-            //Si CTRL est enfoncée, on déplace le curseur
+
             if (e.KeyCode == Keys.Escape)
             {
                 this.WindowState = FormWindowState.Normal;
@@ -678,9 +687,9 @@ namespace OMRON_IFZ_Viewer
                 ZoomManagment();
             }
 
+            // Hotkey combinations with Ctrl (like Ctrl+O)
             if (e.Control)
             {
-                //zoomFit = false;
                 switch (e.KeyCode)
                 {
                     case Keys.O:
@@ -731,6 +740,9 @@ namespace OMRON_IFZ_Viewer
                         ZoomOut();
                         break;
 
+                    //If CTRL is pressed with arrows, the cursor is moved
+                    //Si CTRL est enfoncée, on déplace le curseur
+
                     case Keys.Down:
                         Cursor.Position = new System.Drawing.Point(Cursor.Position.X, Cursor.Position.Y + 1);
                         e.IsInputKey = true;
@@ -759,11 +771,9 @@ namespace OMRON_IFZ_Viewer
                 curImageY = translateY;
 
             }
-            //Otherwise, we move the cursor
-            //Sinon, on déplace le curseur
             else
             {
-
+                //Simple keypress (like R - rotate image)
                 switch (e.KeyCode)
                 {
                     case Keys.R:
@@ -1248,7 +1258,6 @@ namespace OMRON_IFZ_Viewer
 
             translateSet = true;
             zoomSet = zoomFac < 20f && zoomFac > 0.1f;
-            //zoomFit = false;
 
             // Adjust the zoom factor
             if (e.Delta > 0)
@@ -1689,6 +1698,7 @@ namespace OMRON_IFZ_Viewer
                     listByrImgView.Visible = false; //hide opened Ribbon
 
                     Properties.Settings.Default.LastDir = dispImageDir;
+                    Properties.Settings.Default.Save();
 
                     //No need to change zoom mode on new file
                     //zoomMode = ZoomMode.Scale;
@@ -1801,15 +1811,9 @@ namespace OMRON_IFZ_Viewer
 
             bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
+            //recalculation of zoomFit
             //recalcul du zoomFit
-            if ((float)bmp.Width / (float)bmp.Height < (float)pictureBox1.Width / (float)pictureBox1.Height)
-            {
-                zoomFit = (float)pictureBox1.Height / (float)bmp.Height;
-            }
-            else
-            {
-                zoomFit = (float)pictureBox1.Width / (float)bmp.Width;
-            }
+            CalcZoomFit();
 
             //CenterImage();
             ZoomManagment();
@@ -2261,7 +2265,7 @@ namespace OMRON_IFZ_Viewer
 
                     case ZoomMode.In:
                         if (zoomFac < 20f)
-                            zoomFac *= 1.25f;
+                            zoomFac *= 1.1f;
 
                         translateSet = true;
                         translateX = ((float)pictureBox1.Width - (float)bmp.Width * zoomFac) / 2.0f / zoomFac;
@@ -2274,20 +2278,26 @@ namespace OMRON_IFZ_Viewer
 
                     case ZoomMode.Out:
                         if (zoomFac > 0.1f)
-                            zoomFac *= 0.8f;
+                            zoomFac *= 0.9f;
 
-                        if (zoomFit > 1f) //pour les petites images, le zoom ne peut pas descendre sous 100%
+                        //for small images, the zoom cannot go below 100%
+                        //pour les petites images, le zoom ne peut pas descendre sous 100%
+                        if (zoomFit > 1f)
                         {
                             if (zoomFac <= 1f)
                             {
                                 zoomFac = 1f;
+                                zoomMode = ZoomMode.Scale;
                             }
                         }
-                        else //pour les grandes images, limitation du zoom out si l'image devient plus petite que la zone
+                        else 
                         {
+                            //for large images, limit zoom out if the image becomes smaller than the area
+                            //pour les grandes images, limitation du zoom out si l'image devient plus petite que la zone
                             if (zoomFac <= zoomFit + 0.01f)
                             {
                                 zoomFac = zoomFit;
+                                zoomMode = ZoomMode.Fit;
                             }
                         }
                         translateSet = true;

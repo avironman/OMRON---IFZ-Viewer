@@ -98,9 +98,10 @@ namespace OMRON_IFZ_Viewer
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                this.ReturnValue = openFileDialog1.FileName; //on récupère la première image du répertoire
+                //we retrieve the first image from the directory
+                //on récupère la première image du répertoire
+                this.ReturnValue = openFileDialog1.FileName;
                 this.DialogResult = DialogResult.OK;
-                //this.ReturnValue = "Print";
                 this.Close();
             }
             else
