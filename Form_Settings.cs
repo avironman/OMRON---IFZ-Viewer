@@ -124,6 +124,9 @@ namespace OMRON_IFZ_Viewer
                 case "it-IT":
                     comboBox1.SelectedIndex = 2;
                     break;
+                case "es-ES":
+                    comboBox1.SelectedIndex = 3;
+                    break;
                 default:
                     comboBox1.SelectedIndex = 1;
                     break;
@@ -144,6 +147,9 @@ namespace OMRON_IFZ_Viewer
                     break;
                 case "Italiano":
                     language = "it-IT";
+                    break;
+                case "Español":
+                    language = "es-ES";
                     break;
                 default:
                     language = "en-US";

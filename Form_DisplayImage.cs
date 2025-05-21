@@ -1104,6 +1104,10 @@ namespace OMRON_IFZ_Viewer
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+            if(pnlImageInfo.Visible)
+            {
+                pnlImageInfo.Visible = false;
+            }
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
@@ -1960,9 +1964,16 @@ namespace OMRON_IFZ_Viewer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            pnlImageInfo.Visible = true;
-            pnlImageInfo.Width = 344;
-            PopulatePnlImageInfo();
+            pnlImageInfo.Visible = !pnlImageInfo.Visible;
+            if (pnlImageInfo.Visible)
+            {
+                pnlImageInfo.Width = 344;
+                PopulatePnlImageInfo();
+            }
+            else
+            { 
+                pnlImageInfo.Width = 0;
+            }
 
         }
 
@@ -1997,7 +2008,7 @@ namespace OMRON_IFZ_Viewer
         FileInfo fi = new FileInfo(FileName);
         string Size = MyExtensions.FileSizeFormatter.FormatSize(fi.Length);
         lblSizeInfo.Text = Properties.strings.lblSize;
-        lblSize2.Text = bmp.Width.ToString() + " x " + bmp.Height.ToString() + "  " + Size;
+        lblSize2.Text = bmp.Width.ToString() + " x " + bmp.Height.ToString() + "  " + Size+ " Contains "+ camnb.ToString()+ " image(s)";
         lblFolder.Text = Properties.strings.lblFolder;
         linkLabel.Text = FileName;
         lblCamera.Text = Properties.strings.lblCamera;
