@@ -43,11 +43,19 @@ namespace OMRON_IFZ_Viewer
             btnPrint.Text = "       " + Properties.strings.CM_Print;
             btnCopy.Text = "       "+Properties.strings.CM_Copy;
             btnOpenwith.Text = "       " + Properties.strings.CM_Openwith;
-            btnOpenFolder.Text = "       " + Properties.strings.CM_OpenFolder;
+            btnOpenInBrowser.Text = "       " + Properties.strings.CM_OpenFolder;
             btnCopyPath.Text = "       " + Properties.strings.CM_CopyPath;
             btnBatchConvert.Text = "       " + Properties.strings.CM_BatchConvert;
+
+            btnErase.Text = "       " + Properties.strings.CM_Delete;
+            btnFolder.Text = "       " + Properties.strings.CM_OpenFolder;
+            btnRotate.Text = "       " + Properties.strings.CM_Rotate;
+            btnSettings.Text = "       " + Properties.strings.CM_Settings;
+            btnFlipLR.Text = "       " + Properties.strings.CM_FlipLR;
+            btnFlipUD.Text = "       " + Properties.strings.CM_FlipUD;
+            btnInfo.Text = "       " + Properties.strings.CM_Info;
             //--- --- ---
-            btnErase.Text = "       " + Properties.strings.CM_Erase;
+
         }
         
         private const int CS_DROPSHADOW = 0x00020000;

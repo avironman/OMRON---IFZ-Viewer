@@ -88,11 +88,38 @@ namespace OMRON_IFZ_Viewer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete.
+        ///   Looks up a localized string similar to Delete (Del).
         /// </summary>
-        internal static string CM_Erase {
+        internal static string CM_Delete {
             get {
-                return ResourceManager.GetString("CM_Erase", resourceCulture);
+                return ResourceManager.GetString("CM_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip image horizontally.
+        /// </summary>
+        internal static string CM_FlipLR {
+            get {
+                return ResourceManager.GetString("CM_FlipLR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip image vertically.
+        /// </summary>
+        internal static string CM_FlipUD {
+            get {
+                return ResourceManager.GetString("CM_FlipUD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information (I, Ctrl+I).
+        /// </summary>
+        internal static string CM_Info {
+            get {
+                return ResourceManager.GetString("CM_Info", resourceCulture);
             }
         }
         
@@ -115,11 +142,20 @@ namespace OMRON_IFZ_Viewer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Print.
+        ///   Looks up a localized string similar to Print (Ctrl+P).
         /// </summary>
         internal static string CM_Print {
             get {
                 return ResourceManager.GetString("CM_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate (R, Ctrl+R).
+        /// </summary>
+        internal static string CM_Rotate {
+            get {
+                return ResourceManager.GetString("CM_Rotate", resourceCulture);
             }
         }
         
@@ -129,6 +165,15 @@ namespace OMRON_IFZ_Viewer.Properties {
         internal static string CM_Saveas {
             get {
                 return ResourceManager.GetString("CM_Saveas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string CM_Settings {
+            get {
+                return ResourceManager.GetString("CM_Settings", resourceCulture);
             }
         }
         

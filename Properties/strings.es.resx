@@ -123,17 +123,11 @@
   <data name="CM_CopyPath" xml:space="preserve">
     <value>Copiar como ruta</value>
   </data>
-  <data name="CM_Erase" xml:space="preserve">
-    <value>Eliminar</value>
-  </data>
   <data name="CM_OpenFolder" xml:space="preserve">
     <value>Abrir en el explorador de archivos</value>
   </data>
   <data name="CM_Openwith" xml:space="preserve">
     <value>Abrir con</value>
-  </data>
-  <data name="CM_Print" xml:space="preserve">
-    <value>Imprimir</value>
   </data>
   <data name="CM_Saveas" xml:space="preserve">
     <value>Guardar como</value>
@@ -237,19 +231,37 @@
   <data name="tooltip_rotate" xml:space="preserve">
     <value>Rotar (R, Ctrl+R)</value>
   </data>
+  <data name="CM_Rotate" xml:space="preserve">
+    <value>Rotar (R, Ctrl+R)</value>
+  </data>
   <data name="tooltip_delete" xml:space="preserve">
+    <value>Eliminar (Supr)</value>
+  </data>
+  <data name="CM_Delete" xml:space="preserve">
     <value>Eliminar (Supr)</value>
   </data>
   <data name="tooltip_print" xml:space="preserve">
     <value>Imprimir (Ctrl+P)</value>
   </data>
+  <data name="CM_Print" xml:space="preserve">
+    <value>Imprimir (Ctrl+P)</value>
+  </data>
   <data name="tooltip_settings" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="CM_Settings" xml:space="preserve">
     <value>Configuración</value>
   </data>
   <data name="tooltip_flip_h" xml:space="preserve">
     <value>Voltear imagen horizontalmente</value>
   </data>
+  <data name="CM_FlipLR" xml:space="preserve">
+    <value>Voltear imagen horizontalmente</value>
+  </data>
   <data name="tooltip_flip_v" xml:space="preserve">
+    <value>Voltear imagen verticalmente</value>
+  </data>
+  <data name="CM_FlipUD" xml:space="preserve">
     <value>Voltear imagen verticalmente</value>
   </data>
   <data name="tooltip_zoom_in" xml:space="preserve">
@@ -265,6 +277,9 @@
     <value>Abrir carpeta (Ctrl+O)</value>
   </data>
   <data name="tooltip_info" xml:space="preserve">
+    <value>Información (I, Ctrl+I)</value>
+  </data>
+  <data name="CM_Info" xml:space="preserve">
     <value>Información (I, Ctrl+I)</value>
   </data>
   <data name="CM_BatchConvert" xml:space="preserve">

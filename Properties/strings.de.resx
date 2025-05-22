@@ -123,17 +123,11 @@
   <data name="CM_CopyPath" xml:space="preserve">
     <value>Als Pfad kopieren</value>
   </data>
-  <data name="CM_Erase" xml:space="preserve">
-    <value>Löschen</value>
-  </data>
   <data name="CM_OpenFolder" xml:space="preserve">
     <value>Im Datei-Explorer öffnen</value>
   </data>
   <data name="CM_Openwith" xml:space="preserve">
     <value>Öffnen mit</value>
-  </data>
-  <data name="CM_Print" xml:space="preserve">
-    <value>Drucken</value>
   </data>
   <data name="CM_Saveas" xml:space="preserve">
     <value>Speichern unter</value>
@@ -237,19 +231,37 @@
   <data name="tooltip_rotate" xml:space="preserve">
     <value>Drehen (R, Strg+R)</value>
   </data>
+  <data name="CM_Rotate" xml:space="preserve">
+    <value>Drehen (R, Strg+R)</value>
+  </data>
   <data name="tooltip_delete" xml:space="preserve">
+    <value>Löschen (Entf)</value>
+  </data>
+  <data name="CM_Delete" xml:space="preserve">
     <value>Löschen (Entf)</value>
   </data>
   <data name="tooltip_print" xml:space="preserve">
     <value>Drucken (Strg+P)</value>
   </data>
+  <data name="CM_Print" xml:space="preserve">
+    <value>Drucken (Strg+P)</value>
+  </data>
   <data name="tooltip_settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="CM_Settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
   <data name="tooltip_flip_h" xml:space="preserve">
     <value>Bild horizontal spiegeln</value>
   </data>
+  <data name="CM_FlipLR" xml:space="preserve">
+    <value>Bild horizontal spiegeln</value>
+  </data>
   <data name="tooltip_flip_v" xml:space="preserve">
+    <value>Bild vertikal spiegeln</value>
+  </data>
+  <data name="CM_FlipUD" xml:space="preserve">
     <value>Bild vertikal spiegeln</value>
   </data>
   <data name="tooltip_zoom_in" xml:space="preserve">
@@ -265,6 +277,9 @@
     <value>Ordner öffnen (Strg+O)</value>
   </data>
   <data name="tooltip_info" xml:space="preserve">
+    <value>Informationen (I, Strg+I)</value>
+  </data>
+  <data name="CM_Info" xml:space="preserve">
     <value>Informationen (I, Strg+I)</value>
   </data>
   <data name="CM_BatchConvert" xml:space="preserve">
