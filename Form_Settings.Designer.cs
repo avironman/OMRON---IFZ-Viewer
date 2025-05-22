@@ -105,8 +105,11 @@
             this.cmbLanguage.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLanguage.FormattingEnabled = true;
             this.cmbLanguage.Items.AddRange(new object[] {
+            "English",
             "Français",
-            "English"});
+            "Italiano",
+            "Deutsch",
+            "Español"});
             this.cmbLanguage.Location = new System.Drawing.Point(597, 25);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(243, 25);
@@ -310,9 +313,9 @@
             this.lblRestartToApplyTheme.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRestartToApplyTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.lblRestartToApplyTheme.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRestartToApplyTheme.Location = new System.Drawing.Point(154, 16);
+            this.lblRestartToApplyTheme.Location = new System.Drawing.Point(46, 16);
             this.lblRestartToApplyTheme.Name = "lblRestartToApplyTheme";
-            this.lblRestartToApplyTheme.Size = new System.Drawing.Size(191, 34);
+            this.lblRestartToApplyTheme.Size = new System.Drawing.Size(299, 34);
             this.lblRestartToApplyTheme.TabIndex = 30;
             this.lblRestartToApplyTheme.Text = "To apply Theme - restart app.";
             this.lblRestartToApplyTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

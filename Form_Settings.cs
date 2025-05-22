@@ -52,8 +52,11 @@ namespace OMRON_IFZ_Viewer
             // Set Language
             switch (Properties.Settings.Default.LangueSoft)
             {
-                case "fr-FR":
+                case "en-US":
                     cmbLanguage.SelectedIndex = 0;
+                    break;
+                case "fr-FR":
+                    cmbLanguage.SelectedIndex = 1;
                     break;
 
                 case "it-IT":
@@ -63,11 +66,9 @@ namespace OMRON_IFZ_Viewer
                 case "de-DE":
                     cmbLanguage.SelectedIndex = 3;
                     break;
-
-                case "en-US":
-                    cmbLanguage.SelectedIndex = 1;
+                case "es-ES":
+                    cmbLanguage.SelectedIndex = 4;
                     break;
-
                 default:
                     cmbLanguage.SelectedIndex = 1;
                     break;
@@ -216,7 +217,9 @@ namespace OMRON_IFZ_Viewer
                 case "English":
                     language = "en-US";
                     break;
-
+                case "Español":
+                    language = "es-ES";
+                    break;
                 default:
                     language = "en-US";
                     break;
@@ -236,6 +239,8 @@ namespace OMRON_IFZ_Viewer
             lbl4.Text = Properties.strings.Settings_lbl4;
             lbl5.Text = Properties.strings.Settings_lbl5;
             lbl6.Text = Properties.strings.Settings_lbl6;
+            lblRestartToApplyTheme.Text = Properties.strings.Settings_lbl8;
+            lblPreview.Text = Properties.strings.Settings_lbl9;
 
             cmbZoom.Items.Clear();
             cmbZoom.Items.Add(Properties.strings.Settings_cb2_opt1);

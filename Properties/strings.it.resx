@@ -118,165 +118,165 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CM_Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Copia</value>
   </data>
   <data name="CM_CopyPath" xml:space="preserve">
-    <value>Copy as path</value>
+    <value>Copia come percorso </value>
   </data>
   <data name="CM_Erase" xml:space="preserve">
-    <value>Delete</value>
+    <value>Elimina</value>
   </data>
   <data name="CM_OpenFolder" xml:space="preserve">
-    <value>Open in file explorer</value>
+    <value>Apri in Esplora risorse </value>
   </data>
   <data name="CM_Openwith" xml:space="preserve">
-    <value>Open with</value>
+    <value>Apri con </value>
   </data>
   <data name="CM_Print" xml:space="preserve">
-    <value>Print</value>
+    <value>Stampa</value>
   </data>
   <data name="CM_Saveas" xml:space="preserve">
-    <value>Save as</value>
+    <value>Salva con nome </value>
   </data>
   <data name="Confirm_cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annulla</value>
   </data>
   <data name="Confirm_delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Elimina</value>
   </data>
   <data name="Confirm_label1" xml:space="preserve">
-    <value>Are you sure you want to delete this file?</value>
+    <value>Sei sicuro di voler eliminare questo file? </value>
   </data>
   <data name="Confirm_label2" xml:space="preserve">
-    <value>Delete this file?</value>
+    <value>Eliminare questo file? </value>
   </data>
   <data name="Convert_cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annulla</value>
   </data>
   <data name="Convert_convert" xml:space="preserve">
-    <value>Convert</value>
+    <value>Converti</value>
   </data>
   <data name="Convert_label" xml:space="preserve">
-    <value>Please choose file format and options before pressing Convert.</value>
+    <value>Scegli il formato e le opzioni prima di convertire </value>
   </data>
   <data name="Convert_title" xml:space="preserve">
-    <value>Batch ifz conversion</value>
+    <value>Conversione IFZ in batch </value>
   </data>
   <data name="DPI_Message" xml:space="preserve">
-    <value>Windows scale factor is {0}%, zoom should be set to 100% so that zooming functions works correctly!</value>
+    <value>Il fattore di scala di Windows è {0}%, deve essere 100% affinché lo zoom funzioni correttamente! </value>
   </data>
   <data name="EmptyFolder_browse" xml:space="preserve">
-    <value>Browse for IFZ</value>
+    <value>Carica un IFZ </value>
   </data>
   <data name="EmptyFolder_cancel" xml:space="preserve">
-    <value>Cancel &amp; Close</value>
+    <value>Annulla e Chiudi </value>
   </data>
   <data name="EmptyFolder_label1" xml:space="preserve">
-    <value>Folder is empty!</value>
+    <value>La cartella è vuota! </value>
   </data>
   <data name="EmptyFolder_label2" xml:space="preserve">
-    <value>This folder does not contains any IFZ images. Please select a folder that contains IFZ.</value>
+    <value>Questa cartella non contiene immagini IFZ. Selezionare una cartella con file IFZ. </value>
   </data>
   <data name="lblCamera" xml:space="preserve">
-    <value>Device Info</value>
+    <value>Info sul dispositivo </value>
   </data>
   <data name="lblColor" xml:space="preserve">
-    <value>RGB Value:</value>
+    <value> Valore RGB:</value>
   </data>
   <data name="lblFolder" xml:space="preserve">
-    <value>File Path</value>
+    <value>Percorso del file </value>
   </data>
   <data name="lblSize" xml:space="preserve">
-    <value>Size Info</value>
+    <value>Info sulla dimensione </value>
   </data>
   <data name="Settings_btnClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Chiudi</value>
   </data>
   <data name="Settings_btnInstall" xml:space="preserve">
-    <value>Install</value>
+    <value>Installa</value>
   </data>
   <data name="Settings_cb2_opt1" xml:space="preserve">
-    <value>Zoom to fit window</value>
+    <value>Zoom adatta alla finestra </value>
   </data>
   <data name="Settings_cb2_opt2" xml:space="preserve">
-    <value>Zoom to real image scale</value>
+    <value>Mostra dimensione reale </value>
   </data>
   <data name="Settings_lbl1" xml:space="preserve">
-    <value>Customize</value>
+    <value>Personalizzazione</value>
   </data>
   <data name="Settings_lbl2" xml:space="preserve">
-    <value>Language</value>
+    <value>Lingua</value>
   </data>
   <data name="Settings_lbl3" xml:space="preserve">
-    <value>About</value>
+    <value>Informazioni</value>
   </data>
   <data name="Settings_lbl4" xml:space="preserve">
-    <value>IFZ Viewer</value>
+    <value>Visualizzatore IFZ </value>
   </data>
   <data name="Settings_lbl5" xml:space="preserve">
-    <value>Zoom preference</value>
+    <value>Preferenze zoom </value>
   </data>
   <data name="Settings_lbl6" xml:space="preserve">
-    <value>Button Background Color</value>
+    <value>Colore sfondo pulsanti </value>
   </data>
   <data name="Settings_lbl7" xml:space="preserve">
-    <value>Install windows shell extension to create IFZ thumbnails in the explorer.</value>
+    <value>Installa l'estensione per le miniature IFZ in Esplora risorse </value>
   </data>
   <data name="Settings_Title" xml:space="preserve">
-    <value>    Settings</value>
+    <value> Impostazioni</value>
   </data>
   <data name="tooltip_fullscreen" xml:space="preserve">
-    <value>Full Screen (F11)</value>
+    <value>Schermo intero (F11) </value>
   </data>
   <data name="tooltip_zoom_realsize" xml:space="preserve">
-    <value>Zoom to real size (Ctrl+1)</value>
+    <value>Zoom dimensione reale (Ctrl+1) </value>
   </data>
   <data name="tooltip_zoom_fit" xml:space="preserve">
-    <value>Zoom to fit screen (Ctrl+0)</value>
+    <value>Zoom adatta alla finestra (Ctrl+0) </value>
   </data>
   <data name="tooltip_rotate" xml:space="preserve">
-    <value>Rotate (R, Ctrl+R)</value>
+    <value>Ruota (R, Ctrl+R) </value>
   </data>
   <data name="tooltip_delete" xml:space="preserve">
-    <value>Delete (Del)</value>
+    <value>Elimina (Canc) </value>
   </data>
   <data name="tooltip_print" xml:space="preserve">
-    <value>Print (Ctrl+P)</value>
+    <value>Stampa (Ctrl+P) </value>
   </data>
   <data name="tooltip_settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Impostazioni</value>
   </data>
   <data name="tooltip_flip_h" xml:space="preserve">
-    <value>Flip image horizontally</value>
+    <value>Capovolgi orizzontalmente </value>
   </data>
   <data name="tooltip_flip_v" xml:space="preserve">
-    <value>Flip image vertically</value>
+    <value>Capovolgi verticalmente </value>
   </data>
   <data name="tooltip_zoom_in" xml:space="preserve">
-    <value>Zoom in (Ctrl +)</value>
+    <value>Zoom avanti (Ctrl +) </value>
   </data>
   <data name="tooltip_zoom_out" xml:space="preserve">
-    <value>Zoom out (Ctrl -)</value>
+    <value>Zoom indietro (Ctrl -) </value>
   </data>
   <data name="tooltip_ribbon" xml:space="preserve">
-    <value>Show Ribbon (F, Ctrl+F)</value>
+    <value>Mostra pellicola (F, Ctrl+F) </value>
   </data>
   <data name="tooltip_open_folder" xml:space="preserve">
-    <value>Open folder (Ctrl+O)</value>
+    <value>Apri cartella (Ctrl+O) </value>
   </data>
   <data name="tooltip_info" xml:space="preserve">
-    <value>Information (I, Ctrl+I)</value>
+    <value>Informazioni (I, Ctrl+I) </value>
   </data>
   <data name="CM_BatchConvert" xml:space="preserve">
-    <value>Batch convert</value>
+    <value>Conversione in batch </value>
   </data>
   <data name="Settings_lbl8" xml:space="preserve">
-    <value>To apply Theme - restart app.</value>
+    <value>Riavvia per applicare il tema. </value>
   </data>
   <data name="Settings_lbl9" xml:space="preserve">
-    <value>Preview</value>
+    <value>Anteprima</value>
   </data>
   <data name="lblMono" xml:space="preserve">
-    <value>Pixel Value:</value>
+    <value>Valore pixel: </value>
   </data>
 </root>

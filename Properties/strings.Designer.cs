@@ -394,7 +394,25 @@ namespace OMRON_IFZ_Viewer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to To apply Theme - restart app..
+        /// </summary>
+        internal static string Settings_lbl8 {
+            get {
+                return ResourceManager.GetString("Settings_lbl8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string Settings_lbl9 {
+            get {
+                return ResourceManager.GetString("Settings_lbl9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     Settings.
         /// </summary>
         internal static string Settings_Title {
             get {
