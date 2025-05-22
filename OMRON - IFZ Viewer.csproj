@@ -298,6 +298,8 @@
     <None Include="Resources\icons8-paint-roller-26.png" />
     <None Include="Resources\FlipLR.png" />
     <None Include="Resources\FlipUD.png" />
+    <None Include="Resources\icons8-pipette-26.png" />
+    <None Include="Resources\icons8-pipette-20.png" />
     <Content Include="ServerRegistrationManager.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

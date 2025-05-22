@@ -137,5 +137,63 @@ namespace OMRON_IFZ_Viewer
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void btnGetPixel_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "GetPixelValue";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnRotate_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "Rotate";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnFlipLR_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "FlipLR";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+            
+        }
+
+        private void btnFlipUD_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "FlipUD";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnFolder_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "OpenFolder";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "Delete";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "Settings";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            this.ReturnValue = "Info";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }

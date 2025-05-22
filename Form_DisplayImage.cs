@@ -1063,7 +1063,35 @@ namespace OMRON_IFZ_Viewer
                             }
 
                             break;
+                        case "GetPixelValue":
+                            Color c = lblColor.BackColor;
+                            Clipboard.SetText(lblPixelValue.Text + "  "+lblPixelPos.Text);
+                            //copy pixel value to clipboard
+                            
+                            break;
+                        case "Rotate":
+                            RotateImage90();
+                            break;
+                        case "FlipLR":
+                            //check if image was obtained from .ifz normally
+                            if (bmp == null)
+                            {
+                                return;
+                            }
 
+                            bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                            pictureBox1.Refresh();
+                            break;
+                        case "FlipUD":
+                            //check if image was obtained from .ifz normally
+                            if (bmp == null)
+                            {
+                                return;
+                            }
+
+                            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                            pictureBox1.Refresh();
+                            break;
                         case "Convert":
 
                             //Checking if dispImageDir folder exists or notify User.
@@ -1074,7 +1102,21 @@ namespace OMRON_IFZ_Viewer
                             }
 
                             break;
+                        case "OpenFolder":
+                            OpenNewFolder();
+                            break;
+                        case "Settings":
+                            Form_Settings frm = new Form_Settings();
+                            frm.StartPosition = FormStartPosition.CenterParent;
+                            frm.ShowDialog();
+                            pictureBox1.Focus();
 
+                            Translation();
+                            UpdateButtonColor();
+                            break;
+                        case "Info":
+                            ShowHideInfoPanel();
+                            break;
                         // --- --- ---
 
                         case "Delete":
@@ -1444,6 +1486,7 @@ namespace OMRON_IFZ_Viewer
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
+            HideInfoPanel();
             WindowState = FormWindowState.Minimized;
         }
 
@@ -2100,16 +2143,18 @@ namespace OMRON_IFZ_Viewer
                 return;
             }
 
-            string str;
+            string str,str2;
             //int num;
             FiltLibIF.BayerMaster bayerMaster = new FiltLibIF.BayerMaster();
             try
             {
                 string tag0 = this.listByrImgView.SelectedItems[0].Tag.ToString();
                 int tag0Len = tag0.Length;
-                
-                str = string.Concat(tag0.Remove(tag0Len - 8), ".ifz");
-                CurrentImage = Convert.ToInt32(tag0.Substring(tag0Len - 7, 1)) - 1;
+
+                str = string.Concat(tag0.Substring(0, tag0.LastIndexOf("_")), ".ifz");
+                str2 = tag0.Substring(tag0.LastIndexOf("_")).Replace("_","").Replace(".ifz", "");
+
+                CurrentImage = Convert.ToInt32(str2.Substring(0, str2.IndexOf("/"))) - 1;
 
                 lblName.Text = System.IO.Path.GetFileName(str);
                 lblFileNb.Text = (currentFile + 1) + "/" + nbIFZ;

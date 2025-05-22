@@ -752,6 +752,9 @@ namespace OMRON_IFZ_Viewer
             this.pnlImageInfo.Size = new System.Drawing.Size(344, 731);
             this.pnlImageInfo.TabIndex = 10;
             this.pnlImageInfo.Visible = false;
+            this.pnlImageInfo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
+            this.pnlImageInfo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseMove);
+            this.pnlImageInfo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseUp);
             // 
             // lblCamera2
             // 
@@ -935,6 +938,9 @@ namespace OMRON_IFZ_Viewer
             this.SizeChanged += new System.EventHandler(this.Form_DisplayImage_SizeChanged);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form_DisplayImage_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form_DisplayImage_DragEnter);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Borderless_MouseUp);
             this.Resize += new System.EventHandler(this.Form_DisplayImage_Resize);
             this.pnlHeader.ResumeLayout(false);
             this.pnlImageMgmt.ResumeLayout(false);

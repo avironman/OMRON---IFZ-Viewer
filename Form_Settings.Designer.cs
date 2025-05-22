@@ -48,12 +48,12 @@
             this.cmbColor = new System.Windows.Forms.ComboBox();
             this.cmbThemeColor = new System.Windows.Forms.ComboBox();
             this.pnlThemeColor = new System.Windows.Forms.Panel();
+            this.lblRestartToApplyTheme = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblEmailYury = new System.Windows.Forms.Label();
             this.btnClose = new RoundButton();
-            this.lblRestartToApplyTheme = new System.Windows.Forms.Label();
             this.pnlLanguage.SuspendLayout();
             this.pnlVersion.SuspendLayout();
             this.pnlZoom.SuspendLayout();
@@ -100,6 +100,7 @@
             // cmbLanguage
             // 
             this.cmbLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLanguage.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbLanguage.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLanguage.FormattingEnabled = true;
@@ -197,6 +198,7 @@
             // cmbZoom
             // 
             this.cmbZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbZoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbZoom.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbZoom.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbZoom.FormattingEnabled = true;
@@ -265,6 +267,7 @@
             // cmbColor
             // 
             this.cmbColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbColor.FormattingEnabled = true;
@@ -278,6 +281,7 @@
             // cmbThemeColor
             // 
             this.cmbThemeColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbThemeColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbThemeColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbThemeColor.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbThemeColor.FormattingEnabled = true;
@@ -300,6 +304,18 @@
             this.pnlThemeColor.Name = "pnlThemeColor";
             this.pnlThemeColor.Size = new System.Drawing.Size(849, 71);
             this.pnlThemeColor.TabIndex = 7;
+            // 
+            // lblRestartToApplyTheme
+            // 
+            this.lblRestartToApplyTheme.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRestartToApplyTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblRestartToApplyTheme.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRestartToApplyTheme.Location = new System.Drawing.Point(154, 16);
+            this.lblRestartToApplyTheme.Name = "lblRestartToApplyTheme";
+            this.lblRestartToApplyTheme.Size = new System.Drawing.Size(191, 34);
+            this.lblRestartToApplyTheme.TabIndex = 30;
+            this.lblRestartToApplyTheme.Text = "To apply Theme - restart app.";
+            this.lblRestartToApplyTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -365,18 +381,6 @@
             this.btnClose.Text = "Fermer";
             this.btnClose.TextColor = System.Drawing.Color.Black;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // lblRestartToApplyTheme
-            // 
-            this.lblRestartToApplyTheme.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRestartToApplyTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lblRestartToApplyTheme.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRestartToApplyTheme.Location = new System.Drawing.Point(154, 16);
-            this.lblRestartToApplyTheme.Name = "lblRestartToApplyTheme";
-            this.lblRestartToApplyTheme.Size = new System.Drawing.Size(191, 34);
-            this.lblRestartToApplyTheme.TabIndex = 30;
-            this.lblRestartToApplyTheme.Text = "To apply Theme - restart app.";
-            this.lblRestartToApplyTheme.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form_Settings
             // 
